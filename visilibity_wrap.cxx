@@ -9373,6 +9373,38 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_Polyline_index__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Point result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Polyline, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polyline const *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Polyline * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = ((VisiLibity::Polyline const *)arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj((new VisiLibity::Point(static_cast< const VisiLibity::Point& >(result))), SWIGTYPE_p_VisiLibity__Point, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
 
 /*
   Document-method: Visilibity::Polyline.size
@@ -9474,6 +9506,89 @@ _wrap_Polyline_bbox(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_NewPointerObj((new VisiLibity::Bounding_Box(static_cast< const VisiLibity::Bounding_Box& >(result))), SWIGTYPE_p_VisiLibity__Bounding_Box, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Polyline_index__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Point *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Polyline, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polyline *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Polyline * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Point *) &(arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Point, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Polyline_index(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polyline, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Polyline_index__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polyline, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Polyline_index__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Polyline.index", 
+    "    VisiLibity::Point & Polyline.index(unsigned int i)\n"
+    "    VisiLibity::Point & Polyline.index(unsigned int i)\n");
+  
   return Qnil;
 }
 
@@ -9984,6 +10099,38 @@ fail:
     "    Polygon.new(std::vector< VisiLibity::Point > const &vertices_temp)\n"
     "    Polygon.new(VisiLibity::Point const &point0, VisiLibity::Point const &point1, VisiLibity::Point const &point2)\n");
   
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Polygon_index__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Point *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Polygon, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polygon const *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Polygon * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Point *) &((VisiLibity::Polygon const *)arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Point, 0 |  0 );
+  return vresult;
+fail:
   return Qnil;
 }
 
@@ -10536,6 +10683,89 @@ fail:
   Ruby_Format_OverloadedError( argc, 4, "Polygon.write_to_file", 
     "    void Polygon.write_to_file(std::string const &filename, int fios_precision_temp)\n"
     "    void Polygon.write_to_file(std::string const &filename)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Polygon_index__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Point *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Polygon, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polygon *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Polygon * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Point *) &(arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Point, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Polygon_index(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Polygon_index__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Polygon_index__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Polygon.index", 
+    "    VisiLibity::Point & Polygon.index(unsigned int i)\n"
+    "    VisiLibity::Point & Polygon.index(unsigned int i)\n");
   
   return Qnil;
 }
@@ -11496,6 +11726,38 @@ fail:
     "    Environment.new(std::vector< VisiLibity::Polygon > const &polygons)\n"
     "    Environment.new(std::string const &filename)\n");
   
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Environment_index__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Polygon *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Environment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Environment const *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Environment * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Polygon *) &((VisiLibity::Environment const *)arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Polygon, 0 |  0 );
+  return vresult;
+fail:
   return Qnil;
 }
 
@@ -12568,6 +12830,89 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_Environment_index__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Polygon *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Environment, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Environment *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Environment * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Polygon *) &(arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Polygon, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Environment_index(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Environment_index__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Environment_index__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Environment.index", 
+    "    VisiLibity::Polygon & Environment.index(unsigned int i)\n"
+    "    VisiLibity::Polygon & Environment.index(unsigned int i)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_Environment___call____SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
   unsigned int arg2 ;
@@ -13018,6 +13363,38 @@ fail:
     "    Guards.new(std::string const &filename)\n"
     "    Guards.new(std::vector< VisiLibity::Point > const &positions)\n");
   
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Guards_index__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Guards *arg1 = (VisiLibity::Guards *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Point *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Guards, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Guards const *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Guards * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Point *) &((VisiLibity::Guards const *)arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Point, 0 |  0 );
+  return vresult;
+fail:
   return Qnil;
 }
 
@@ -13588,6 +13965,89 @@ fail:
   Ruby_Format_OverloadedError( argc, 4, "Guards.write_to_file", 
     "    void Guards.write_to_file(std::string const &filename, int fios_precision_temp)\n"
     "    void Guards.write_to_file(std::string const &filename)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Guards_index__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  VisiLibity::Guards *arg1 = (VisiLibity::Guards *) 0 ;
+  unsigned int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  unsigned int val2 ;
+  int ecode2 = 0 ;
+  VisiLibity::Point *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_VisiLibity__Guards, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Guards *","operator []", 1, self )); 
+  }
+  arg1 = reinterpret_cast< VisiLibity::Guards * >(argp1);
+  ecode2 = SWIG_AsVal_unsigned_SS_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "unsigned int","operator []", 2, argv[0] ));
+  } 
+  arg2 = static_cast< unsigned int >(val2);
+  result = (VisiLibity::Point *) &(arg1)->operator [](arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_VisiLibity__Point, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Guards_index(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Guards, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Guards_index__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Guards, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Guards_index__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Guards.index", 
+    "    VisiLibity::Point & Guards.index(unsigned int i)\n"
+    "    VisiLibity::Point & Guards.index(unsigned int i)\n");
   
   return Qnil;
 }
@@ -15969,6 +16429,7 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_method(SwigClassPolyline.klass, "length", VALUEFUNC(_wrap_Polyline_length), -1);
   rb_define_method(SwigClassPolyline.klass, "diameter", VALUEFUNC(_wrap_Polyline_diameter), -1);
   rb_define_method(SwigClassPolyline.klass, "bbox", VALUEFUNC(_wrap_Polyline_bbox), -1);
+  rb_define_method(SwigClassPolyline.klass, "index", VALUEFUNC(_wrap_Polyline_index), -1);
   rb_define_method(SwigClassPolyline.klass, "clear", VALUEFUNC(_wrap_Polyline_clear), -1);
   rb_define_method(SwigClassPolyline.klass, "push_back", VALUEFUNC(_wrap_Polyline_push_back), -1);
   rb_define_method(SwigClassPolyline.klass, "pop_back", VALUEFUNC(_wrap_Polyline_pop_back), -1);
@@ -15995,6 +16456,7 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_method(SwigClassPolygon.klass, "bbox", VALUEFUNC(_wrap_Polygon_bbox), -1);
   rb_define_method(SwigClassPolygon.klass, "random_points", VALUEFUNC(_wrap_Polygon_random_points), -1);
   rb_define_method(SwigClassPolygon.klass, "write_to_file", VALUEFUNC(_wrap_Polygon_write_to_file), -1);
+  rb_define_method(SwigClassPolygon.klass, "index", VALUEFUNC(_wrap_Polygon_index), -1);
   rb_define_method(SwigClassPolygon.klass, "set_vertices", VALUEFUNC(_wrap_Polygon_set_vertices), -1);
   rb_define_method(SwigClassPolygon.klass, "push_back", VALUEFUNC(_wrap_Polygon_push_back), -1);
   rb_define_method(SwigClassPolygon.klass, "clear", VALUEFUNC(_wrap_Polygon_clear), -1);
@@ -16025,6 +16487,7 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_method(SwigClassEnvironment.klass, "shortest_path", VALUEFUNC(_wrap_Environment_shortest_path), -1);
   rb_define_method(SwigClassEnvironment.klass, "compute_partition_cells", VALUEFUNC(_wrap_Environment_compute_partition_cells), -1);
   rb_define_method(SwigClassEnvironment.klass, "write_to_file", VALUEFUNC(_wrap_Environment_write_to_file), -1);
+  rb_define_method(SwigClassEnvironment.klass, "index", VALUEFUNC(_wrap_Environment_index), -1);
   rb_define_method(SwigClassEnvironment.klass, "call", VALUEFUNC(_wrap_Environment___call__), -1);
   rb_define_method(SwigClassEnvironment.klass, "set_outer_boundary", VALUEFUNC(_wrap_Environment_set_outer_boundary), -1);
   rb_define_method(SwigClassEnvironment.klass, "add_hole", VALUEFUNC(_wrap_Environment_add_hole), -1);
@@ -16046,6 +16509,7 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_method(SwigClassGuards.klass, "diameter", VALUEFUNC(_wrap_Guards_diameter), -1);
   rb_define_method(SwigClassGuards.klass, "bbox", VALUEFUNC(_wrap_Guards_bbox), -1);
   rb_define_method(SwigClassGuards.klass, "write_to_file", VALUEFUNC(_wrap_Guards_write_to_file), -1);
+  rb_define_method(SwigClassGuards.klass, "index", VALUEFUNC(_wrap_Guards_index), -1);
   rb_define_method(SwigClassGuards.klass, "push_back", VALUEFUNC(_wrap_Guards_push_back), -1);
   rb_define_method(SwigClassGuards.klass, "set_positions", VALUEFUNC(_wrap_Guards_set_positions), -1);
   rb_define_method(SwigClassGuards.klass, "enforce_lex_order", VALUEFUNC(_wrap_Guards_enforce_lex_order), -1);
