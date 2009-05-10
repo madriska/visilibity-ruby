@@ -89,4 +89,20 @@ module VisiLibity
     end
   end
 
+  class Environment
+    # TODO
+  end
+
+  class Guards
+    # TODO
+  end
+
+  class VisibilityPolygon
+    # TODO
+  end
+
+  class VisibilityGraph
+    # TODO
+  end
+
 end
