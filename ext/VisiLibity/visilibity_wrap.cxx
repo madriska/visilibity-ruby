@@ -1830,10 +1830,10 @@ static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
 
 /* -------- TYPES TABLE (END) -------- */
 
-#define SWIG_init    Init_visilibity
-#define SWIG_name    "Visilibity"
+#define SWIG_init    Init_VisiLibity
+#define SWIG_name    "VisiLibity"
 
-static VALUE mVisilibity;
+static VALUE mVisiLibity;
 
 #define SWIG_RUBY_THREAD_BEGIN_BLOCK
 #define SWIG_RUBY_THREAD_END_BLOCK
@@ -4282,7 +4282,7 @@ free_VisiLibity_Point(VisiLibity::Point *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.==
+  Document-method: VisiLibity::VisiLibity.==
 
   call-seq:
     ==(point1, point2) -> bool
@@ -4334,7 +4334,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<
+  Document-method: VisiLibity::VisiLibity.<
 
   call-seq:
     <(point1, point2) -> bool
@@ -4383,7 +4383,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.>
+  Document-method: VisiLibity::VisiLibity.>
 
   call-seq:
     >(point1, point2) -> bool
@@ -4432,7 +4432,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.>=
+  Document-method: VisiLibity::VisiLibity.>=
 
   call-seq:
     >=(point1, point2) -> bool
@@ -4481,7 +4481,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<=
+  Document-method: VisiLibity::VisiLibity.<=
 
   call-seq:
     <=(point1, point2) -> bool
@@ -4530,7 +4530,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.+
+  Document-method: VisiLibity::VisiLibity.+
 
   call-seq:
     +(point1, point2) -> Point
@@ -4578,7 +4578,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.-
+  Document-method: VisiLibity::VisiLibity.-
 
   call-seq:
     -(point1, point2) -> Point
@@ -5255,7 +5255,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<<
+  Document-method: VisiLibity::VisiLibity.<<
 
   call-seq:
     <<(outs, point_temp) -> std::ostream
@@ -5556,7 +5556,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::LineSegment.first
+  Document-method: VisiLibity::LineSegment.first
 
   call-seq:
     first -> Point
@@ -5613,7 +5613,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::LineSegment.size
+  Document-method: VisiLibity::LineSegment.size
 
   call-seq:
     size -> unsigned int
@@ -6040,7 +6040,7 @@ free_VisiLibity_Line_Segment(VisiLibity::Line_Segment *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.==
+  Document-method: VisiLibity::VisiLibity.==
 
   call-seq:
     ==(point1, point2) -> bool
@@ -6800,7 +6800,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<<
+  Document-method: VisiLibity::VisiLibity.<<
 
   call-seq:
     <<(outs, point_temp) -> std::ostream
@@ -7093,7 +7093,7 @@ free_VisiLibity_Angle(VisiLibity::Angle *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.==
+  Document-method: VisiLibity::VisiLibity.==
 
   call-seq:
     ==(point1, point2) -> bool
@@ -7145,7 +7145,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.>
+  Document-method: VisiLibity::VisiLibity.>
 
   call-seq:
     >(point1, point2) -> bool
@@ -7194,7 +7194,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<
+  Document-method: VisiLibity::VisiLibity.<
 
   call-seq:
     <(point1, point2) -> bool
@@ -7243,7 +7243,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.>=
+  Document-method: VisiLibity::VisiLibity.>=
 
   call-seq:
     >=(point1, point2) -> bool
@@ -7292,7 +7292,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<=
+  Document-method: VisiLibity::VisiLibity.<=
 
   call-seq:
     <=(point1, point2) -> bool
@@ -7341,7 +7341,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.+
+  Document-method: VisiLibity::VisiLibity.+
 
   call-seq:
     +(point1, point2) -> Point
@@ -7437,7 +7437,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.-
+  Document-method: VisiLibity::VisiLibity.-
 
   call-seq:
     -(point1, point2) -> Point
@@ -7609,7 +7609,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<<
+  Document-method: VisiLibity::VisiLibity.<<
 
   call-seq:
     <<(outs, point_temp) -> std::ostream
@@ -8087,7 +8087,7 @@ free_VisiLibity_Polar_Point(VisiLibity::Polar_Point *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.==
+  Document-method: VisiLibity::VisiLibity.==
 
   call-seq:
     ==(point1, point2) -> bool
@@ -8139,7 +8139,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.>
+  Document-method: VisiLibity::VisiLibity.>
 
   call-seq:
     >(point1, point2) -> bool
@@ -8251,7 +8251,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<
+  Document-method: VisiLibity::VisiLibity.<
 
   call-seq:
     <(point1, point2) -> bool
@@ -8363,7 +8363,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.>=
+  Document-method: VisiLibity::VisiLibity.>=
 
   call-seq:
     >=(point1, point2) -> bool
@@ -8475,7 +8475,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<=
+  Document-method: VisiLibity::VisiLibity.<=
 
   call-seq:
     <=(point1, point2) -> bool
@@ -8587,7 +8587,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<<
+  Document-method: VisiLibity::VisiLibity.<<
 
   call-seq:
     <<(outs, point_temp) -> std::ostream
@@ -8931,7 +8931,7 @@ free_VisiLibity_Ray(VisiLibity::Ray *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.==
+  Document-method: VisiLibity::VisiLibity.==
 
   call-seq:
     ==(point1, point2) -> bool
@@ -9407,7 +9407,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::Polyline.size
+  Document-method: VisiLibity::Polyline.size
 
   call-seq:
     size -> unsigned int
@@ -9854,7 +9854,7 @@ free_VisiLibity_Polyline(VisiLibity::Polyline *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<<
+  Document-method: VisiLibity::VisiLibity.<<
 
   call-seq:
     <<(outs, point_temp) -> std::ostream
@@ -11000,7 +11000,7 @@ free_VisiLibity_Polygon(VisiLibity::Polygon *arg1) {
 
 
 /*
-  Document-method: Visilibity::VisiLibity.==
+  Document-method: VisiLibity::VisiLibity.==
 
   call-seq:
     ==(point1, point2) -> bool
@@ -11513,7 +11513,7 @@ fail:
 
 
 /*
-  Document-method: Visilibity::VisiLibity.<<
+  Document-method: VisiLibity::VisiLibity.<<
 
   call-seq:
     <<(outs, point_temp) -> std::ostream
@@ -16295,11 +16295,11 @@ SWIG_PropagateClientData(void) {
 #ifdef __cplusplus
 extern "C"
 #endif
-SWIGEXPORT void Init_visilibity(void) {
+SWIGEXPORT void Init_VisiLibity(void) {
   size_t i;
   
   SWIG_InitRuntime();
-  mVisilibity = rb_define_module("Visilibity");
+  mVisiLibity = rb_define_module("VisiLibity");
   
   SWIG_InitializeModule(0);
   for (i = 0; i < swig_module.size; i++) {
@@ -16307,10 +16307,10 @@ SWIGEXPORT void Init_visilibity(void) {
   }
   
   SWIG_RubyInitializeTrackings();
-  rb_define_singleton_method(mVisilibity, "FIOS_PRECISION", VALUEFUNC(_wrap_FIOS_PRECISION_get), 0);
-  rb_define_module_function(mVisilibity, "uniform_random_sample", VALUEFUNC(_wrap_uniform_random_sample), -1);
+  rb_define_singleton_method(mVisiLibity, "FIOS_PRECISION", VALUEFUNC(_wrap_FIOS_PRECISION_get), 0);
+  rb_define_module_function(mVisiLibity, "uniform_random_sample", VALUEFUNC(_wrap_uniform_random_sample), -1);
   
-  SwigClassBoundingBox.klass = rb_define_class_under(mVisilibity, "BoundingBox", rb_cObject);
+  SwigClassBoundingBox.klass = rb_define_class_under(mVisiLibity, "BoundingBox", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Bounding_Box, (void *) &SwigClassBoundingBox);
   rb_define_alloc_func(SwigClassBoundingBox.klass, _wrap_BoundingBox_allocate);
   rb_define_method(SwigClassBoundingBox.klass, "initialize", VALUEFUNC(_wrap_new_BoundingBox), -1);
@@ -16326,7 +16326,7 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassBoundingBox.destroy = (void (*)(void *)) free_VisiLibity_Bounding_Box;
   SwigClassBoundingBox.trackObjects = 0;
   
-  SwigClassPoint.klass = rb_define_class_under(mVisilibity, "Point", rb_cObject);
+  SwigClassPoint.klass = rb_define_class_under(mVisiLibity, "Point", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Point, (void *) &SwigClassPoint);
   rb_define_alloc_func(SwigClassPoint.klass, _wrap_Point_allocate);
   rb_define_method(SwigClassPoint.klass, "initialize", VALUEFUNC(_wrap_new_Point), -1);
@@ -16346,10 +16346,10 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassPoint.mark = 0;
   SwigClassPoint.destroy = (void (*)(void *)) free_VisiLibity_Point;
   SwigClassPoint.trackObjects = 0;
-  rb_define_module_function(mVisilibity, "*", VALUEFUNC(_wrap___mul__), -1);
-  rb_define_module_function(mVisilibity, "cross", VALUEFUNC(_wrap_cross), -1);
+  rb_define_module_function(mVisiLibity, "*", VALUEFUNC(_wrap___mul__), -1);
+  rb_define_module_function(mVisiLibity, "cross", VALUEFUNC(_wrap_cross), -1);
   
-  SwigClassLineSegment.klass = rb_define_class_under(mVisilibity, "LineSegment", rb_cObject);
+  SwigClassLineSegment.klass = rb_define_class_under(mVisiLibity, "LineSegment", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Line_Segment, (void *) &SwigClassLineSegment);
   rb_define_alloc_func(SwigClassLineSegment.klass, _wrap_LineSegment_allocate);
   rb_define_method(SwigClassLineSegment.klass, "initialize", VALUEFUNC(_wrap_new_LineSegment), -1);
@@ -16367,11 +16367,11 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassLineSegment.mark = 0;
   SwigClassLineSegment.destroy = (void (*)(void *)) free_VisiLibity_Line_Segment;
   SwigClassLineSegment.trackObjects = 0;
-  rb_define_module_function(mVisilibity, "distance", VALUEFUNC(_wrap_distance), -1);
-  rb_define_module_function(mVisilibity, "intersect", VALUEFUNC(_wrap_intersect), -1);
-  rb_define_module_function(mVisilibity, "intersect_proper", VALUEFUNC(_wrap_intersect_proper), -1);
+  rb_define_module_function(mVisiLibity, "distance", VALUEFUNC(_wrap_distance), -1);
+  rb_define_module_function(mVisiLibity, "intersect", VALUEFUNC(_wrap_intersect), -1);
+  rb_define_module_function(mVisiLibity, "intersect_proper", VALUEFUNC(_wrap_intersect_proper), -1);
   
-  SwigClassAngle.klass = rb_define_class_under(mVisilibity, "Angle", rb_cObject);
+  SwigClassAngle.klass = rb_define_class_under(mVisiLibity, "Angle", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Angle, (void *) &SwigClassAngle);
   rb_define_alloc_func(SwigClassAngle.klass, _wrap_Angle_allocate);
   rb_define_method(SwigClassAngle.klass, "initialize", VALUEFUNC(_wrap_new_Angle), -1);
@@ -16382,12 +16382,12 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassAngle.mark = 0;
   SwigClassAngle.destroy = (void (*)(void *)) free_VisiLibity_Angle;
   SwigClassAngle.trackObjects = 0;
-  rb_define_module_function(mVisilibity, "+", VALUEFUNC(_wrap___add__), -1);
-  rb_define_module_function(mVisilibity, "-", VALUEFUNC(_wrap___sub__), -1);
-  rb_define_module_function(mVisilibity, "geodesic_distance", VALUEFUNC(_wrap_geodesic_distance), -1);
-  rb_define_module_function(mVisilibity, "geodesic_direction", VALUEFUNC(_wrap_geodesic_direction), -1);
+  rb_define_module_function(mVisiLibity, "+", VALUEFUNC(_wrap___add__), -1);
+  rb_define_module_function(mVisiLibity, "-", VALUEFUNC(_wrap___sub__), -1);
+  rb_define_module_function(mVisiLibity, "geodesic_distance", VALUEFUNC(_wrap_geodesic_distance), -1);
+  rb_define_module_function(mVisiLibity, "geodesic_direction", VALUEFUNC(_wrap_geodesic_direction), -1);
   
-  SwigClassPolarPoint.klass = rb_define_class_under(mVisilibity, "PolarPoint", ((swig_class *) SWIGTYPE_p_VisiLibity__Point->clientdata)->klass);
+  SwigClassPolarPoint.klass = rb_define_class_under(mVisiLibity, "PolarPoint", ((swig_class *) SWIGTYPE_p_VisiLibity__Point->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Polar_Point, (void *) &SwigClassPolarPoint);
   rb_define_alloc_func(SwigClassPolarPoint.klass, _wrap_PolarPoint_allocate);
   rb_define_method(SwigClassPolarPoint.klass, "initialize", VALUEFUNC(_wrap_new_PolarPoint), -1);
@@ -16403,12 +16403,12 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassPolarPoint.mark = 0;
   SwigClassPolarPoint.destroy = (void (*)(void *)) free_VisiLibity_Polar_Point;
   SwigClassPolarPoint.trackObjects = 0;
-  rb_define_module_function(mVisilibity, ">", VALUEFUNC(_wrap___gt__), -1);
-  rb_define_module_function(mVisilibity, "<", VALUEFUNC(_wrap___lt__), -1);
-  rb_define_module_function(mVisilibity, ">=", VALUEFUNC(_wrap___ge__), -1);
-  rb_define_module_function(mVisilibity, "<=", VALUEFUNC(_wrap___le__), -1);
+  rb_define_module_function(mVisiLibity, ">", VALUEFUNC(_wrap___gt__), -1);
+  rb_define_module_function(mVisiLibity, "<", VALUEFUNC(_wrap___lt__), -1);
+  rb_define_module_function(mVisiLibity, ">=", VALUEFUNC(_wrap___ge__), -1);
+  rb_define_module_function(mVisiLibity, "<=", VALUEFUNC(_wrap___le__), -1);
   
-  SwigClassRay.klass = rb_define_class_under(mVisilibity, "Ray", rb_cObject);
+  SwigClassRay.klass = rb_define_class_under(mVisiLibity, "Ray", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Ray, (void *) &SwigClassRay);
   rb_define_alloc_func(SwigClassRay.klass, _wrap_Ray_allocate);
   rb_define_method(SwigClassRay.klass, "initialize", VALUEFUNC(_wrap_new_Ray), -1);
@@ -16419,9 +16419,9 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassRay.mark = 0;
   SwigClassRay.destroy = (void (*)(void *)) free_VisiLibity_Ray;
   SwigClassRay.trackObjects = 0;
-  rb_define_module_function(mVisilibity, "intersection", VALUEFUNC(_wrap_intersection), -1);
+  rb_define_module_function(mVisiLibity, "intersection", VALUEFUNC(_wrap_intersection), -1);
   
-  SwigClassPolyline.klass = rb_define_class_under(mVisilibity, "Polyline", rb_cObject);
+  SwigClassPolyline.klass = rb_define_class_under(mVisiLibity, "Polyline", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Polyline, (void *) &SwigClassPolyline);
   rb_define_alloc_func(SwigClassPolyline.klass, _wrap_Polyline_allocate);
   rb_define_method(SwigClassPolyline.klass, "initialize", VALUEFUNC(_wrap_new_Polyline), -1);
@@ -16441,7 +16441,7 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassPolyline.destroy = (void (*)(void *)) free_VisiLibity_Polyline;
   SwigClassPolyline.trackObjects = 0;
   
-  SwigClassPolygon.klass = rb_define_class_under(mVisilibity, "Polygon", rb_cObject);
+  SwigClassPolygon.klass = rb_define_class_under(mVisiLibity, "Polygon", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Polygon, (void *) &SwigClassPolygon);
   rb_define_alloc_func(SwigClassPolygon.klass, _wrap_Polygon_allocate);
   rb_define_method(SwigClassPolygon.klass, "initialize", VALUEFUNC(_wrap_new_Polygon), -1);
@@ -16466,11 +16466,11 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassPolygon.mark = 0;
   SwigClassPolygon.destroy = (void (*)(void *)) free_VisiLibity_Polygon;
   SwigClassPolygon.trackObjects = 0;
-  rb_define_module_function(mVisilibity, "==", VALUEFUNC(_wrap___eq__), -1);
-  rb_define_module_function(mVisilibity, "equivalent", VALUEFUNC(_wrap_equivalent), -1);
-  rb_define_module_function(mVisilibity, "boundary_distance", VALUEFUNC(_wrap_boundary_distance), -1);
+  rb_define_module_function(mVisiLibity, "==", VALUEFUNC(_wrap___eq__), -1);
+  rb_define_module_function(mVisiLibity, "equivalent", VALUEFUNC(_wrap_equivalent), -1);
+  rb_define_module_function(mVisiLibity, "boundary_distance", VALUEFUNC(_wrap_boundary_distance), -1);
   
-  SwigClassEnvironment.klass = rb_define_class_under(mVisilibity, "Environment", rb_cObject);
+  SwigClassEnvironment.klass = rb_define_class_under(mVisiLibity, "Environment", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Environment, (void *) &SwigClassEnvironment);
   rb_define_alloc_func(SwigClassEnvironment.klass, _wrap_Environment_allocate);
   rb_define_method(SwigClassEnvironment.klass, "initialize", VALUEFUNC(_wrap_new_Environment), -1);
@@ -16498,7 +16498,7 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassEnvironment.destroy = (void (*)(void *)) free_VisiLibity_Environment;
   SwigClassEnvironment.trackObjects = 0;
   
-  SwigClassGuards.klass = rb_define_class_under(mVisilibity, "Guards", rb_cObject);
+  SwigClassGuards.klass = rb_define_class_under(mVisiLibity, "Guards", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Guards, (void *) &SwigClassGuards);
   rb_define_alloc_func(SwigClassGuards.klass, _wrap_Guards_allocate);
   rb_define_method(SwigClassGuards.klass, "initialize", VALUEFUNC(_wrap_new_Guards), -1);
@@ -16520,7 +16520,7 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassGuards.destroy = (void (*)(void *)) free_VisiLibity_Guards;
   SwigClassGuards.trackObjects = 0;
   
-  SwigClassVisibilityPolygon.klass = rb_define_class_under(mVisilibity, "VisibilityPolygon", ((swig_class *) SWIGTYPE_p_VisiLibity__Polygon->clientdata)->klass);
+  SwigClassVisibilityPolygon.klass = rb_define_class_under(mVisiLibity, "VisibilityPolygon", ((swig_class *) SWIGTYPE_p_VisiLibity__Polygon->clientdata)->klass);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Polygon, (void *) &SwigClassVisibilityPolygon);
   rb_define_alloc_func(SwigClassVisibilityPolygon.klass, _wrap_VisibilityPolygon_allocate);
   rb_define_method(SwigClassVisibilityPolygon.klass, "initialize", VALUEFUNC(_wrap_new_VisibilityPolygon), -1);
@@ -16529,7 +16529,7 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassVisibilityPolygon.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Polygon;
   SwigClassVisibilityPolygon.trackObjects = 0;
   
-  SwigClassVisibilityGraph.klass = rb_define_class_under(mVisilibity, "VisibilityGraph", rb_cObject);
+  SwigClassVisibilityGraph.klass = rb_define_class_under(mVisiLibity, "VisibilityGraph", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Graph, (void *) &SwigClassVisibilityGraph);
   rb_define_alloc_func(SwigClassVisibilityGraph.klass, _wrap_VisibilityGraph_allocate);
   rb_define_method(SwigClassVisibilityGraph.klass, "initialize", VALUEFUNC(_wrap_new_VisibilityGraph), -1);
@@ -16538,6 +16538,6 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassVisibilityGraph.mark = 0;
   SwigClassVisibilityGraph.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Graph;
   SwigClassVisibilityGraph.trackObjects = 0;
-  rb_define_module_function(mVisilibity, "<<", VALUEFUNC(_wrap___lshift__), -1);
+  rb_define_module_function(mVisiLibity, "<<", VALUEFUNC(_wrap___lshift__), -1);
 }
 

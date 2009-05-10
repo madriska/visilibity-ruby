@@ -1,4 +1,4 @@
-%module visilibity
+%module VisiLibity
 
 %rename(BoundingBox) VisiLibity::Bounding_Box;
 %rename(LineSegment) Line_Segment;
