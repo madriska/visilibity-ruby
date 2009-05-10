@@ -2063,10 +2063,10 @@ fail:
 }
 
 
-swig_class SwigClassBounding_Box;
+swig_class SwigClassBoundingBox;
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_x_min_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_min_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -2095,7 +2095,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_x_min_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_min_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2119,7 +2119,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_x_max_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_max_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -2148,7 +2148,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_x_max_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_max_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2172,7 +2172,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_y_min_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_min_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -2201,7 +2201,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_y_min_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_min_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2225,7 +2225,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_y_max_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_max_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -2254,7 +2254,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Bounding_Box_y_max_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_max_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -2279,10 +2279,10 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Bounding_Box_allocate(VALUE self) {
+_wrap_BoundingBox_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_Bounding_Box_allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_BoundingBox_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
@@ -2295,7 +2295,7 @@ _wrap_Bounding_Box_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Bounding_Box(int argc, VALUE *argv, VALUE self) {
+_wrap_new_BoundingBox(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
@@ -5308,10 +5308,10 @@ fail:
 }
 
 
-swig_class SwigClassLine_Segment;
+swig_class SwigClassLineSegment;
 
 SWIGINTERN VALUE
-_wrap_new_Line_Segment__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_new_LineSegment__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
@@ -5326,7 +5326,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Line_Segment__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_new_LineSegment__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -5352,7 +5352,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Line_Segment__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_new_LineSegment__SWIG_2(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -5378,7 +5378,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Line_Segment__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_new_LineSegment__SWIG_3(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Point *arg2 = 0 ;
   double arg3 ;
@@ -5424,10 +5424,10 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Line_Segment_allocate(VALUE self) {
+_wrap_LineSegment_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_Line_Segment_allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_LineSegment_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
@@ -5440,7 +5440,7 @@ _wrap_Line_Segment_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Line_Segment__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_new_LineSegment__SWIG_4(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Point *arg2 = 0 ;
   void *argp1 ;
@@ -5476,7 +5476,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_new_Line_Segment(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_new_LineSegment(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -5487,7 +5487,7 @@ SWIGINTERN VALUE _wrap_new_Line_Segment(int nargs, VALUE *args, VALUE self) {
     argv[ii] = args[ii];
   }
   if (argc == 0) {
-    return _wrap_new_Line_Segment__SWIG_0(nargs, args, self);
+    return _wrap_new_LineSegment__SWIG_0(nargs, args, self);
   }
   if (argc == 1) {
     int _v;
@@ -5495,7 +5495,7 @@ SWIGINTERN VALUE _wrap_new_Line_Segment(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Line_Segment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_Line_Segment__SWIG_1(nargs, args, self);
+      return _wrap_new_LineSegment__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 1) {
@@ -5504,7 +5504,7 @@ SWIGINTERN VALUE _wrap_new_Line_Segment(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Point, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_Line_Segment__SWIG_2(nargs, args, self);
+      return _wrap_new_LineSegment__SWIG_2(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -5517,7 +5517,7 @@ SWIGINTERN VALUE _wrap_new_Line_Segment(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Point, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_Line_Segment__SWIG_4(nargs, args, self);
+        return _wrap_new_LineSegment__SWIG_4(nargs, args, self);
       }
     }
   }
@@ -5536,19 +5536,19 @@ SWIGINTERN VALUE _wrap_new_Line_Segment(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_Line_Segment__SWIG_3(nargs, args, self);
+          return _wrap_new_LineSegment__SWIG_3(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Line_Segment.new", 
-    "    Line_Segment.new()\n"
-    "    Line_Segment.new(VisiLibity::Line_Segment const &line_segment_temp)\n"
-    "    Line_Segment.new(VisiLibity::Point const &point_temp)\n"
-    "    Line_Segment.new(VisiLibity::Point const &first_point_temp, VisiLibity::Point const &second_point_temp, double epsilon)\n"
-    "    Line_Segment.new(VisiLibity::Point const &first_point_temp, VisiLibity::Point const &second_point_temp)\n");
+  Ruby_Format_OverloadedError( argc, 3, "LineSegment.new", 
+    "    LineSegment.new()\n"
+    "    LineSegment.new(VisiLibity::Line_Segment const &line_segment_temp)\n"
+    "    LineSegment.new(VisiLibity::Point const &point_temp)\n"
+    "    LineSegment.new(VisiLibity::Point const &first_point_temp, VisiLibity::Point const &second_point_temp, double epsilon)\n"
+    "    LineSegment.new(VisiLibity::Point const &first_point_temp, VisiLibity::Point const &second_point_temp)\n");
   
   return Qnil;
 }
@@ -5556,15 +5556,15 @@ fail:
 
 
 /*
-  Document-method: Visilibity::Line_Segment.first
+  Document-method: Visilibity::LineSegment.first
 
   call-seq:
     first -> Point
 
-Return the first element in Line_Segment.
+Return the first element in LineSegment.
 */
 SWIGINTERN VALUE
-_wrap_Line_Segment_first(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_first(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5588,7 +5588,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_second(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_second(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5613,15 +5613,15 @@ fail:
 
 
 /*
-  Document-method: Visilibity::Line_Segment.size
+  Document-method: Visilibity::LineSegment.size
 
   call-seq:
     size -> unsigned int
 
-Size or Length of the Line_Segment.
+Size or Length of the LineSegment.
 */
 SWIGINTERN VALUE
-_wrap_Line_Segment_size(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_size(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5645,7 +5645,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_midpoint(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_midpoint(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5669,7 +5669,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_length(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_length(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5693,7 +5693,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_is_in_standard_form(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_is_in_standard_form(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5717,7 +5717,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_set_first__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_set_first__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   VisiLibity::Point *arg2 = 0 ;
   double arg3 ;
@@ -5757,7 +5757,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_set_first__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_set_first__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   VisiLibity::Point *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5788,7 +5788,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Line_Segment_set_first(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_LineSegment_set_first(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -5809,7 +5809,7 @@ SWIGINTERN VALUE _wrap_Line_Segment_set_first(int nargs, VALUE *args, VALUE self
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Point, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Line_Segment_set_first__SWIG_1(nargs, args, self);
+        return _wrap_LineSegment_set_first__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -5828,23 +5828,23 @@ SWIGINTERN VALUE _wrap_Line_Segment_set_first(int nargs, VALUE *args, VALUE self
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Line_Segment_set_first__SWIG_0(nargs, args, self);
+          return _wrap_LineSegment_set_first__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Line_Segment.set_first", 
-    "    void Line_Segment.set_first(VisiLibity::Point const &point_temp, double epsilon)\n"
-    "    void Line_Segment.set_first(VisiLibity::Point const &point_temp)\n");
+  Ruby_Format_OverloadedError( argc, 4, "LineSegment.set_first", 
+    "    void LineSegment.set_first(VisiLibity::Point const &point_temp, double epsilon)\n"
+    "    void LineSegment.set_first(VisiLibity::Point const &point_temp)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_set_second__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_set_second__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   VisiLibity::Point *arg2 = 0 ;
   double arg3 ;
@@ -5884,7 +5884,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_set_second__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_set_second__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   VisiLibity::Point *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -5915,7 +5915,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Line_Segment_set_second(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_LineSegment_set_second(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -5936,7 +5936,7 @@ SWIGINTERN VALUE _wrap_Line_Segment_set_second(int nargs, VALUE *args, VALUE sel
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Point, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Line_Segment_set_second__SWIG_1(nargs, args, self);
+        return _wrap_LineSegment_set_second__SWIG_1(nargs, args, self);
       }
     }
   }
@@ -5955,23 +5955,23 @@ SWIGINTERN VALUE _wrap_Line_Segment_set_second(int nargs, VALUE *args, VALUE sel
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Line_Segment_set_second__SWIG_0(nargs, args, self);
+          return _wrap_LineSegment_set_second__SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Line_Segment.set_second", 
-    "    void Line_Segment.set_second(VisiLibity::Point const &point_temp, double epsilon)\n"
-    "    void Line_Segment.set_second(VisiLibity::Point const &point_temp)\n");
+  Ruby_Format_OverloadedError( argc, 4, "LineSegment.set_second", 
+    "    void LineSegment.set_second(VisiLibity::Point const &point_temp, double epsilon)\n"
+    "    void LineSegment.set_second(VisiLibity::Point const &point_temp)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_reverse(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_reverse(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -5992,7 +5992,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_enforce_standard_form(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_enforce_standard_form(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -6013,7 +6013,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Line_Segment_clear(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_clear(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7662,10 +7662,10 @@ fail:
 }
 
 
-swig_class SwigClassPolar_Point;
+swig_class SwigClassPolarPoint;
 
 SWIGINTERN VALUE
-_wrap_new_Polar_Point__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_new_PolarPoint__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
@@ -7680,7 +7680,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Polar_Point__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_new_PolarPoint__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Point *arg2 = 0 ;
   double arg3 ;
@@ -7726,10 +7726,10 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Polar_Point_allocate(VALUE self) {
+_wrap_PolarPoint_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_Polar_Point_allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_PolarPoint_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
@@ -7742,7 +7742,7 @@ _wrap_Polar_Point_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Polar_Point__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_new_PolarPoint__SWIG_2(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Point *arg2 = 0 ;
   void *argp1 ;
@@ -7778,7 +7778,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_new_Polar_Point(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_new_PolarPoint(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -7789,7 +7789,7 @@ SWIGINTERN VALUE _wrap_new_Polar_Point(int nargs, VALUE *args, VALUE self) {
     argv[ii] = args[ii];
   }
   if (argc == 0) {
-    return _wrap_new_Polar_Point__SWIG_0(nargs, args, self);
+    return _wrap_new_PolarPoint__SWIG_0(nargs, args, self);
   }
   if (argc == 2) {
     int _v;
@@ -7801,7 +7801,7 @@ SWIGINTERN VALUE _wrap_new_Polar_Point(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Point, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_Polar_Point__SWIG_2(nargs, args, self);
+        return _wrap_new_PolarPoint__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -7820,24 +7820,24 @@ SWIGINTERN VALUE _wrap_new_Polar_Point(int nargs, VALUE *args, VALUE self) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_Polar_Point__SWIG_1(nargs, args, self);
+          return _wrap_new_PolarPoint__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Polar_Point.new", 
-    "    Polar_Point.new()\n"
-    "    Polar_Point.new(VisiLibity::Point const &polar_origin_temp, VisiLibity::Point const &point_temp, double epsilon)\n"
-    "    Polar_Point.new(VisiLibity::Point const &polar_origin_temp, VisiLibity::Point const &point_temp)\n");
+  Ruby_Format_OverloadedError( argc, 3, "PolarPoint.new", 
+    "    PolarPoint.new()\n"
+    "    PolarPoint.new(VisiLibity::Point const &polar_origin_temp, VisiLibity::Point const &point_temp, double epsilon)\n"
+    "    PolarPoint.new(VisiLibity::Point const &polar_origin_temp, VisiLibity::Point const &point_temp)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_polar_origin(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_polar_origin(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7861,7 +7861,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_range(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_range(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7885,7 +7885,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_bearing(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_bearing(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -7909,7 +7909,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_set_polar_origin(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_set_polar_origin(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   VisiLibity::Point *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -7941,7 +7941,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_set_x(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_set_x(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -7970,7 +7970,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_set_y(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_set_y(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -7999,7 +7999,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_set_range(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_set_range(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -8028,7 +8028,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_set_bearing(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_set_bearing(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   VisiLibity::Angle *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -8060,7 +8060,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polar_Point_set_bearing_to_2pi(int argc, VALUE *argv, VALUE self) {
+_wrap_PolarPoint_set_bearing_to_2pi(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polar_Point *arg1 = (VisiLibity::Polar_Point *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14212,10 +14212,10 @@ fail:
 }
 
 
-swig_class SwigClassVisibility_Polygon;
+swig_class SwigClassVisibilityPolygon;
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Polygon__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityPolygon__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Polygon *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
@@ -14230,7 +14230,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Polygon__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityPolygon__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Environment *arg2 = 0 ;
   double arg3 ;
@@ -14275,7 +14275,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Polygon__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityPolygon__SWIG_2(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Environment *arg2 = 0 ;
   void *argp1 ;
@@ -14312,7 +14312,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Polygon__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityPolygon__SWIG_3(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Polygon *arg2 = 0 ;
   double arg3 ;
@@ -14358,10 +14358,10 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Visibility_Polygon_allocate(VALUE self) {
+_wrap_VisibilityPolygon_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_Visibility_Polygon_allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_VisibilityPolygon_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
@@ -14374,7 +14374,7 @@ _wrap_Visibility_Polygon_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Polygon__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityPolygon__SWIG_4(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = 0 ;
   VisiLibity::Polygon *arg2 = 0 ;
   void *argp1 ;
@@ -14410,7 +14410,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_new_Visibility_Polygon(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_new_VisibilityPolygon(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -14421,7 +14421,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Polygon(int nargs, VALUE *args, VALUE self
     argv[ii] = args[ii];
   }
   if (argc == 0) {
-    return _wrap_new_Visibility_Polygon__SWIG_0(nargs, args, self);
+    return _wrap_new_VisibilityPolygon__SWIG_0(nargs, args, self);
   }
   if (argc == 2) {
     int _v;
@@ -14433,7 +14433,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Polygon(int nargs, VALUE *args, VALUE self
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_Visibility_Polygon__SWIG_2(nargs, args, self);
+        return _wrap_new_VisibilityPolygon__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -14447,7 +14447,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Polygon(int nargs, VALUE *args, VALUE self
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_Visibility_Polygon__SWIG_4(nargs, args, self);
+        return _wrap_new_VisibilityPolygon__SWIG_4(nargs, args, self);
       }
     }
   }
@@ -14466,7 +14466,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Polygon(int nargs, VALUE *args, VALUE self
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_Visibility_Polygon__SWIG_3(nargs, args, self);
+          return _wrap_new_VisibilityPolygon__SWIG_3(nargs, args, self);
         }
       }
     }
@@ -14486,26 +14486,26 @@ SWIGINTERN VALUE _wrap_new_Visibility_Polygon(int nargs, VALUE *args, VALUE self
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_Visibility_Polygon__SWIG_1(nargs, args, self);
+          return _wrap_new_VisibilityPolygon__SWIG_1(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Visibility_Polygon.new", 
-    "    Visibility_Polygon.new()\n"
-    "    Visibility_Polygon.new(VisiLibity::Point const &observer, VisiLibity::Environment const &environment_temp, double epsilon)\n"
-    "    Visibility_Polygon.new(VisiLibity::Point const &observer, VisiLibity::Environment const &environment_temp)\n"
-    "    Visibility_Polygon.new(VisiLibity::Point const &observer, VisiLibity::Polygon const &polygon_temp, double epsilon)\n"
-    "    Visibility_Polygon.new(VisiLibity::Point const &observer, VisiLibity::Polygon const &polygon_temp)\n");
+  Ruby_Format_OverloadedError( argc, 3, "VisibilityPolygon.new", 
+    "    VisibilityPolygon.new()\n"
+    "    VisibilityPolygon.new(VisiLibity::Point const &observer, VisiLibity::Environment const &environment_temp, double epsilon)\n"
+    "    VisibilityPolygon.new(VisiLibity::Point const &observer, VisiLibity::Environment const &environment_temp)\n"
+    "    VisibilityPolygon.new(VisiLibity::Point const &observer, VisiLibity::Polygon const &polygon_temp, double epsilon)\n"
+    "    VisibilityPolygon.new(VisiLibity::Point const &observer, VisiLibity::Polygon const &polygon_temp)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Visibility_Polygon_observer(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityPolygon_observer(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Polygon *arg1 = (VisiLibity::Visibility_Polygon *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -14533,10 +14533,10 @@ free_VisiLibity_Visibility_Polygon(VisiLibity::Visibility_Polygon *arg1) {
     delete arg1;
 }
 
-swig_class SwigClassVisibility_Graph;
+swig_class SwigClassVisibilityGraph;
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
@@ -14551,7 +14551,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -14577,7 +14577,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_2(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = 0 ;
   double arg2 ;
   void *argp1 ;
@@ -14611,7 +14611,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_3(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -14637,7 +14637,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_4(int argc, VALUE *argv, VALUE self) {
   SwigValueWrapper< std::vector< VisiLibity::Point > > arg1 ;
   VisiLibity::Environment *arg2 = 0 ;
   double arg3 ;
@@ -14685,7 +14685,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_5(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_5(int argc, VALUE *argv, VALUE self) {
   SwigValueWrapper< std::vector< VisiLibity::Point > > arg1 ;
   VisiLibity::Environment *arg2 = 0 ;
   void *argp1 ;
@@ -14725,7 +14725,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_6(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_6(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Guards *arg1 = 0 ;
   VisiLibity::Environment *arg2 = 0 ;
   double arg3 ;
@@ -14771,10 +14771,10 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_Visibility_Graph_allocate(VALUE self) {
+_wrap_VisibilityGraph_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_Visibility_Graph_allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_VisibilityGraph_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
@@ -14787,7 +14787,7 @@ _wrap_Visibility_Graph_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Visibility_Graph__SWIG_7(int argc, VALUE *argv, VALUE self) {
+_wrap_new_VisibilityGraph__SWIG_7(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Guards *arg1 = 0 ;
   VisiLibity::Environment *arg2 = 0 ;
   void *argp1 ;
@@ -14823,7 +14823,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_new_VisibilityGraph(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -14834,7 +14834,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
     argv[ii] = args[ii];
   }
   if (argc == 0) {
-    return _wrap_new_Visibility_Graph__SWIG_0(nargs, args, self);
+    return _wrap_new_VisibilityGraph__SWIG_0(nargs, args, self);
   }
   if (argc == 1) {
     int _v;
@@ -14842,7 +14842,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Visibility_Graph, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_Visibility_Graph__SWIG_1(nargs, args, self);
+      return _wrap_new_VisibilityGraph__SWIG_1(nargs, args, self);
     }
   }
   if (argc == 1) {
@@ -14851,7 +14851,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_Visibility_Graph__SWIG_3(nargs, args, self);
+      return _wrap_new_VisibilityGraph__SWIG_3(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -14865,7 +14865,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_new_Visibility_Graph__SWIG_2(nargs, args, self);
+        return _wrap_new_VisibilityGraph__SWIG_2(nargs, args, self);
       }
     }
   }
@@ -14879,7 +14879,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_Visibility_Graph__SWIG_5(nargs, args, self);
+        return _wrap_new_VisibilityGraph__SWIG_5(nargs, args, self);
       }
     }
   }
@@ -14893,7 +14893,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_Visibility_Graph__SWIG_7(nargs, args, self);
+        return _wrap_new_VisibilityGraph__SWIG_7(nargs, args, self);
       }
     }
   }
@@ -14912,7 +14912,7 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_Visibility_Graph__SWIG_6(nargs, args, self);
+          return _wrap_new_VisibilityGraph__SWIG_6(nargs, args, self);
         }
       }
     }
@@ -14932,29 +14932,29 @@ SWIGINTERN VALUE _wrap_new_Visibility_Graph(int nargs, VALUE *args, VALUE self) 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_new_Visibility_Graph__SWIG_4(nargs, args, self);
+          return _wrap_new_VisibilityGraph__SWIG_4(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Visibility_Graph.new", 
-    "    Visibility_Graph.new()\n"
-    "    Visibility_Graph.new(VisiLibity::Visibility_Graph const &vg2)\n"
-    "    Visibility_Graph.new(VisiLibity::Environment const &environment, double epsilon)\n"
-    "    Visibility_Graph.new(VisiLibity::Environment const &environment)\n"
-    "    Visibility_Graph.new(std::vector< VisiLibity::Point > const points, VisiLibity::Environment const &environment, double epsilon)\n"
-    "    Visibility_Graph.new(std::vector< VisiLibity::Point > const points, VisiLibity::Environment const &environment)\n"
-    "    Visibility_Graph.new(VisiLibity::Guards const &guards, VisiLibity::Environment const &environment, double epsilon)\n"
-    "    Visibility_Graph.new(VisiLibity::Guards const &guards, VisiLibity::Environment const &environment)\n");
+  Ruby_Format_OverloadedError( argc, 3, "VisibilityGraph.new", 
+    "    VisibilityGraph.new()\n"
+    "    VisibilityGraph.new(VisiLibity::Visibility_Graph const &vg2)\n"
+    "    VisibilityGraph.new(VisiLibity::Environment const &environment, double epsilon)\n"
+    "    VisibilityGraph.new(VisiLibity::Environment const &environment)\n"
+    "    VisibilityGraph.new(std::vector< VisiLibity::Point > const points, VisiLibity::Environment const &environment, double epsilon)\n"
+    "    VisibilityGraph.new(std::vector< VisiLibity::Point > const points, VisiLibity::Environment const &environment)\n"
+    "    VisibilityGraph.new(VisiLibity::Guards const &guards, VisiLibity::Environment const &environment, double epsilon)\n"
+    "    VisibilityGraph.new(VisiLibity::Guards const &guards, VisiLibity::Environment const &environment)\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Visibility_Graph___call____SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph___call____SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -15010,7 +15010,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Visibility_Graph___call____SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph___call____SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -15050,7 +15050,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Visibility_Graph_n(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph_n(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15074,7 +15074,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Visibility_Graph___call____SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph___call____SWIG_2(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -15130,7 +15130,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Visibility_Graph___call____SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph___call____SWIG_3(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -15169,7 +15169,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Visibility_Graph___call__(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_VisibilityGraph___call__(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -15196,7 +15196,7 @@ SWIGINTERN VALUE _wrap_Visibility_Graph___call__(int nargs, VALUE *args, VALUE s
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Visibility_Graph___call____SWIG_1(nargs, args, self);
+          return _wrap_VisibilityGraph___call____SWIG_1(nargs, args, self);
         }
       }
     }
@@ -15217,7 +15217,7 @@ SWIGINTERN VALUE _wrap_Visibility_Graph___call__(int nargs, VALUE *args, VALUE s
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Visibility_Graph___call____SWIG_3(nargs, args, self);
+          return _wrap_VisibilityGraph___call____SWIG_3(nargs, args, self);
         }
       }
     }
@@ -15248,7 +15248,7 @@ SWIGINTERN VALUE _wrap_Visibility_Graph___call__(int nargs, VALUE *args, VALUE s
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Visibility_Graph___call____SWIG_2(nargs, args, self);
+              return _wrap_VisibilityGraph___call____SWIG_2(nargs, args, self);
             }
           }
         }
@@ -15281,7 +15281,7 @@ SWIGINTERN VALUE _wrap_Visibility_Graph___call__(int nargs, VALUE *args, VALUE s
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_Visibility_Graph___call____SWIG_0(nargs, args, self);
+              return _wrap_VisibilityGraph___call____SWIG_0(nargs, args, self);
             }
           }
         }
@@ -15290,11 +15290,11 @@ SWIGINTERN VALUE _wrap_Visibility_Graph___call__(int nargs, VALUE *args, VALUE s
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "Visibility_Graph.__call__", 
-    "    bool & Visibility_Graph.__call__(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
-    "    bool & Visibility_Graph.__call__(unsigned int k1, unsigned int k2)\n"
-    "    bool & Visibility_Graph.__call__(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
-    "    bool & Visibility_Graph.__call__(unsigned int k1, unsigned int k2)\n");
+  Ruby_Format_OverloadedError( argc, 6, "VisibilityGraph.__call__", 
+    "    bool & VisibilityGraph.__call__(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
+    "    bool & VisibilityGraph.__call__(unsigned int k1, unsigned int k2)\n"
+    "    bool & VisibilityGraph.__call__(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
+    "    bool & VisibilityGraph.__call__(unsigned int k1, unsigned int k2)\n");
   
   return Qnil;
 }
@@ -15850,21 +15850,21 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_singleton_method(mVisilibity, "FIOS_PRECISION", VALUEFUNC(_wrap_FIOS_PRECISION_get), 0);
   rb_define_module_function(mVisilibity, "uniform_random_sample", VALUEFUNC(_wrap_uniform_random_sample), -1);
   
-  SwigClassBounding_Box.klass = rb_define_class_under(mVisilibity, "Bounding_Box", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Bounding_Box, (void *) &SwigClassBounding_Box);
-  rb_define_alloc_func(SwigClassBounding_Box.klass, _wrap_Bounding_Box_allocate);
-  rb_define_method(SwigClassBounding_Box.klass, "initialize", VALUEFUNC(_wrap_new_Bounding_Box), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "x_min=", VALUEFUNC(_wrap_Bounding_Box_x_min_set), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "x_min", VALUEFUNC(_wrap_Bounding_Box_x_min_get), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "x_max=", VALUEFUNC(_wrap_Bounding_Box_x_max_set), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "x_max", VALUEFUNC(_wrap_Bounding_Box_x_max_get), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "y_min=", VALUEFUNC(_wrap_Bounding_Box_y_min_set), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "y_min", VALUEFUNC(_wrap_Bounding_Box_y_min_get), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "y_max=", VALUEFUNC(_wrap_Bounding_Box_y_max_set), -1);
-  rb_define_method(SwigClassBounding_Box.klass, "y_max", VALUEFUNC(_wrap_Bounding_Box_y_max_get), -1);
-  SwigClassBounding_Box.mark = 0;
-  SwigClassBounding_Box.destroy = (void (*)(void *)) free_VisiLibity_Bounding_Box;
-  SwigClassBounding_Box.trackObjects = 0;
+  SwigClassBoundingBox.klass = rb_define_class_under(mVisilibity, "BoundingBox", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Bounding_Box, (void *) &SwigClassBoundingBox);
+  rb_define_alloc_func(SwigClassBoundingBox.klass, _wrap_BoundingBox_allocate);
+  rb_define_method(SwigClassBoundingBox.klass, "initialize", VALUEFUNC(_wrap_new_BoundingBox), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_min=", VALUEFUNC(_wrap_BoundingBox_x_min_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_min", VALUEFUNC(_wrap_BoundingBox_x_min_get), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_max=", VALUEFUNC(_wrap_BoundingBox_x_max_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_max", VALUEFUNC(_wrap_BoundingBox_x_max_get), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_min=", VALUEFUNC(_wrap_BoundingBox_y_min_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_min", VALUEFUNC(_wrap_BoundingBox_y_min_get), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_max=", VALUEFUNC(_wrap_BoundingBox_y_max_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_max", VALUEFUNC(_wrap_BoundingBox_y_max_get), -1);
+  SwigClassBoundingBox.mark = 0;
+  SwigClassBoundingBox.destroy = (void (*)(void *)) free_VisiLibity_Bounding_Box;
+  SwigClassBoundingBox.trackObjects = 0;
   
   SwigClassPoint.klass = rb_define_class_under(mVisilibity, "Point", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Point, (void *) &SwigClassPoint);
@@ -15889,24 +15889,24 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_module_function(mVisilibity, "*", VALUEFUNC(_wrap___mul__), -1);
   rb_define_module_function(mVisilibity, "cross", VALUEFUNC(_wrap_cross), -1);
   
-  SwigClassLine_Segment.klass = rb_define_class_under(mVisilibity, "Line_Segment", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Line_Segment, (void *) &SwigClassLine_Segment);
-  rb_define_alloc_func(SwigClassLine_Segment.klass, _wrap_Line_Segment_allocate);
-  rb_define_method(SwigClassLine_Segment.klass, "initialize", VALUEFUNC(_wrap_new_Line_Segment), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "first", VALUEFUNC(_wrap_Line_Segment_first), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "second", VALUEFUNC(_wrap_Line_Segment_second), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "size", VALUEFUNC(_wrap_Line_Segment_size), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "midpoint", VALUEFUNC(_wrap_Line_Segment_midpoint), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "length", VALUEFUNC(_wrap_Line_Segment_length), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "is_in_standard_form", VALUEFUNC(_wrap_Line_Segment_is_in_standard_form), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "set_first", VALUEFUNC(_wrap_Line_Segment_set_first), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "set_second", VALUEFUNC(_wrap_Line_Segment_set_second), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "reverse", VALUEFUNC(_wrap_Line_Segment_reverse), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "enforce_standard_form", VALUEFUNC(_wrap_Line_Segment_enforce_standard_form), -1);
-  rb_define_method(SwigClassLine_Segment.klass, "clear", VALUEFUNC(_wrap_Line_Segment_clear), -1);
-  SwigClassLine_Segment.mark = 0;
-  SwigClassLine_Segment.destroy = (void (*)(void *)) free_VisiLibity_Line_Segment;
-  SwigClassLine_Segment.trackObjects = 0;
+  SwigClassLineSegment.klass = rb_define_class_under(mVisilibity, "LineSegment", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Line_Segment, (void *) &SwigClassLineSegment);
+  rb_define_alloc_func(SwigClassLineSegment.klass, _wrap_LineSegment_allocate);
+  rb_define_method(SwigClassLineSegment.klass, "initialize", VALUEFUNC(_wrap_new_LineSegment), -1);
+  rb_define_method(SwigClassLineSegment.klass, "first", VALUEFUNC(_wrap_LineSegment_first), -1);
+  rb_define_method(SwigClassLineSegment.klass, "second", VALUEFUNC(_wrap_LineSegment_second), -1);
+  rb_define_method(SwigClassLineSegment.klass, "size", VALUEFUNC(_wrap_LineSegment_size), -1);
+  rb_define_method(SwigClassLineSegment.klass, "midpoint", VALUEFUNC(_wrap_LineSegment_midpoint), -1);
+  rb_define_method(SwigClassLineSegment.klass, "length", VALUEFUNC(_wrap_LineSegment_length), -1);
+  rb_define_method(SwigClassLineSegment.klass, "is_in_standard_form", VALUEFUNC(_wrap_LineSegment_is_in_standard_form), -1);
+  rb_define_method(SwigClassLineSegment.klass, "set_first", VALUEFUNC(_wrap_LineSegment_set_first), -1);
+  rb_define_method(SwigClassLineSegment.klass, "set_second", VALUEFUNC(_wrap_LineSegment_set_second), -1);
+  rb_define_method(SwigClassLineSegment.klass, "reverse", VALUEFUNC(_wrap_LineSegment_reverse), -1);
+  rb_define_method(SwigClassLineSegment.klass, "enforce_standard_form", VALUEFUNC(_wrap_LineSegment_enforce_standard_form), -1);
+  rb_define_method(SwigClassLineSegment.klass, "clear", VALUEFUNC(_wrap_LineSegment_clear), -1);
+  SwigClassLineSegment.mark = 0;
+  SwigClassLineSegment.destroy = (void (*)(void *)) free_VisiLibity_Line_Segment;
+  SwigClassLineSegment.trackObjects = 0;
   rb_define_module_function(mVisilibity, "distance", VALUEFUNC(_wrap_distance), -1);
   rb_define_module_function(mVisilibity, "intersect", VALUEFUNC(_wrap_intersect), -1);
   rb_define_module_function(mVisilibity, "intersect_proper", VALUEFUNC(_wrap_intersect_proper), -1);
@@ -15927,22 +15927,22 @@ SWIGEXPORT void Init_visilibity(void) {
   rb_define_module_function(mVisilibity, "geodesic_distance", VALUEFUNC(_wrap_geodesic_distance), -1);
   rb_define_module_function(mVisilibity, "geodesic_direction", VALUEFUNC(_wrap_geodesic_direction), -1);
   
-  SwigClassPolar_Point.klass = rb_define_class_under(mVisilibity, "Polar_Point", ((swig_class *) SWIGTYPE_p_VisiLibity__Point->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Polar_Point, (void *) &SwigClassPolar_Point);
-  rb_define_alloc_func(SwigClassPolar_Point.klass, _wrap_Polar_Point_allocate);
-  rb_define_method(SwigClassPolar_Point.klass, "initialize", VALUEFUNC(_wrap_new_Polar_Point), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "polar_origin", VALUEFUNC(_wrap_Polar_Point_polar_origin), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "range", VALUEFUNC(_wrap_Polar_Point_range), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "bearing", VALUEFUNC(_wrap_Polar_Point_bearing), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "set_polar_origin", VALUEFUNC(_wrap_Polar_Point_set_polar_origin), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "set_x", VALUEFUNC(_wrap_Polar_Point_set_x), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "set_y", VALUEFUNC(_wrap_Polar_Point_set_y), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "set_range", VALUEFUNC(_wrap_Polar_Point_set_range), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "set_bearing", VALUEFUNC(_wrap_Polar_Point_set_bearing), -1);
-  rb_define_method(SwigClassPolar_Point.klass, "set_bearing_to_2pi", VALUEFUNC(_wrap_Polar_Point_set_bearing_to_2pi), -1);
-  SwigClassPolar_Point.mark = 0;
-  SwigClassPolar_Point.destroy = (void (*)(void *)) free_VisiLibity_Polar_Point;
-  SwigClassPolar_Point.trackObjects = 0;
+  SwigClassPolarPoint.klass = rb_define_class_under(mVisilibity, "PolarPoint", ((swig_class *) SWIGTYPE_p_VisiLibity__Point->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Polar_Point, (void *) &SwigClassPolarPoint);
+  rb_define_alloc_func(SwigClassPolarPoint.klass, _wrap_PolarPoint_allocate);
+  rb_define_method(SwigClassPolarPoint.klass, "initialize", VALUEFUNC(_wrap_new_PolarPoint), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "polar_origin", VALUEFUNC(_wrap_PolarPoint_polar_origin), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "range", VALUEFUNC(_wrap_PolarPoint_range), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "bearing", VALUEFUNC(_wrap_PolarPoint_bearing), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "set_polar_origin", VALUEFUNC(_wrap_PolarPoint_set_polar_origin), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "set_x", VALUEFUNC(_wrap_PolarPoint_set_x), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "set_y", VALUEFUNC(_wrap_PolarPoint_set_y), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "set_range", VALUEFUNC(_wrap_PolarPoint_set_range), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "set_bearing", VALUEFUNC(_wrap_PolarPoint_set_bearing), -1);
+  rb_define_method(SwigClassPolarPoint.klass, "set_bearing_to_2pi", VALUEFUNC(_wrap_PolarPoint_set_bearing_to_2pi), -1);
+  SwigClassPolarPoint.mark = 0;
+  SwigClassPolarPoint.destroy = (void (*)(void *)) free_VisiLibity_Polar_Point;
+  SwigClassPolarPoint.trackObjects = 0;
   rb_define_module_function(mVisilibity, ">", VALUEFUNC(_wrap___gt__), -1);
   rb_define_module_function(mVisilibity, "<", VALUEFUNC(_wrap___lt__), -1);
   rb_define_module_function(mVisilibity, ">=", VALUEFUNC(_wrap___ge__), -1);
@@ -16056,24 +16056,24 @@ SWIGEXPORT void Init_visilibity(void) {
   SwigClassGuards.destroy = (void (*)(void *)) free_VisiLibity_Guards;
   SwigClassGuards.trackObjects = 0;
   
-  SwigClassVisibility_Polygon.klass = rb_define_class_under(mVisilibity, "Visibility_Polygon", ((swig_class *) SWIGTYPE_p_VisiLibity__Polygon->clientdata)->klass);
-  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Polygon, (void *) &SwigClassVisibility_Polygon);
-  rb_define_alloc_func(SwigClassVisibility_Polygon.klass, _wrap_Visibility_Polygon_allocate);
-  rb_define_method(SwigClassVisibility_Polygon.klass, "initialize", VALUEFUNC(_wrap_new_Visibility_Polygon), -1);
-  rb_define_method(SwigClassVisibility_Polygon.klass, "observer", VALUEFUNC(_wrap_Visibility_Polygon_observer), -1);
-  SwigClassVisibility_Polygon.mark = 0;
-  SwigClassVisibility_Polygon.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Polygon;
-  SwigClassVisibility_Polygon.trackObjects = 0;
+  SwigClassVisibilityPolygon.klass = rb_define_class_under(mVisilibity, "VisibilityPolygon", ((swig_class *) SWIGTYPE_p_VisiLibity__Polygon->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Polygon, (void *) &SwigClassVisibilityPolygon);
+  rb_define_alloc_func(SwigClassVisibilityPolygon.klass, _wrap_VisibilityPolygon_allocate);
+  rb_define_method(SwigClassVisibilityPolygon.klass, "initialize", VALUEFUNC(_wrap_new_VisibilityPolygon), -1);
+  rb_define_method(SwigClassVisibilityPolygon.klass, "observer", VALUEFUNC(_wrap_VisibilityPolygon_observer), -1);
+  SwigClassVisibilityPolygon.mark = 0;
+  SwigClassVisibilityPolygon.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Polygon;
+  SwigClassVisibilityPolygon.trackObjects = 0;
   
-  SwigClassVisibility_Graph.klass = rb_define_class_under(mVisilibity, "Visibility_Graph", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Graph, (void *) &SwigClassVisibility_Graph);
-  rb_define_alloc_func(SwigClassVisibility_Graph.klass, _wrap_Visibility_Graph_allocate);
-  rb_define_method(SwigClassVisibility_Graph.klass, "initialize", VALUEFUNC(_wrap_new_Visibility_Graph), -1);
-  rb_define_method(SwigClassVisibility_Graph.klass, "n", VALUEFUNC(_wrap_Visibility_Graph_n), -1);
-  rb_define_method(SwigClassVisibility_Graph.klass, "call", VALUEFUNC(_wrap_Visibility_Graph___call__), -1);
-  SwigClassVisibility_Graph.mark = 0;
-  SwigClassVisibility_Graph.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Graph;
-  SwigClassVisibility_Graph.trackObjects = 0;
+  SwigClassVisibilityGraph.klass = rb_define_class_under(mVisilibity, "VisibilityGraph", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Graph, (void *) &SwigClassVisibilityGraph);
+  rb_define_alloc_func(SwigClassVisibilityGraph.klass, _wrap_VisibilityGraph_allocate);
+  rb_define_method(SwigClassVisibilityGraph.klass, "initialize", VALUEFUNC(_wrap_new_VisibilityGraph), -1);
+  rb_define_method(SwigClassVisibilityGraph.klass, "n", VALUEFUNC(_wrap_VisibilityGraph_n), -1);
+  rb_define_method(SwigClassVisibilityGraph.klass, "call", VALUEFUNC(_wrap_VisibilityGraph___call__), -1);
+  SwigClassVisibilityGraph.mark = 0;
+  SwigClassVisibilityGraph.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Graph;
+  SwigClassVisibilityGraph.trackObjects = 0;
   rb_define_module_function(mVisilibity, "<<", VALUEFUNC(_wrap___lshift__), -1);
 }
 
