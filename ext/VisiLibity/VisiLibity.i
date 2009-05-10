@@ -1,5 +1,4 @@
 %module VisiLibity
-%include "std_vector.i"
 
 %rename(BoundingBox) Bounding_Box;
 %rename(LineSegment) Line_Segment;
@@ -14,6 +13,12 @@
 %{
 #include "visilibity.hpp"
 %}
+
+/* Instantiate vector templates, as needed, for STL */
+%include "std_vector.i"
+namespace std {
+  %template(PointVector) vector< VisiLibity::Point >;
+}
 
 %include "visilibity.hpp"
 
