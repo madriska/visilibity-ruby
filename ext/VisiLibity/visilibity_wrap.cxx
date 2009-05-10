@@ -1802,6 +1802,9 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 
 
 
+  #define SWIG_exception(code, msg) do { SWIG_Error(code, msg);; } while(0) 
+
+
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_VisiLibity__Angle swig_types[0]
@@ -1818,13 +1821,17 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_VisiLibity__Visibility_Polygon swig_types[11]
 #define SWIGTYPE_p_bool swig_types[12]
 #define SWIGTYPE_p_char swig_types[13]
-#define SWIGTYPE_p_std__ostream swig_types[14]
-#define SWIGTYPE_p_std__string swig_types[15]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_t swig_types[16]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_t swig_types[17]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_t swig_types[18]
-static swig_type_info *swig_types[20];
-static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
+#define SWIGTYPE_p_p_void swig_types[14]
+#define SWIGTYPE_p_std__ostream swig_types[15]
+#define SWIGTYPE_p_std__string swig_types[16]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t swig_types[17]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t swig_types[18]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t swig_types[19]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[20]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[21]
+#define SWIGTYPE_p_swig__Iterator swig_types[22]
+static swig_type_info *swig_types[24];
+static swig_module_info swig_module = {swig_types, 23, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1850,7 +1857,636 @@ static VALUE mVisiLibity;
 #include <stdexcept>
 
 
-#include "visilibity.hpp"
+#include <iostream>
+
+
+#include <stdexcept>
+
+
+namespace swig {
+  class GC_VALUE {
+  protected:
+    // Hash of all GC_VALUE's currently in use
+    static VALUE _hash;
+
+    VALUE  _obj;
+
+    static ID hash_id;
+    static ID   lt_id;
+    static ID   gt_id;
+    static ID   eq_id;
+    static ID   le_id;
+    static ID   ge_id;
+
+    static ID  pos_id;
+    static ID  neg_id;
+    static ID  inv_id;
+
+    static ID  add_id;
+    static ID  sub_id;
+    static ID  mul_id;
+    static ID  div_id;
+    static ID  mod_id;
+
+    static ID  and_id;
+    static ID   or_id;
+    static ID  xor_id;
+
+    static ID  lshift_id;
+    static ID  rshift_id;
+
+    struct OpArgs
+    {
+      VALUE src;
+      ID    id;
+      int   nargs;
+      VALUE target;
+    };
+
+
+  public:
+    static void initialize()
+    {
+      if ( _hash == Qnil ) 
+	{ 
+	  _hash = rb_hash_new();
+	  rb_gc_register_address( &_hash );
+	}
+    }
+
+    // this function is never called.  Provided for symmetry only.
+    static void cleanup()
+    {
+      rb_gc_unregister_address( &_hash );
+    }
+
+    GC_VALUE() : _obj( Qnil )
+    {
+    }
+
+    GC_VALUE(const GC_VALUE& item) : _obj(item._obj)
+    {
+      GC_register();
+    }
+    
+    GC_VALUE(VALUE obj) :_obj(obj)
+    {
+      GC_register();
+    }
+    
+    ~GC_VALUE() 
+    {
+      GC_unregister();
+    }
+    
+    GC_VALUE & operator=(const GC_VALUE& item) 
+    {
+      GC_unregister();
+      _obj = item._obj;
+      GC_register();
+      return *this;
+    }
+
+    void GC_register()
+    {
+      if ( FIXNUM_P(_obj) || SPECIAL_CONST_P(_obj) || SYMBOL_P(_obj) ) 
+	return;
+      VALUE val = rb_hash_aref( _hash, _obj );
+      unsigned n = FIXNUM_P(val) ? NUM2UINT(val) : 0;
+      ++n;
+      rb_hash_aset( _hash, _obj, INT2NUM(n) );
+    }
+
+    void GC_unregister()
+    {
+      if ( FIXNUM_P(_obj) || SPECIAL_CONST_P(_obj) || SYMBOL_P(_obj) ) 
+	return;
+      // this test should not be needed but I've noticed some very erratic
+      // behavior of none being unregistered in some very rare situations.
+      if ( BUILTIN_TYPE(_obj) == T_NONE ) return;
+
+      VALUE val = rb_hash_aref( _hash, _obj );
+      unsigned n = FIXNUM_P(val) ? NUM2UINT(val) : 1;
+      --n;
+      if ( n )
+	rb_hash_aset( _hash, _obj, INT2NUM(n) );
+      else
+	rb_hash_delete( _hash, _obj );
+    }
+    
+    operator VALUE() const
+    {
+      return _obj;
+    }
+
+    VALUE inspect() const
+    {
+      return rb_inspect(_obj);
+    }
+
+    VALUE to_s() const
+    {
+      return rb_inspect(_obj);
+    }
+
+    static VALUE swig_protect_funcall( VALUE p )
+    {
+      OpArgs* args = (OpArgs*) p;
+      return rb_funcall( args->src, args->id, args->nargs, args->target );
+    }
+
+
+#define GC_VALUE_CMP( op_id, op, cmp, cmpval ) \
+    bool op( const GC_VALUE& other ) const \
+    { \
+      if ( FIXNUM_P(_obj) && FIXNUM_P(other._obj) ) \
+      { \
+	return _obj cmp other._obj; \
+      } \
+      bool  res = false; \
+      VALUE ret = Qnil; \
+      SWIG_RUBY_THREAD_BEGIN_BLOCK; \
+      if ( rb_respond_to( _obj, op_id ) == Qtrue ) \
+	{ \
+	  int status; \
+	  OpArgs  args; \
+          args.src    = _obj; \
+	  args.id     = op_id; \
+	  args.nargs  = 1; \
+	  args.target = VALUE(other); \
+	  ret = rb_protect( PROTECTFUNC(swig_protect_funcall), \
+                            VALUE(&args), &status ); \
+	} \
+      if ( ret == Qnil ) { \
+	VALUE a = rb_funcall(         _obj, hash_id, 0 ); \
+	VALUE b = rb_funcall( VALUE(other), hash_id, 0 ); \
+	res = a cmp b; \
+      } \
+      else \
+	{ \
+	  res = RTEST( ret ); \
+	} \
+      SWIG_RUBY_THREAD_END_BLOCK; \
+      return res; \
+    }
+
+
+    GC_VALUE_CMP( eq_id, operator==, ==, == 0 )
+    GC_VALUE_CMP( lt_id, operator<,  < , <  0 )
+    GC_VALUE_CMP( le_id, operator<=, <=, <= 0 )
+    GC_VALUE_CMP( gt_id, operator>,  > , >  0 )
+    GC_VALUE_CMP( ge_id, operator>=, >=, >= 0 )
+#undef GC_VALUE_CMP
+
+    bool operator!=( const GC_VALUE& other )
+    {
+      return !(this->operator==(other));
+    }
+
+#define GC_VALUE_UNARY( proc_id, op ) \
+    GC_VALUE op() const \
+    { \
+      VALUE ret = Qnil; \
+      SWIG_RUBY_THREAD_BEGIN_BLOCK; \
+      int status; \
+      OpArgs  args; \
+      args.src    = _obj; \
+      args.id     = proc_id; \
+      args.nargs  = 0; \
+      args.target = Qnil; \
+      ret = rb_protect( PROTECTFUNC(swig_protect_funcall), VALUE(&args), \
+			&status ); \
+      SWIG_RUBY_THREAD_END_BLOCK; \
+      return ret; \
+    }
+
+    GC_VALUE_UNARY( pos_id, operator+ )
+    GC_VALUE_UNARY( neg_id, operator- )
+    GC_VALUE_UNARY( inv_id, operator~ )
+#undef GC_VALUE_BINARY
+
+#define GC_VALUE_BINARY( proc_id, op ) \
+    GC_VALUE op( const GC_VALUE& other ) const \
+    { \
+      VALUE ret = Qnil; \
+      SWIG_RUBY_THREAD_BEGIN_BLOCK; \
+      int status; \
+      OpArgs  args; \
+      args.src    = _obj; \
+      args.id     = proc_id; \
+      args.nargs  = 1; \
+      args.target = VALUE(other); \
+      ret = rb_protect( PROTECTFUNC(swig_protect_funcall), VALUE(&args), \
+			&status ); \
+      SWIG_RUBY_THREAD_END_BLOCK; \
+      return GC_VALUE(ret); \
+    }
+
+    GC_VALUE_BINARY( add_id, operator+ );
+    GC_VALUE_BINARY( sub_id, operator- );
+    GC_VALUE_BINARY( mul_id, operator* );
+    GC_VALUE_BINARY( div_id, operator/ );
+    GC_VALUE_BINARY( mod_id, operator% );
+    
+    GC_VALUE_BINARY( and_id, operator& );
+    GC_VALUE_BINARY( xor_id, operator^ );
+    GC_VALUE_BINARY(  or_id, operator| );
+
+    GC_VALUE_BINARY( lshift_id, operator<< );
+    GC_VALUE_BINARY( rshift_id, operator>> );
+#undef GC_VALUE_BINARY
+
+  };
+
+  ID  GC_VALUE::hash_id = rb_intern("hash");
+  ID  GC_VALUE::lt_id = rb_intern("<");
+  ID  GC_VALUE::gt_id = rb_intern(">");
+  ID  GC_VALUE::eq_id = rb_intern("==");
+  ID  GC_VALUE::le_id = rb_intern("<=");
+  ID  GC_VALUE::ge_id = rb_intern(">=");
+
+  ID  GC_VALUE::pos_id = rb_intern("+@");
+  ID  GC_VALUE::neg_id = rb_intern("-@");
+  ID  GC_VALUE::inv_id = rb_intern("~");
+
+  ID  GC_VALUE::add_id = rb_intern("+");
+  ID  GC_VALUE::sub_id = rb_intern("-");
+  ID  GC_VALUE::mul_id = rb_intern("*");
+  ID  GC_VALUE::div_id = rb_intern("/");
+  ID  GC_VALUE::mod_id = rb_intern("%");
+
+  ID  GC_VALUE::and_id = rb_intern("&");
+  ID  GC_VALUE::or_id  = rb_intern("|");
+  ID  GC_VALUE::xor_id = rb_intern("^");
+
+  ID  GC_VALUE::lshift_id = rb_intern("<<");
+  ID  GC_VALUE::rshift_id = rb_intern(">>");
+
+  VALUE GC_VALUE::_hash = Qnil;
+
+  typedef GC_VALUE LANGUAGE_OBJ;
+
+} // namespace swig
+
+
+
+#if defined(__GNUC__)
+#  if __GNUC__ == 2 && __GNUC_MINOR <= 96
+#     define SWIG_STD_NOMODERN_STL
+#  endif
+#endif
+
+
+#include <string>
+#include <stdexcept>
+
+  
+namespace swig {
+  struct stop_iteration {
+  };
+
+  /** 
+   * Abstract base class used to represent all iterators of STL containers.
+   */
+  struct ConstIterator {
+  public:
+    typedef ConstIterator self_type;
+
+  protected:
+    GC_VALUE _seq;
+
+  protected:
+    ConstIterator(VALUE seq) : _seq(seq)
+    {
+    }
+
+    // Random access iterator methods, but not required in Ruby
+    virtual ptrdiff_t distance(const ConstIterator &x) const
+    {
+      throw std::invalid_argument("distance not supported");
+    }
+
+    virtual bool equal (const ConstIterator &x) const
+    {
+      throw std::invalid_argument("equal not supported");
+    }
+
+    virtual self_type* advance(ptrdiff_t n)
+    {
+      throw std::invalid_argument("advance not supported");
+    }
+      
+  public:
+    virtual ~ConstIterator() {}
+
+    // Access iterator method, required by Ruby
+    virtual VALUE value() const {
+      throw std::invalid_argument("value not supported");
+      return Qnil;
+    };
+
+    virtual VALUE setValue( const VALUE& v ) {
+      throw std::invalid_argument("value= not supported");
+      return Qnil;
+    }
+
+    virtual self_type* next( size_t n = 1 )
+    {
+      return this->advance( n );
+    }
+
+    virtual self_type* previous( size_t n = 1 )
+    {
+      ptrdiff_t nn = n;
+      return this->advance( -nn );
+    }
+
+    virtual VALUE to_s() const {
+      throw std::invalid_argument("to_s not supported");
+      return Qnil;
+    }
+
+    virtual VALUE inspect() const {
+      throw std::invalid_argument("inspect not supported");
+      return Qnil;
+    }
+    
+    virtual ConstIterator *dup() const
+    {
+      throw std::invalid_argument("dup not supported");
+      return NULL;
+    }
+
+    //
+    // C++ common/needed methods.  We emulate a bidirectional
+    // operator, to be compatible with all the STL.
+    // The iterator traits will then tell the STL what type of
+    // iterator we really are.
+    //
+    ConstIterator() : _seq( Qnil )
+    {
+    }
+
+    ConstIterator( const self_type& b ) : _seq( b._seq )
+    {
+    }
+
+    self_type& operator=( const self_type& b )
+    {
+      _seq = b._seq;
+      return *this;
+    }
+
+    bool operator == (const ConstIterator& x)  const
+    {
+      return equal(x);
+    }
+      
+    bool operator != (const ConstIterator& x) const
+    {
+      return ! operator==(x);
+    }
+      
+    // Pre-decrement operator
+    self_type& operator--()
+    {
+      return *previous();
+    }
+
+    // Pre-increment operator
+    self_type& operator++()
+    {
+      return *next();
+    }
+
+    // Post-decrement operator
+    self_type operator--(int)
+    {
+      self_type r = *this;
+      previous();
+      return r;
+    }
+
+    // Post-increment operator
+    self_type operator++(int)
+    {
+      self_type r = *this;
+      next();
+      return r;
+    }
+
+    ConstIterator& operator += (ptrdiff_t n)
+    {
+      return *advance(n);
+    }
+
+    ConstIterator& operator -= (ptrdiff_t n)
+    {
+      return *advance(-n);
+    }
+
+    ConstIterator* operator + (ptrdiff_t n) const
+    {
+      return dup()->advance(n);
+    }
+
+    ConstIterator* operator - (ptrdiff_t n) const
+    {
+      return dup()->advance(-n);
+    }
+      
+    ptrdiff_t operator - (const ConstIterator& x) const
+    {
+      return x.distance(*this);
+    }
+      
+    static swig_type_info* descriptor() {
+      static int init = 0;
+      static swig_type_info* desc = 0;
+      if (!init) {
+	desc = SWIG_TypeQuery("swig::ConstIterator *");
+	init = 1;
+      }	
+      return desc;
+    }
+  };
+
+
+  /**
+   * Abstract base class used to represent all non-const iterators of STL containers.
+   * 
+   */
+  struct Iterator : public ConstIterator {
+  public:
+    typedef Iterator self_type;
+
+  protected:
+    Iterator(VALUE seq) : ConstIterator(seq)
+    {
+    }
+
+    virtual self_type* advance(ptrdiff_t n)
+    {
+      throw std::invalid_argument("operation not supported");
+    }
+
+  public:
+    static swig_type_info* descriptor() {
+      static int init = 0;
+      static swig_type_info* desc = 0;
+      if (!init) {
+	desc = SWIG_TypeQuery("swig::Iterator *");
+	init = 1;
+      }	
+      return desc;
+    }
+    
+    virtual Iterator *dup() const
+    {
+      throw std::invalid_argument("dup not supported");
+      return NULL;
+    }
+      
+    virtual self_type* next( size_t n = 1 )
+    {
+      return this->advance( n );
+    }
+
+    virtual self_type* previous( size_t n = 1 )
+    {
+      ptrdiff_t nn = n;
+      return this->advance( -nn );
+    }
+
+    bool operator == (const ConstIterator& x)  const
+    {
+      return equal(x);
+    }
+      
+    bool operator != (const Iterator& x) const
+    {
+      return ! operator==(x);
+    }
+      
+    Iterator& operator += (ptrdiff_t n)
+    {
+      return *advance(n);
+    }
+
+    Iterator& operator -= (ptrdiff_t n)
+    {
+      return *advance(-n);
+    }
+      
+    Iterator* operator + (ptrdiff_t n) const
+    {
+      return dup()->advance(n);
+    }
+
+    Iterator* operator - (ptrdiff_t n) const
+    {
+      return dup()->advance(-n);
+    }
+      
+    ptrdiff_t operator - (const Iterator& x) const
+    {
+      return x.distance(*this);
+    }
+  };
+
+}
+
+
+SWIGINTERN VALUE
+SWIG_ruby_failed(void)
+{
+  return Qnil;
+} 
+
+
+/*@SWIG:/Volumes/Home/Users/bradediger/Gentoo/usr/share/swig/1.3.39/ruby/rubyprimtypes.swg,23,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
+{
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  unsigned long *res = (unsigned long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2ULONG(obj) : rb_big2ulong(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_long (VALUE obj, unsigned long *val) 
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    unsigned long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2ULONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERNINLINE int
+SWIG_AsVal_size_t (VALUE obj, size_t *val)
+{
+  unsigned long v;
+  int res = SWIG_AsVal_unsigned_SS_long (obj, val ? &v : 0);
+  if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+  return res;
+}
+
+
+SWIGINTERNINLINE VALUE
+SWIG_From_bool  (bool value)
+{
+  return value ? Qtrue : Qfalse;
+}
+
+
+/*@SWIG:/Volumes/Home/Users/bradediger/Gentoo/usr/share/swig/1.3.39/ruby/rubyprimtypes.swg,23,%ruby_aux_method@*/
+SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
+{
+  VALUE obj = args[0];
+  VALUE type = TYPE(obj);
+  long *res = (long *)(args[1]);
+  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
+  return obj;
+}
+/*@SWIG@*/
+
+SWIGINTERN int
+SWIG_AsVal_long (VALUE obj, long* val)
+{
+  VALUE type = TYPE(obj);
+  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
+    long v;
+    VALUE a[2];
+    a[0] = obj;
+    a[1] = (VALUE)(&v);
+    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2LONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
+      if (val) *val = v;
+      return SWIG_OK;
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERNINLINE int
+SWIG_AsVal_ptrdiff_t (VALUE obj, ptrdiff_t *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, val ? &v : 0);
+  if (SWIG_IsOK(res) && val) *val = static_cast< ptrdiff_t >(v);
+  return res;
+}
 
 
 #include <limits.h>
@@ -1867,17 +2503,29 @@ static VALUE mVisiLibity;
 
 
 SWIGINTERNINLINE VALUE
+SWIG_From_ptrdiff_t  (ptrdiff_t value)
+{    
+  return SWIG_From_long  (static_cast< long >(value));
+}
+
+
+#include <stdexcept>
+
+
+#include <algorithm>
+
+
+#include <vector>
+
+
+#include "visilibity.hpp"
+
+
+SWIGINTERNINLINE VALUE
 SWIG_From_int  (int value)
 {    
   return SWIG_From_long  (value);
 }
-
-
-SWIGINTERN VALUE
-SWIG_ruby_failed(void)
-{
-  return Qnil;
-} 
 
 
 /*@SWIG:/Volumes/Home/Users/bradediger/Gentoo/usr/share/swig/1.3.39/ruby/rubyprimtypes.swg,23,%ruby_aux_method@*/
@@ -1913,13 +2561,6 @@ SWIG_AsVal_double (VALUE obj, double *val)
 
 
 SWIGINTERNINLINE VALUE
-SWIG_From_bool  (bool value)
-{
-  return value ? Qtrue : Qfalse;
-}
-
-
-SWIGINTERNINLINE VALUE
 SWIG_From_unsigned_SS_long  (unsigned long value)
 {
   return ULONG2NUM(value); 
@@ -1930,35 +2571,6 @@ SWIGINTERNINLINE VALUE
 SWIG_From_unsigned_SS_int  (unsigned int value)
 {    
   return SWIG_From_unsigned_SS_long  (value);
-}
-
-
-/*@SWIG:/Volumes/Home/Users/bradediger/Gentoo/usr/share/swig/1.3.39/ruby/rubyprimtypes.swg,23,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
-{
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  unsigned long *res = (unsigned long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2ULONG(obj) : rb_big2ulong(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_unsigned_SS_long (VALUE obj, unsigned long *val) 
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    unsigned long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2ULONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
 }
 
 
@@ -1978,35 +2590,6 @@ SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
 }
 
 
-/*@SWIG:/Volumes/Home/Users/bradediger/Gentoo/usr/share/swig/1.3.39/ruby/rubyprimtypes.swg,23,%ruby_aux_method@*/
-SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
-{
-  VALUE obj = args[0];
-  VALUE type = TYPE(obj);
-  long *res = (long *)(args[1]);
-  *res = type == T_FIXNUM ? NUM2LONG(obj) : rb_big2long(obj);
-  return obj;
-}
-/*@SWIG@*/
-
-SWIGINTERN int
-SWIG_AsVal_long (VALUE obj, long* val)
-{
-  VALUE type = TYPE(obj);
-  if ((type == T_FIXNUM) || (type == T_BIGNUM)) {
-    long v;
-    VALUE a[2];
-    a[0] = obj;
-    a[1] = (VALUE)(&v);
-    if (rb_rescue(RUBY_METHOD_FUNC(SWIG_AUX_NUM2LONG), (VALUE)a, RUBY_METHOD_FUNC(SWIG_ruby_failed), 0) != Qnil) {
-      if (val) *val = v;
-      return SWIG_OK;
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
 SWIGINTERN int
 SWIG_AsVal_int (VALUE obj, int *val)
 {
@@ -2020,6 +2603,1256 @@ SWIG_AsVal_int (VALUE obj, int *val)
     }
   }  
   return res;
+}
+
+swig_class SwigClassGC_VALUE;
+
+
+/*
+  Document-method: VisiLibity::GC_VALUE.inspect
+
+  call-seq:
+    inspect -> VALUE
+
+Inspect class and its contents.
+*/
+SWIGINTERN VALUE
+_wrap_GC_VALUE_inspect(int argc, VALUE *argv, VALUE self) {
+  swig::GC_VALUE *arg1 = (swig::GC_VALUE *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__GC_VALUE, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::GC_VALUE const *","inspect", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::GC_VALUE * >(argp1);
+  result = (VALUE)((swig::GC_VALUE const *)arg1)->inspect();
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::GC_VALUE.to_s
+
+  call-seq:
+    to_s -> VALUE
+
+Convert class to a String representation.
+*/
+SWIGINTERN VALUE
+_wrap_GC_VALUE_to_s(int argc, VALUE *argv, VALUE self) {
+  swig::GC_VALUE *arg1 = (swig::GC_VALUE *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__GC_VALUE, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::GC_VALUE const *","to_s", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::GC_VALUE * >(argp1);
+  result = (VALUE)((swig::GC_VALUE const *)arg1)->to_s();
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+swig_class SwigClassConstIterator;
+
+SWIGINTERN void
+free_swig_ConstIterator(swig::ConstIterator *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_ConstIterator_value(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","value", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  try {
+    result = (VALUE)((swig::ConstIterator const *)arg1)->value();
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::ConstIterator.dup
+
+  call-seq:
+    dup -> ConstIterator
+
+Create a duplicate of the class and unfreeze it if needed.
+*/
+SWIGINTERN VALUE
+_wrap_ConstIterator_dup(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","dup", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  result = (swig::ConstIterator *)((swig::ConstIterator const *)arg1)->dup();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::ConstIterator.inspect
+
+  call-seq:
+    inspect -> VALUE
+
+Inspect class and its contents.
+*/
+SWIGINTERN VALUE
+_wrap_ConstIterator_inspect(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","inspect", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  result = (VALUE)((swig::ConstIterator const *)arg1)->inspect();
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::ConstIterator.to_s
+
+  call-seq:
+    to_s -> VALUE
+
+Convert class to a String representation.
+*/
+SWIGINTERN VALUE
+_wrap_ConstIterator_to_s(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","to_s", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  result = (VALUE)((swig::ConstIterator const *)arg1)->to_s();
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ConstIterator_next__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator *","next", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "size_t","next", 2, argv[0] ));
+  } 
+  arg2 = static_cast< size_t >(val2);
+  result = (swig::ConstIterator *)(arg1)->next(arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ConstIterator_next__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator *","next", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  try {
+    result = (swig::ConstIterator *)(arg1)->next();
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ConstIterator_next(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_ConstIterator_next__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_ConstIterator_next__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "ConstIterator.next", 
+    "    swig::ConstIterator * ConstIterator.next(size_t n)\n"
+    "    swig::ConstIterator * ConstIterator.next()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ConstIterator_previous__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator *","previous", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "size_t","previous", 2, argv[0] ));
+  } 
+  arg2 = static_cast< size_t >(val2);
+  result = (swig::ConstIterator *)(arg1)->previous(arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ConstIterator_previous__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator *","previous", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  try {
+    result = (swig::ConstIterator *)(arg1)->previous();
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ConstIterator_previous(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_ConstIterator_previous__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_ConstIterator_previous__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "ConstIterator.previous", 
+    "    swig::ConstIterator * ConstIterator.previous(size_t n)\n"
+    "    swig::ConstIterator * ConstIterator.previous()\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::ConstIterator.==
+
+  call-seq:
+    ==(x) -> bool
+
+Equality comparison operator.
+*/
+SWIGINTERN VALUE
+_wrap_ConstIterator___eq__(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  swig::ConstIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","operator ==", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_swig__ConstIterator,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "swig::ConstIterator const &","operator ==", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "swig::ConstIterator const &","operator ==", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< swig::ConstIterator * >(argp2);
+  result = (bool)((swig::ConstIterator const *)arg1)->operator ==((swig::ConstIterator const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::ConstIterator.+
+
+  call-seq:
+    +(n) -> ConstIterator
+
+Add operator.
+*/
+SWIGINTERN VALUE
+_wrap_ConstIterator___add__(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","operator +", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "ptrdiff_t","operator +", 2, argv[0] ));
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  try {
+    result = (swig::ConstIterator *)((swig::ConstIterator const *)arg1)->operator +(arg2);
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::ConstIterator.-
+
+  call-seq:
+    -(n) -> ConstIterator
+    -(x) -> ptrdiff_t
+
+Substraction operator.
+*/
+SWIGINTERN VALUE
+_wrap_ConstIterator___sub____SWIG_0(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  swig::ConstIterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","operator -", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "ptrdiff_t","operator -", 2, argv[0] ));
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  try {
+    result = (swig::ConstIterator *)((swig::ConstIterator const *)arg1)->operator -(arg2);
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__ConstIterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ConstIterator___sub____SWIG_1(int argc, VALUE *argv, VALUE self) {
+  swig::ConstIterator *arg1 = (swig::ConstIterator *) 0 ;
+  swig::ConstIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  ptrdiff_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__ConstIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::ConstIterator const *","operator -", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::ConstIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_swig__ConstIterator,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "swig::ConstIterator const &","operator -", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "swig::ConstIterator const &","operator -", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< swig::ConstIterator * >(argp2);
+  result = ((swig::ConstIterator const *)arg1)->operator -((swig::ConstIterator const &)*arg2);
+  vresult = SWIG_From_ptrdiff_t(static_cast< ptrdiff_t >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ConstIterator___sub__(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ConstIterator___sub____SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__ConstIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_ConstIterator___sub____SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "__sub__.new", 
+    "    __sub__.new(ptrdiff_t n)\n"
+    "    __sub__.new(swig::ConstIterator const &x)\n");
+  
+  return Qnil;
+}
+
+
+swig_class SwigClassIterator;
+
+SWIGINTERN VALUE
+_wrap_Iterator_valuee___(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  VALUE *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE temp2 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator *","setValue", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  temp2 = static_cast< VALUE >(argv[0]);
+  arg2 = &temp2;
+  result = (VALUE)(arg1)->setValue((VALUE const &)*arg2);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::Iterator.dup
+
+  call-seq:
+    dup -> Iterator
+
+Create a duplicate of the class and unfreeze it if needed.
+*/
+SWIGINTERN VALUE
+_wrap_Iterator_dup(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","dup", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  result = (swig::Iterator *)((swig::Iterator const *)arg1)->dup();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Iterator_next__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator *","next", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "size_t","next", 2, argv[0] ));
+  } 
+  arg2 = static_cast< size_t >(val2);
+  result = (swig::Iterator *)(arg1)->next(arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Iterator_next__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator *","next", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  try {
+    result = (swig::Iterator *)(arg1)->next();
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Iterator_next(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_Iterator_next__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Iterator_next__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Iterator.next", 
+    "    swig::Iterator * Iterator.next(size_t n)\n"
+    "    swig::Iterator * Iterator.next()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Iterator_previous__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator *","previous", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "size_t","previous", 2, argv[0] ));
+  } 
+  arg2 = static_cast< size_t >(val2);
+  result = (swig::Iterator *)(arg1)->previous(arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Iterator_previous__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator *","previous", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  try {
+    result = (swig::Iterator *)(arg1)->previous();
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Iterator_previous(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_Iterator_previous__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Iterator_previous__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "Iterator.previous", 
+    "    swig::Iterator * Iterator.previous(size_t n)\n"
+    "    swig::Iterator * Iterator.previous()\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::Iterator.inspect
+
+  call-seq:
+    inspect -> VALUE
+
+Inspect class and its contents.
+*/
+SWIGINTERN VALUE
+_wrap_Iterator_inspect(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","inspect", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  result = (VALUE)((swig::Iterator const *)arg1)->inspect();
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::Iterator.to_s
+
+  call-seq:
+    to_s -> VALUE
+
+Convert class to a String representation.
+*/
+SWIGINTERN VALUE
+_wrap_Iterator_to_s(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","to_s", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  result = (VALUE)((swig::Iterator const *)arg1)->to_s();
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::Iterator.==
+
+  call-seq:
+    ==(x) -> bool
+
+Equality comparison operator.
+*/
+SWIGINTERN VALUE
+_wrap_Iterator___eq__(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  swig::Iterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","operator ==", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_swig__Iterator,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "swig::Iterator const &","operator ==", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "swig::Iterator const &","operator ==", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< swig::Iterator * >(argp2);
+  result = (bool)((swig::Iterator const *)arg1)->operator ==((swig::Iterator const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::Iterator.+
+
+  call-seq:
+    +(n) -> Iterator
+
+Add operator.
+*/
+SWIGINTERN VALUE
+_wrap_Iterator___add__(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","operator +", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "ptrdiff_t","operator +", 2, argv[0] ));
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  try {
+    result = (swig::Iterator *)((swig::Iterator const *)arg1)->operator +(arg2);
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::Iterator.-
+
+  call-seq:
+    -(n) -> Iterator
+    -(x) -> ptrdiff_t
+
+Substraction operator.
+*/
+SWIGINTERN VALUE
+_wrap_Iterator___sub____SWIG_0(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  swig::Iterator *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","operator -", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "ptrdiff_t","operator -", 2, argv[0] ));
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  try {
+    result = (swig::Iterator *)((swig::Iterator const *)arg1)->operator -(arg2);
+  }
+  catch(swig::stop_iteration &_e) {
+    {
+      (void)_e;
+      SWIG_Ruby_ExceptionType(NULL, Qnil);
+      SWIG_fail;
+    }
+  }
+  
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__Iterator, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Iterator___sub____SWIG_1(int argc, VALUE *argv, VALUE self) {
+  swig::Iterator *arg1 = (swig::Iterator *) 0 ;
+  swig::Iterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  ptrdiff_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_swig__Iterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "swig::Iterator const *","operator -", 1, self )); 
+  }
+  arg1 = reinterpret_cast< swig::Iterator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_swig__Iterator,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "swig::Iterator const &","operator -", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "swig::Iterator const &","operator -", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< swig::Iterator * >(argp2);
+  result = ((swig::Iterator const *)arg1)->operator -((swig::Iterator const &)*arg2);
+  vresult = SWIG_From_ptrdiff_t(static_cast< ptrdiff_t >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_Iterator___sub__(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Iterator___sub____SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__Iterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Iterator___sub____SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "__sub__.new", 
+    "    __sub__.new(ptrdiff_t n)\n"
+    "    __sub__.new(swig::Iterator const &x)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_swig_Iterator(swig::Iterator *arg1) {
+    delete arg1;
 }
 
 SWIGINTERN VALUE
@@ -5587,6 +7420,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::LineSegment.second
+
+  call-seq:
+    second -> Point
+
+Return the second element in LineSegment.
+*/
 SWIGINTERN VALUE
 _wrap_LineSegment_second(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
@@ -5668,6 +7510,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::LineSegment.length
+
+  call-seq:
+    length -> double
+
+Size or Length of the LineSegment.
+*/
 SWIGINTERN VALUE
 _wrap_LineSegment_length(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
@@ -6012,6 +7863,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::LineSegment.clear
+
+  call-seq:
+    clear
+
+Clear LineSegment contents.
+*/
 SWIGINTERN VALUE
 _wrap_LineSegment_clear(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
@@ -9317,7 +11177,7 @@ _wrap_Polyline_allocate(VALUE self) {
 
 SWIGINTERN VALUE
 _wrap_new_Polyline__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  std::vector< VisiLibity::Point > *arg1 = 0 ;
+  std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
   VisiLibity::Polyline *result = 0 ;
@@ -9325,15 +11185,15 @@ _wrap_new_Polyline__SWIG_1(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const &","VisiLibity::Polyline", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","VisiLibity::Polyline", 1, argv[0] )); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const &","VisiLibity::Polyline", 1, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","VisiLibity::Polyline", 1, argv[0])); 
   }
-  arg1 = reinterpret_cast< std::vector< VisiLibity::Point > * >(argp1);
-  result = (VisiLibity::Polyline *)new VisiLibity::Polyline((std::vector< VisiLibity::Point > const &)*arg1);
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp1);
+  result = (VisiLibity::Polyline *)new VisiLibity::Polyline((std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &)*arg1);
   DATA_PTR(self) = result;
   return self;
 fail:
@@ -9357,7 +11217,7 @@ SWIGINTERN VALUE _wrap_new_Polyline(int nargs, VALUE *args, VALUE self) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Polyline__SWIG_1(nargs, args, self);
@@ -9367,7 +11227,7 @@ SWIGINTERN VALUE _wrap_new_Polyline(int nargs, VALUE *args, VALUE self) {
 fail:
   Ruby_Format_OverloadedError( argc, 1, "Polyline.new", 
     "    Polyline.new()\n"
-    "    Polyline.new(std::vector< VisiLibity::Point > const &vertices_temp)\n");
+    "    Polyline.new(std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &vertices_temp)\n");
   
   return Qnil;
 }
@@ -9438,6 +11298,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::Polyline.length
+
+  call-seq:
+    length -> double
+
+Size or Length of the Polyline.
+*/
 SWIGINTERN VALUE
 _wrap_Polyline_length(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
@@ -9593,6 +11462,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::Polyline.clear
+
+  call-seq:
+    clear
+
+Clear Polyline contents.
+*/
 SWIGINTERN VALUE
 _wrap_Polyline_clear(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
@@ -9614,6 +11492,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::Polyline.push_back
+
+  call-seq:
+    push_back(point_temp)
+
+Add an element at the end of the Polyline.
+*/
 SWIGINTERN VALUE
 _wrap_Polyline_push_back(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
@@ -9646,6 +11533,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::Polyline.pop_back
+
+  call-seq:
+    pop_back
+
+Remove and return an element at the end of the Polyline.
+*/
 SWIGINTERN VALUE
 _wrap_Polyline_pop_back(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
@@ -9670,7 +11566,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Polyline_set_vertices(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polyline *arg1 = (VisiLibity::Polyline *) 0 ;
-  std::vector< VisiLibity::Point > *arg2 = 0 ;
+  std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 ;
@@ -9684,15 +11580,15 @@ _wrap_Polyline_set_vertices(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polyline *","set_vertices", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Polyline * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const &","set_vertices", 2, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","set_vertices", 2, argv[0] )); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const &","set_vertices", 2, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","set_vertices", 2, argv[0])); 
   }
-  arg2 = reinterpret_cast< std::vector< VisiLibity::Point > * >(argp2);
-  (arg1)->set_vertices((std::vector< VisiLibity::Point > const &)*arg2);
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp2);
+  (arg1)->set_vertices((std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &)*arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -9952,7 +11848,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_Polygon__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  std::vector< VisiLibity::Point > *arg1 = 0 ;
+  std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
   VisiLibity::Polygon *result = 0 ;
@@ -9960,15 +11856,15 @@ _wrap_new_Polygon__SWIG_2(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const &","VisiLibity::Polygon", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","VisiLibity::Polygon", 1, argv[0] )); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const &","VisiLibity::Polygon", 1, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","VisiLibity::Polygon", 1, argv[0])); 
   }
-  arg1 = reinterpret_cast< std::vector< VisiLibity::Point > * >(argp1);
-  result = (VisiLibity::Polygon *)new VisiLibity::Polygon((std::vector< VisiLibity::Point > const &)*arg1);
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp1);
+  result = (VisiLibity::Polygon *)new VisiLibity::Polygon((std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &)*arg1);
   DATA_PTR(self) = result;
   return self;
 fail:
@@ -10066,7 +11962,7 @@ SWIGINTERN VALUE _wrap_new_Polygon(int nargs, VALUE *args, VALUE self) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Polygon__SWIG_2(nargs, args, self);
@@ -10096,7 +11992,7 @@ fail:
   Ruby_Format_OverloadedError( argc, 3, "Polygon.new", 
     "    Polygon.new()\n"
     "    Polygon.new(std::string const &filename)\n"
-    "    Polygon.new(std::vector< VisiLibity::Point > const &vertices_temp)\n"
+    "    Polygon.new(std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &vertices_temp)\n"
     "    Polygon.new(VisiLibity::Point const &point0, VisiLibity::Point const &point1, VisiLibity::Point const &point2)\n");
   
   return Qnil;
@@ -10440,7 +12336,7 @@ _wrap_Polygon_random_points__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int ecode2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Point > > result;
+  SwigValueWrapper< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -10463,7 +12359,7 @@ _wrap_Polygon_random_points__SWIG_0(int argc, VALUE *argv, VALUE self) {
   } 
   arg3 = static_cast< double >(val3);
   result = ((VisiLibity::Polygon const *)arg1)->random_points((unsigned int const &)*arg2,arg3);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point >(static_cast< const std::vector< VisiLibity::Point >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, SWIG_POINTER_OWN |  0 );
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >(static_cast< const std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -10479,7 +12375,7 @@ _wrap_Polygon_random_points__SWIG_1(int argc, VALUE *argv, VALUE self) {
   unsigned int temp2 ;
   unsigned int val2 ;
   int ecode2 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Point > > result;
+  SwigValueWrapper< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -10497,7 +12393,7 @@ _wrap_Polygon_random_points__SWIG_1(int argc, VALUE *argv, VALUE self) {
   temp2 = static_cast< unsigned int >(val2);
   arg2 = &temp2;
   result = ((VisiLibity::Polygon const *)arg1)->random_points((unsigned int const &)*arg2);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point >(static_cast< const std::vector< VisiLibity::Point >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, SWIG_POINTER_OWN |  0 );
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >(static_cast< const std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -10554,8 +12450,8 @@ SWIGINTERN VALUE _wrap_Polygon_random_points(int nargs, VALUE *args, VALUE self)
   
 fail:
   Ruby_Format_OverloadedError( argc, 4, "Polygon.random_points", 
-    "    std::vector< VisiLibity::Point > Polygon.random_points(unsigned int const &count, double epsilon)\n"
-    "    std::vector< VisiLibity::Point > Polygon.random_points(unsigned int const &count)\n");
+    "    std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > Polygon.random_points(unsigned int const &count, double epsilon)\n"
+    "    std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > Polygon.random_points(unsigned int const &count)\n");
   
   return Qnil;
 }
@@ -10774,7 +12670,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Polygon_set_vertices(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
-  std::vector< VisiLibity::Point > *arg2 = 0 ;
+  std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 ;
@@ -10788,21 +12684,30 @@ _wrap_Polygon_set_vertices(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polygon *","set_vertices", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Polygon * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const &","set_vertices", 2, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","set_vertices", 2, argv[0] )); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const &","set_vertices", 2, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","set_vertices", 2, argv[0])); 
   }
-  arg2 = reinterpret_cast< std::vector< VisiLibity::Point > * >(argp2);
-  (arg1)->set_vertices((std::vector< VisiLibity::Point > const &)*arg2);
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp2);
+  (arg1)->set_vertices((std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &)*arg2);
   return Qnil;
 fail:
   return Qnil;
 }
 
 
+
+/*
+  Document-method: VisiLibity::Polygon.push_back
+
+  call-seq:
+    push_back(vertex_temp)
+
+Add an element at the end of the Polygon.
+*/
 SWIGINTERN VALUE
 _wrap_Polygon_push_back(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
@@ -10835,6 +12740,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::Polygon.clear
+
+  call-seq:
+    clear
+
+Clear Polygon contents.
+*/
 SWIGINTERN VALUE
 _wrap_Polygon_clear(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
@@ -11611,7 +13525,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_Environment__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  std::vector< VisiLibity::Polygon > *arg1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
   VisiLibity::Environment *result = 0 ;
@@ -11619,15 +13533,15 @@ _wrap_new_Environment__SWIG_2(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_t,  0 );
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const &","VisiLibity::Environment", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","VisiLibity::Environment", 1, argv[0] )); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon > const &","VisiLibity::Environment", 1, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","VisiLibity::Environment", 1, argv[0])); 
   }
-  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
-  result = (VisiLibity::Environment *)new VisiLibity::Environment((std::vector< VisiLibity::Polygon > const &)*arg1);
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > * >(argp1);
+  result = (VisiLibity::Environment *)new VisiLibity::Environment((std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &)*arg1);
   DATA_PTR(self) = result;
   return self;
 fail:
@@ -11703,7 +13617,7 @@ SWIGINTERN VALUE _wrap_new_Environment(int nargs, VALUE *args, VALUE self) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Environment__SWIG_2(nargs, args, self);
@@ -11723,7 +13637,7 @@ fail:
   Ruby_Format_OverloadedError( argc, 1, "Environment.new", 
     "    Environment.new()\n"
     "    Environment.new(VisiLibity::Polygon const &polygon_temp)\n"
-    "    Environment.new(std::vector< VisiLibity::Polygon > const &polygons)\n"
+    "    Environment.new(std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &polygons)\n"
     "    Environment.new(std::string const &filename)\n");
   
   return Qnil;
@@ -12099,7 +14013,7 @@ _wrap_Environment_random_points__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int ecode2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Point > > result;
+  SwigValueWrapper< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -12122,7 +14036,7 @@ _wrap_Environment_random_points__SWIG_0(int argc, VALUE *argv, VALUE self) {
   } 
   arg3 = static_cast< double >(val3);
   result = ((VisiLibity::Environment const *)arg1)->random_points((unsigned int const &)*arg2,arg3);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point >(static_cast< const std::vector< VisiLibity::Point >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, SWIG_POINTER_OWN |  0 );
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >(static_cast< const std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -12138,7 +14052,7 @@ _wrap_Environment_random_points__SWIG_1(int argc, VALUE *argv, VALUE self) {
   unsigned int temp2 ;
   unsigned int val2 ;
   int ecode2 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Point > > result;
+  SwigValueWrapper< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -12156,7 +14070,7 @@ _wrap_Environment_random_points__SWIG_1(int argc, VALUE *argv, VALUE self) {
   temp2 = static_cast< unsigned int >(val2);
   arg2 = &temp2;
   result = ((VisiLibity::Environment const *)arg1)->random_points((unsigned int const &)*arg2);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point >(static_cast< const std::vector< VisiLibity::Point >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, SWIG_POINTER_OWN |  0 );
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >(static_cast< const std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -12213,8 +14127,8 @@ SWIGINTERN VALUE _wrap_Environment_random_points(int nargs, VALUE *args, VALUE s
   
 fail:
   Ruby_Format_OverloadedError( argc, 4, "Environment.random_points", 
-    "    std::vector< VisiLibity::Point > Environment.random_points(unsigned int const &count, double epsilon)\n"
-    "    std::vector< VisiLibity::Point > Environment.random_points(unsigned int const &count)\n");
+    "    std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > Environment.random_points(unsigned int const &count, double epsilon)\n"
+    "    std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > Environment.random_points(unsigned int const &count)\n");
   
   return Qnil;
 }
@@ -12566,7 +14480,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Environment_compute_partition_cells__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Line_Segment > > arg2 ;
+  SwigValueWrapper< std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > > arg2 ;
   double arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -12574,7 +14488,7 @@ _wrap_Environment_compute_partition_cells__SWIG_0(int argc, VALUE *argv, VALUE s
   int res2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Polygon > > result;
+  SwigValueWrapper< std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -12586,14 +14500,14 @@ _wrap_Environment_compute_partition_cells__SWIG_0(int argc, VALUE *argv, VALUE s
   }
   arg1 = reinterpret_cast< VisiLibity::Environment * >(argp1);
   {
-    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_t,  0 );
+    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t,  0 );
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Line_Segment >","compute_partition_cells", 2, argv[0] )); 
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > >","compute_partition_cells", 2, argv[0] )); 
     }  
     if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Line_Segment >","compute_partition_cells", 2, argv[0]));
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > >","compute_partition_cells", 2, argv[0]));
     } else {
-      arg2 = *(reinterpret_cast< std::vector< VisiLibity::Line_Segment > * >(argp2));
+      arg2 = *(reinterpret_cast< std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > * >(argp2));
     }
   }
   ecode3 = SWIG_AsVal_double(argv[1], &val3);
@@ -12602,7 +14516,7 @@ _wrap_Environment_compute_partition_cells__SWIG_0(int argc, VALUE *argv, VALUE s
   } 
   arg3 = static_cast< double >(val3);
   result = (arg1)->compute_partition_cells(arg2,arg3);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon >(static_cast< const std::vector< VisiLibity::Polygon >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_t, SWIG_POINTER_OWN |  0 );
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >(static_cast< const std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -12612,12 +14526,12 @@ fail:
 SWIGINTERN VALUE
 _wrap_Environment_compute_partition_cells__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Line_Segment > > arg2 ;
+  SwigValueWrapper< std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > > arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Polygon > > result;
+  SwigValueWrapper< std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -12629,18 +14543,18 @@ _wrap_Environment_compute_partition_cells__SWIG_1(int argc, VALUE *argv, VALUE s
   }
   arg1 = reinterpret_cast< VisiLibity::Environment * >(argp1);
   {
-    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_t,  0 );
+    res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t,  0 );
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Line_Segment >","compute_partition_cells", 2, argv[0] )); 
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > >","compute_partition_cells", 2, argv[0] )); 
     }  
     if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Line_Segment >","compute_partition_cells", 2, argv[0]));
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > >","compute_partition_cells", 2, argv[0]));
     } else {
-      arg2 = *(reinterpret_cast< std::vector< VisiLibity::Line_Segment > * >(argp2));
+      arg2 = *(reinterpret_cast< std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > * >(argp2));
     }
   }
   result = (arg1)->compute_partition_cells(arg2);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon >(static_cast< const std::vector< VisiLibity::Polygon >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_t, SWIG_POINTER_OWN |  0 );
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >(static_cast< const std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
   return Qnil;
@@ -12665,7 +14579,7 @@ SWIGINTERN VALUE _wrap_Environment_compute_partition_cells(int nargs, VALUE *arg
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_t, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_Environment_compute_partition_cells__SWIG_1(nargs, args, self);
@@ -12679,7 +14593,7 @@ SWIGINTERN VALUE _wrap_Environment_compute_partition_cells(int nargs, VALUE *arg
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_t, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         {
@@ -12695,8 +14609,8 @@ SWIGINTERN VALUE _wrap_Environment_compute_partition_cells(int nargs, VALUE *arg
   
 fail:
   Ruby_Format_OverloadedError( argc, 4, "Environment.compute_partition_cells", 
-    "    std::vector< VisiLibity::Polygon > Environment.compute_partition_cells(std::vector< VisiLibity::Line_Segment > partition_inducing_segments, double epsilon)\n"
-    "    std::vector< VisiLibity::Polygon > Environment.compute_partition_cells(std::vector< VisiLibity::Line_Segment > partition_inducing_segments)\n");
+    "    std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > Environment.compute_partition_cells(std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > partition_inducing_segments, double epsilon)\n"
+    "    std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > Environment.compute_partition_cells(std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > partition_inducing_segments)\n");
   
   return Qnil;
 }
@@ -13301,7 +15215,7 @@ _wrap_Guards_allocate(VALUE self) {
 
 SWIGINTERN VALUE
 _wrap_new_Guards__SWIG_2(int argc, VALUE *argv, VALUE self) {
-  std::vector< VisiLibity::Point > *arg1 = 0 ;
+  std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
   VisiLibity::Guards *result = 0 ;
@@ -13309,15 +15223,15 @@ _wrap_new_Guards__SWIG_2(int argc, VALUE *argv, VALUE self) {
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const &","VisiLibity::Guards", 1, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","VisiLibity::Guards", 1, argv[0] )); 
   }
   if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const &","VisiLibity::Guards", 1, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","VisiLibity::Guards", 1, argv[0])); 
   }
-  arg1 = reinterpret_cast< std::vector< VisiLibity::Point > * >(argp1);
-  result = (VisiLibity::Guards *)new VisiLibity::Guards((std::vector< VisiLibity::Point > const &)*arg1);
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp1);
+  result = (VisiLibity::Guards *)new VisiLibity::Guards((std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &)*arg1);
   DATA_PTR(self) = result;
   return self;
 fail:
@@ -13350,7 +15264,7 @@ SWIGINTERN VALUE _wrap_new_Guards(int nargs, VALUE *args, VALUE self) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Guards__SWIG_2(nargs, args, self);
@@ -13361,7 +15275,7 @@ fail:
   Ruby_Format_OverloadedError( argc, 1, "Guards.new", 
     "    Guards.new()\n"
     "    Guards.new(std::string const &filename)\n"
-    "    Guards.new(std::vector< VisiLibity::Point > const &positions)\n");
+    "    Guards.new(std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &positions)\n");
   
   return Qnil;
 }
@@ -14053,6 +15967,15 @@ fail:
 }
 
 
+
+/*
+  Document-method: VisiLibity::Guards.push_back
+
+  call-seq:
+    push_back(point_temp)
+
+Add an element at the end of the Guards.
+*/
 SWIGINTERN VALUE
 _wrap_Guards_push_back(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Guards *arg1 = (VisiLibity::Guards *) 0 ;
@@ -14088,7 +16011,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_Guards_set_positions(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Guards *arg1 = (VisiLibity::Guards *) 0 ;
-  std::vector< VisiLibity::Point > *arg2 = 0 ;
+  std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 ;
@@ -14102,15 +16025,15 @@ _wrap_Guards_set_positions(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Guards *","set_positions", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Guards * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const &","set_positions", 2, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","set_positions", 2, argv[0] )); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const &","set_positions", 2, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &","set_positions", 2, argv[0])); 
   }
-  arg2 = reinterpret_cast< std::vector< VisiLibity::Point > * >(argp2);
-  (arg1)->set_positions((std::vector< VisiLibity::Point > const &)*arg2);
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp2);
+  (arg1)->set_positions((std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const &)*arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -14634,6 +16557,23 @@ free_VisiLibity_Guards(VisiLibity::Guards *arg1) {
     delete arg1;
 }
 
+
+/*
+  Document-method: VisiLibity::VisiLibity.<<
+
+  call-seq:
+    <<(outs, point_temp) -> std::ostream
+    <<(outs, line_segment_temp) -> std::ostream
+    <<(outs, angle_temp) -> std::ostream
+    <<(outs, polar_point_temp) -> std::ostream
+    <<(outs, polyline_temp) -> std::ostream
+    <<(outs, polygon_temp) -> std::ostream
+    <<(outs, environment_temp) -> std::ostream
+    <<(outs, guards) -> std::ostream
+    <<(outs, visibility_graph) -> std::ostream
+
+Left shifting or appending operator.
+*/
 SWIGINTERN VALUE
 _wrap___lshift____SWIG_7(int argc, VALUE *argv, VALUE self) {
   std::ostream *arg1 = 0 ;
@@ -15098,7 +17038,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_VisibilityGraph__SWIG_4(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< std::vector< VisiLibity::Point > > arg1 ;
+  SwigValueWrapper< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > > arg1 ;
   VisiLibity::Environment *arg2 = 0 ;
   double arg3 ;
   void *argp1 ;
@@ -15113,14 +17053,14 @@ _wrap_new_VisibilityGraph__SWIG_4(int argc, VALUE *argv, VALUE self) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
   }
   {
-    res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+    res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const","VisiLibity::Visibility_Graph", 1, argv[0] )); 
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const","VisiLibity::Visibility_Graph", 1, argv[0] )); 
     }  
     if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const","VisiLibity::Visibility_Graph", 1, argv[0]));
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const","VisiLibity::Visibility_Graph", 1, argv[0]));
     } else {
-      arg1 = *(reinterpret_cast< std::vector< VisiLibity::Point > * >(argp1));
+      arg1 = *(reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp1));
     }
   }
   res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_VisiLibity__Environment,  0 );
@@ -15146,7 +17086,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_new_VisibilityGraph__SWIG_5(int argc, VALUE *argv, VALUE self) {
-  SwigValueWrapper< std::vector< VisiLibity::Point > > arg1 ;
+  SwigValueWrapper< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > > arg1 ;
   VisiLibity::Environment *arg2 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -15158,14 +17098,14 @@ _wrap_new_VisibilityGraph__SWIG_5(int argc, VALUE *argv, VALUE self) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
   }
   {
-    res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t,  0 );
+    res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,  0 );
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point > const","VisiLibity::Visibility_Graph", 1, argv[0] )); 
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const","VisiLibity::Visibility_Graph", 1, argv[0] )); 
     }  
     if (!argp1) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point > const","VisiLibity::Visibility_Graph", 1, argv[0]));
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const","VisiLibity::Visibility_Graph", 1, argv[0]));
     } else {
-      arg1 = *(reinterpret_cast< std::vector< VisiLibity::Point > * >(argp1));
+      arg1 = *(reinterpret_cast< std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > * >(argp1));
     }
   }
   res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_VisiLibity__Environment,  0 );
@@ -15332,7 +17272,7 @@ SWIGINTERN VALUE _wrap_new_VisibilityGraph(int nargs, VALUE *args, VALUE self) {
   if (argc == 2) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
@@ -15380,7 +17320,7 @@ SWIGINTERN VALUE _wrap_new_VisibilityGraph(int nargs, VALUE *args, VALUE self) {
   if (argc == 3) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_t, 0);
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
@@ -15404,8 +17344,8 @@ fail:
     "    VisibilityGraph.new(VisiLibity::Visibility_Graph const &vg2)\n"
     "    VisibilityGraph.new(VisiLibity::Environment const &environment, double epsilon)\n"
     "    VisibilityGraph.new(VisiLibity::Environment const &environment)\n"
-    "    VisibilityGraph.new(std::vector< VisiLibity::Point > const points, VisiLibity::Environment const &environment, double epsilon)\n"
-    "    VisibilityGraph.new(std::vector< VisiLibity::Point > const points, VisiLibity::Environment const &environment)\n"
+    "    VisibilityGraph.new(std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const points, VisiLibity::Environment const &environment, double epsilon)\n"
+    "    VisibilityGraph.new(std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > const points, VisiLibity::Environment const &environment)\n"
     "    VisibilityGraph.new(VisiLibity::Guards const &guards, VisiLibity::Environment const &environment, double epsilon)\n"
     "    VisibilityGraph.new(VisiLibity::Guards const &guards, VisiLibity::Environment const &environment)\n");
   
@@ -15959,6 +17899,9 @@ fail:
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
+}
 static void *_p_VisiLibity__Visibility_PolygonTo_p_VisiLibity__Polygon(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((VisiLibity::Polygon *)  ((VisiLibity::Visibility_Polygon *) x));
 }
@@ -15979,11 +17922,15 @@ static swig_type_info _swigt__p_VisiLibity__Visibility_Graph = {"_p_VisiLibity__
 static swig_type_info _swigt__p_VisiLibity__Visibility_Polygon = {"_p_VisiLibity__Visibility_Polygon", "VisiLibity::Visibility_Polygon *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **|VALUE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_VisiLibity__Line_Segment_t = {"_p_std__vectorT_VisiLibity__Line_Segment_t", "std::vector< VisiLibity::Line_Segment > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_t = {"_p_std__vectorT_VisiLibity__Point_t", "std::vector< VisiLibity::Point > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_VisiLibity__Polygon_t = {"_p_std__vectorT_VisiLibity__Polygon_t", "std::vector< VisiLibity::Polygon > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t = {"_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t", "std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t = {"_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t = {"_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_swig__ConstIterator = {"_p_swig__ConstIterator", "swig::ConstIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_swig__GC_VALUE = {"_p_swig__GC_VALUE", "swig::GC_VALUE *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_swig__Iterator = {"_p_swig__Iterator", "swig::Iterator *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_VisiLibity__Angle,
@@ -16000,11 +17947,15 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_VisiLibity__Visibility_Polygon,
   &_swigt__p_bool,
   &_swigt__p_char,
+  &_swigt__p_p_void,
   &_swigt__p_std__ostream,
   &_swigt__p_std__string,
-  &_swigt__p_std__vectorT_VisiLibity__Line_Segment_t,
-  &_swigt__p_std__vectorT_VisiLibity__Point_t,
-  &_swigt__p_std__vectorT_VisiLibity__Polygon_t,
+  &_swigt__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t,
+  &_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,
+  &_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,
+  &_swigt__p_swig__ConstIterator,
+  &_swigt__p_swig__GC_VALUE,
+  &_swigt__p_swig__Iterator,
 };
 
 static swig_cast_info _swigc__p_VisiLibity__Angle[] = {  {&_swigt__p_VisiLibity__Angle, 0, 0, 0},{0, 0, 0, 0}};
@@ -16021,11 +17972,15 @@ static swig_cast_info _swigc__p_VisiLibity__Visibility_Graph[] = {  {&_swigt__p_
 static swig_cast_info _swigc__p_VisiLibity__Visibility_Polygon[] = {  {&_swigt__p_VisiLibity__Visibility_Polygon, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Line_Segment_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Line_Segment_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Polygon_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Polygon_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_swig__ConstIterator[] = {  {&_swigt__p_swig__ConstIterator, 0, 0, 0},  {&_swigt__p_swig__Iterator, _p_swig__IteratorTo_p_swig__ConstIterator, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_swig__GC_VALUE[] = {  {&_swigt__p_swig__GC_VALUE, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_swig__Iterator[] = {  {&_swigt__p_swig__Iterator, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_VisiLibity__Angle,
@@ -16042,11 +17997,15 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_VisiLibity__Visibility_Polygon,
   _swigc__p_bool,
   _swigc__p_char,
+  _swigc__p_p_void,
   _swigc__p_std__ostream,
   _swigc__p_std__string,
-  _swigc__p_std__vectorT_VisiLibity__Line_Segment_t,
-  _swigc__p_std__vectorT_VisiLibity__Point_t,
-  _swigc__p_std__vectorT_VisiLibity__Polygon_t,
+  _swigc__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t,
+  _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,
+  _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,
+  _swigc__p_swig__ConstIterator,
+  _swigc__p_swig__GC_VALUE,
+  _swigc__p_swig__Iterator,
 };
 
 
@@ -16307,6 +18266,49 @@ SWIGEXPORT void Init_VisiLibity(void) {
   }
   
   SWIG_RubyInitializeTrackings();
+  
+  SwigClassGC_VALUE.klass = rb_define_class_under(mVisiLibity, "GC_VALUE", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_swig__GC_VALUE, (void *) &SwigClassGC_VALUE);
+  rb_undef_alloc_func(SwigClassGC_VALUE.klass);
+  rb_define_method(SwigClassGC_VALUE.klass, "inspect", VALUEFUNC(_wrap_GC_VALUE_inspect), -1);
+  rb_define_method(SwigClassGC_VALUE.klass, "to_s", VALUEFUNC(_wrap_GC_VALUE_to_s), -1);
+  SwigClassGC_VALUE.mark = 0;
+  SwigClassGC_VALUE.trackObjects = 0;
+  
+  swig::GC_VALUE::initialize();
+  
+  
+  SwigClassConstIterator.klass = rb_define_class_under(mVisiLibity, "ConstIterator", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_swig__ConstIterator, (void *) &SwigClassConstIterator);
+  rb_undef_alloc_func(SwigClassConstIterator.klass);
+  rb_define_method(SwigClassConstIterator.klass, "value", VALUEFUNC(_wrap_ConstIterator_value), -1);
+  rb_define_method(SwigClassConstIterator.klass, "dup", VALUEFUNC(_wrap_ConstIterator_dup), -1);
+  rb_define_method(SwigClassConstIterator.klass, "inspect", VALUEFUNC(_wrap_ConstIterator_inspect), -1);
+  rb_define_method(SwigClassConstIterator.klass, "to_s", VALUEFUNC(_wrap_ConstIterator_to_s), -1);
+  rb_define_method(SwigClassConstIterator.klass, "next", VALUEFUNC(_wrap_ConstIterator_next), -1);
+  rb_define_method(SwigClassConstIterator.klass, "previous", VALUEFUNC(_wrap_ConstIterator_previous), -1);
+  rb_define_method(SwigClassConstIterator.klass, "==", VALUEFUNC(_wrap_ConstIterator___eq__), -1);
+  rb_define_method(SwigClassConstIterator.klass, "+", VALUEFUNC(_wrap_ConstIterator___add__), -1);
+  rb_define_method(SwigClassConstIterator.klass, "-", VALUEFUNC(_wrap_ConstIterator___sub__), -1);
+  SwigClassConstIterator.mark = 0;
+  SwigClassConstIterator.destroy = (void (*)(void *)) free_swig_ConstIterator;
+  SwigClassConstIterator.trackObjects = 0;
+  
+  SwigClassIterator.klass = rb_define_class_under(mVisiLibity, "Iterator", ((swig_class *) SWIGTYPE_p_swig__ConstIterator->clientdata)->klass);
+  SWIG_TypeClientData(SWIGTYPE_p_swig__Iterator, (void *) &SwigClassIterator);
+  rb_undef_alloc_func(SwigClassIterator.klass);
+  rb_define_method(SwigClassIterator.klass, "value=", VALUEFUNC(_wrap_Iterator_valuee___), -1);
+  rb_define_method(SwigClassIterator.klass, "dup", VALUEFUNC(_wrap_Iterator_dup), -1);
+  rb_define_method(SwigClassIterator.klass, "next", VALUEFUNC(_wrap_Iterator_next), -1);
+  rb_define_method(SwigClassIterator.klass, "previous", VALUEFUNC(_wrap_Iterator_previous), -1);
+  rb_define_method(SwigClassIterator.klass, "inspect", VALUEFUNC(_wrap_Iterator_inspect), -1);
+  rb_define_method(SwigClassIterator.klass, "to_s", VALUEFUNC(_wrap_Iterator_to_s), -1);
+  rb_define_method(SwigClassIterator.klass, "==", VALUEFUNC(_wrap_Iterator___eq__), -1);
+  rb_define_method(SwigClassIterator.klass, "+", VALUEFUNC(_wrap_Iterator___add__), -1);
+  rb_define_method(SwigClassIterator.klass, "-", VALUEFUNC(_wrap_Iterator___sub__), -1);
+  SwigClassIterator.mark = 0;
+  SwigClassIterator.destroy = (void (*)(void *)) free_swig_Iterator;
+  SwigClassIterator.trackObjects = 0;
   rb_define_singleton_method(mVisiLibity, "FIOS_PRECISION", VALUEFUNC(_wrap_FIOS_PRECISION_get), 0);
   rb_define_module_function(mVisiLibity, "uniform_random_sample", VALUEFUNC(_wrap_uniform_random_sample), -1);
   
