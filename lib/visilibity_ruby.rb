@@ -8,11 +8,17 @@ require 'VisiLibity'
 
 module VisiLibity
 
-  # Enables enumeration over Swig collections implementing length() and index().
-  module SwigEnumerable
-    include Enumerable
-    def each
-      (0...size).each{|i| yield self.index(i)}
+  # Enables enumeration over Swig collections implementing size_method
+  # and index().
+  def self.SwigEnumerable(size_method=:size)
+    Module.new do
+      include Enumerable
+      # Must eval a string here because #each takes a block. Oh bother.
+      class_eval <<-RUBY
+        def each
+          (0...#{size_method}).each{|i| yield self.index(i)}
+        end
+      RUBY
     end
   end
 
@@ -58,7 +64,7 @@ module VisiLibity
   end
 
   class Polyline
-    include VisiLibity::SwigEnumerable
+    include VisiLibity::SwigEnumerable(:size)
     include VisiLibity::Inspectors(:vertices)
 
     def vertices
@@ -67,6 +73,19 @@ module VisiLibity
 
     def [](x)
       index(x) # work around swig
+    end
+  end
+
+  class Polygon
+    include VisiLibity::SwigEnumerable(:n)
+    include VisiLibity::Inspectors(:vertices)
+
+    def vertices
+      to_a
+    end
+
+    def [](x)
+      index(x)
     end
   end
 
