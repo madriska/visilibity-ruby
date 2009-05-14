@@ -31,9 +31,14 @@ module VisiLibity
     end
   end
 
-  class BoundingBox
+  # C++ structs only get 0-arg constructors in swig. Trickery to override that.
+  class BoundingBox < BoundingBox_
     include VisiLibity::Inspectors(:x_min, :x_max, :y_min, :y_max)
-    # TODO: ctor
+    def initialize(x_min, x_max, y_min, y_max)
+      super()
+      self.x_min, self.x_max = x_min, x_max
+      self.y_min, self.y_max = y_min, y_max
+    end
   end
 
   class Point
