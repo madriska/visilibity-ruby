@@ -23830,7 +23830,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_VisibilityGraph___call____SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph_get__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -23886,7 +23886,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_VisibilityGraph___call____SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph_get__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -23925,6 +23925,81 @@ fail:
 }
 
 
+SWIGINTERN VALUE _wrap_VisibilityGraph_get(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[6];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 6) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Visibility_Graph, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_VisibilityGraph_get__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Visibility_Graph, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            {
+              int res = SWIG_AsVal_unsigned_SS_int(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              return _wrap_VisibilityGraph_get__SWIG_0(nargs, args, self);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 6, "VisibilityGraph.get", 
+    "    bool VisibilityGraph.get(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
+    "    bool VisibilityGraph.get(unsigned int k1, unsigned int k2)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE
 _wrap_VisibilityGraph_n(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
@@ -23950,7 +24025,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_VisibilityGraph___call____SWIG_2(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph_set__SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -24006,7 +24081,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_VisibilityGraph___call____SWIG_3(int argc, VALUE *argv, VALUE self) {
+_wrap_VisibilityGraph_set__SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Visibility_Graph *arg1 = (VisiLibity::Visibility_Graph *) 0 ;
   unsigned int arg2 ;
   unsigned int arg3 ;
@@ -24045,7 +24120,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_VisibilityGraph___call__(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_VisibilityGraph_set(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
   int ii;
@@ -24072,28 +24147,7 @@ SWIGINTERN VALUE _wrap_VisibilityGraph___call__(int nargs, VALUE *args, VALUE se
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_VisibilityGraph___call____SWIG_1(nargs, args, self);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Visibility_Graph, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_VisibilityGraph___call____SWIG_3(nargs, args, self);
+          return _wrap_VisibilityGraph_set__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -24124,40 +24178,7 @@ SWIGINTERN VALUE _wrap_VisibilityGraph___call__(int nargs, VALUE *args, VALUE se
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_VisibilityGraph___call____SWIG_2(nargs, args, self);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Visibility_Graph, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_unsigned_SS_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_unsigned_SS_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_unsigned_SS_int(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              return _wrap_VisibilityGraph___call____SWIG_0(nargs, args, self);
+              return _wrap_VisibilityGraph_set__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -24166,11 +24187,9 @@ SWIGINTERN VALUE _wrap_VisibilityGraph___call__(int nargs, VALUE *args, VALUE se
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 6, "VisibilityGraph.__call__", 
-    "    bool & VisibilityGraph.__call__(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
-    "    bool & VisibilityGraph.__call__(unsigned int k1, unsigned int k2)\n"
-    "    bool & VisibilityGraph.__call__(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
-    "    bool & VisibilityGraph.__call__(unsigned int k1, unsigned int k2)\n");
+  Ruby_Format_OverloadedError( argc, 6, "VisibilityGraph.set", 
+    "    bool & VisibilityGraph.set(unsigned int i1, unsigned int j1, unsigned int i2, unsigned int j2)\n"
+    "    bool & VisibilityGraph.set(unsigned int k1, unsigned int k2)\n");
   
   return Qnil;
 }
@@ -25131,8 +25150,9 @@ SWIGEXPORT void Init_VisiLibity(void) {
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Visibility_Graph, (void *) &SwigClassVisibilityGraph);
   rb_define_alloc_func(SwigClassVisibilityGraph.klass, _wrap_VisibilityGraph_allocate);
   rb_define_method(SwigClassVisibilityGraph.klass, "initialize", VALUEFUNC(_wrap_new_VisibilityGraph), -1);
+  rb_define_method(SwigClassVisibilityGraph.klass, "get", VALUEFUNC(_wrap_VisibilityGraph_get), -1);
   rb_define_method(SwigClassVisibilityGraph.klass, "n", VALUEFUNC(_wrap_VisibilityGraph_n), -1);
-  rb_define_method(SwigClassVisibilityGraph.klass, "call", VALUEFUNC(_wrap_VisibilityGraph___call__), -1);
+  rb_define_method(SwigClassVisibilityGraph.klass, "set", VALUEFUNC(_wrap_VisibilityGraph_set), -1);
   SwigClassVisibilityGraph.mark = 0;
   SwigClassVisibilityGraph.destroy = (void (*)(void *)) free_VisiLibity_Visibility_Graph;
   SwigClassVisibilityGraph.trackObjects = 0;

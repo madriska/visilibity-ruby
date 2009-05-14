@@ -127,12 +127,10 @@ module VisiLibity
     end
   end
 
-  class VisibilityPolygon
-    # TODO
+  class VisibilityPolygon # < Polygon
   end
 
   class VisibilityGraph
-    # TODO
   end
 
 end

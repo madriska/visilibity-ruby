@@ -7,6 +7,13 @@
 %rename(VisibilityGraph) Visibility_Graph;
 
 %rename(n) VisiLibity::Guards::N;
+%rename("get") VisiLibity::Visibility_Graph::operator()(unsigned, unsigned, 
+                                            unsigned, unsigned) const;
+%rename("get") VisiLibity::Visibility_Graph::operator()(unsigned, unsigned) 
+                                            const;
+%rename("set") VisiLibity::Visibility_Graph::operator()(unsigned, unsigned, 
+                                            unsigned, unsigned);
+%rename("set") VisiLibity::Visibility_Graph::operator()(unsigned, unsigned);
 
 /* C++ / Ruby impedance mismatches */
 %rename(index) operator[];
