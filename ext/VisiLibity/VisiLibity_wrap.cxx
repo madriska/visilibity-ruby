@@ -10247,10 +10247,10 @@ fail:
 }
 
 
-swig_class SwigClassBoundingBox_;
+swig_class SwigClassBoundingBox;
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__x_min_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_min_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -10279,7 +10279,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__x_min_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_min_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10303,7 +10303,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__x_max_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_max_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -10332,7 +10332,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__x_max_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_x_max_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10356,7 +10356,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__y_min_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_min_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -10385,7 +10385,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__y_min_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_min_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10409,7 +10409,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__y_max_set(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_max_set(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -10438,7 +10438,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_BoundingBox__y_max_get(int argc, VALUE *argv, VALUE self) {
+_wrap_BoundingBox_y_max_get(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *arg1 = (VisiLibity::Bounding_Box *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -10463,10 +10463,10 @@ fail:
 
 #ifdef HAVE_RB_DEFINE_ALLOC_FUNC
 SWIGINTERN VALUE
-_wrap_BoundingBox__allocate(VALUE self) {
+_wrap_BoundingBox_allocate(VALUE self) {
 #else
   SWIGINTERN VALUE
-  _wrap_BoundingBox__allocate(int argc, VALUE *argv, VALUE self) {
+  _wrap_BoundingBox_allocate(int argc, VALUE *argv, VALUE self) {
 #endif
     
     
@@ -10479,7 +10479,7 @@ _wrap_BoundingBox__allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_BoundingBox_(int argc, VALUE *argv, VALUE self) {
+_wrap_new_BoundingBox(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Bounding_Box *result = 0 ;
   
   if ((argc < 0) || (argc > 0)) {
@@ -21685,7 +21685,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Guards_N(int argc, VALUE *argv, VALUE self) {
+_wrap_Guards_n(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Guards *arg1 = (VisiLibity::Guards *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -24801,21 +24801,21 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_singleton_method(mVisiLibity, "FIOS_PRECISION", VALUEFUNC(_wrap_FIOS_PRECISION_get), 0);
   rb_define_module_function(mVisiLibity, "uniform_random_sample", VALUEFUNC(_wrap_uniform_random_sample), -1);
   
-  SwigClassBoundingBox_.klass = rb_define_class_under(mVisiLibity, "BoundingBox_", rb_cObject);
-  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Bounding_Box, (void *) &SwigClassBoundingBox_);
-  rb_define_alloc_func(SwigClassBoundingBox_.klass, _wrap_BoundingBox__allocate);
-  rb_define_method(SwigClassBoundingBox_.klass, "initialize", VALUEFUNC(_wrap_new_BoundingBox_), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "x_min=", VALUEFUNC(_wrap_BoundingBox__x_min_set), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "x_min", VALUEFUNC(_wrap_BoundingBox__x_min_get), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "x_max=", VALUEFUNC(_wrap_BoundingBox__x_max_set), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "x_max", VALUEFUNC(_wrap_BoundingBox__x_max_get), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "y_min=", VALUEFUNC(_wrap_BoundingBox__y_min_set), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "y_min", VALUEFUNC(_wrap_BoundingBox__y_min_get), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "y_max=", VALUEFUNC(_wrap_BoundingBox__y_max_set), -1);
-  rb_define_method(SwigClassBoundingBox_.klass, "y_max", VALUEFUNC(_wrap_BoundingBox__y_max_get), -1);
-  SwigClassBoundingBox_.mark = 0;
-  SwigClassBoundingBox_.destroy = (void (*)(void *)) free_VisiLibity_Bounding_Box;
-  SwigClassBoundingBox_.trackObjects = 0;
+  SwigClassBoundingBox.klass = rb_define_class_under(mVisiLibity, "BoundingBox", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Bounding_Box, (void *) &SwigClassBoundingBox);
+  rb_define_alloc_func(SwigClassBoundingBox.klass, _wrap_BoundingBox_allocate);
+  rb_define_method(SwigClassBoundingBox.klass, "initialize", VALUEFUNC(_wrap_new_BoundingBox), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_min=", VALUEFUNC(_wrap_BoundingBox_x_min_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_min", VALUEFUNC(_wrap_BoundingBox_x_min_get), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_max=", VALUEFUNC(_wrap_BoundingBox_x_max_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "x_max", VALUEFUNC(_wrap_BoundingBox_x_max_get), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_min=", VALUEFUNC(_wrap_BoundingBox_y_min_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_min", VALUEFUNC(_wrap_BoundingBox_y_min_get), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_max=", VALUEFUNC(_wrap_BoundingBox_y_max_set), -1);
+  rb_define_method(SwigClassBoundingBox.klass, "y_max", VALUEFUNC(_wrap_BoundingBox_y_max_get), -1);
+  SwigClassBoundingBox.mark = 0;
+  SwigClassBoundingBox.destroy = (void (*)(void *)) free_VisiLibity_Bounding_Box;
+  SwigClassBoundingBox.trackObjects = 0;
   
   SwigClassPoint.klass = rb_define_class_under(mVisiLibity, "Point", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Point, (void *) &SwigClassPoint);
@@ -24993,7 +24993,7 @@ SWIGEXPORT void Init_VisiLibity(void) {
   SWIG_TypeClientData(SWIGTYPE_p_VisiLibity__Guards, (void *) &SwigClassGuards);
   rb_define_alloc_func(SwigClassGuards.klass, _wrap_Guards_allocate);
   rb_define_method(SwigClassGuards.klass, "initialize", VALUEFUNC(_wrap_new_Guards), -1);
-  rb_define_method(SwigClassGuards.klass, "N", VALUEFUNC(_wrap_Guards_N), -1);
+  rb_define_method(SwigClassGuards.klass, "n", VALUEFUNC(_wrap_Guards_n), -1);
   rb_define_method(SwigClassGuards.klass, "are_lex_ordered", VALUEFUNC(_wrap_Guards_are_lex_ordered), -1);
   rb_define_method(SwigClassGuards.klass, "noncolocated", VALUEFUNC(_wrap_Guards_noncolocated), -1);
   rb_define_method(SwigClassGuards.klass, "in", VALUEFUNC(_wrap_Guards_in), -1);

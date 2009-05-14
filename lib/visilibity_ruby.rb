@@ -34,12 +34,14 @@ module VisiLibity
   end
 
   # C++ structs only get 0-arg constructors in swig. Trickery to override that.
-  class BoundingBox < BoundingBox_
+  class BoundingBox
     include VisiLibity::Inspectors(:x_min, :x_max, :y_min, :y_max)
-    def initialize(x_min, x_max, y_min, y_max)
-      super()
-      self.x_min, self.x_max = x_min, x_max
-      self.y_min, self.y_max = y_min, y_max
+    def self.new(x_min, x_max, y_min, y_max)
+      bb = allocate
+      bb.send(:initialize)
+      bb.x_min, bb.x_max = x_min, x_max
+      bb.y_min, bb.y_max = y_min, y_max
+      bb
     end
   end
 
@@ -117,7 +119,12 @@ module VisiLibity
   end
 
   class Guards
-    # TODO
+    include VisiLibity::SwigEnumerable(:n)
+    include VisiLibity::Inspectors(:guards)
+
+    def guards
+      to_a
+    end
   end
 
   class VisibilityPolygon

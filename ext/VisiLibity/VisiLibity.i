@@ -1,10 +1,12 @@
 %module VisiLibity
 
-%rename(BoundingBox_) Bounding_Box;
+%rename(BoundingBox) Bounding_Box;
 %rename(LineSegment) Line_Segment;
 %rename(PolarPoint) Polar_Point;
 %rename(VisibilityPolygon) Visibility_Polygon;
 %rename(VisibilityGraph) Visibility_Graph;
+
+%rename(n) VisiLibity::Guards::N;
 
 /* C++ / Ruby impedance mismatches */
 %rename(index) operator[];
