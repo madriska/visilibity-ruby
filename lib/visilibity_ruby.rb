@@ -6,6 +6,8 @@
 # pull in VisiLibity.(so|bundle|...)
 require 'VisiLibity'
 
+require 'enumerator'
+
 module VisiLibity
 
   # Enables enumeration over Swig collections implementing size_method
@@ -95,7 +97,23 @@ module VisiLibity
   end
 
   class Environment
-    # TODO
+    include VisiLibity::Inspectors(:outer_boundary, :holes)
+    
+    def outer_boundary
+      self[0]
+    end
+
+    def each_hole
+      (0..h-1).each{|i| yield self.index(i+1)}
+    end
+
+    def holes
+      Enumerable::Enumerator.new(self, :each_hole).to_a
+    end
+    
+    def [](x)
+      index(x)
+    end
   end
 
   class Guards
