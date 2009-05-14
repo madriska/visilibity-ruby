@@ -10,6 +10,8 @@
 %rename(index) operator[];
 %ignore operator!=;
 %ignore operator=;
+%rename("is_simple?") is_simple;
+%rename("is_in_standard_form?") is_in_standard_form;
 
 %{
 #include "visilibity.hpp"
@@ -19,6 +21,7 @@
 %include "std_vector.i"
 namespace std {
   %template(PointVector) vector< VisiLibity::Point >;
+  %template(PolygonVector) vector< VisiLibity::Polygon >;
 }
 
 %include "visilibity.hpp"

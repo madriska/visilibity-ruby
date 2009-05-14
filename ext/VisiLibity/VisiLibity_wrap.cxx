@@ -1832,12 +1832,14 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type swig_types[22]
 #define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type swig_types[23]
 #define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t swig_types[24]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[25]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[26]
-#define SWIGTYPE_p_swig__Iterator swig_types[27]
-#define SWIGTYPE_p_value_type swig_types[28]
-static swig_type_info *swig_types[30];
-static swig_module_info swig_module = {swig_types, 29, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type swig_types[25]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type swig_types[26]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[27]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[28]
+#define SWIGTYPE_p_swig__Iterator swig_types[29]
+#define SWIGTYPE_p_value_type swig_types[30]
+static swig_type_info *swig_types[32];
+static swig_module_info swig_module = {swig_types, 31, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4267,6 +4269,325 @@ SWIG_From_size_t  (size_t value)
   return SWIG_From_unsigned_SS_long  (static_cast< unsigned long >(value));
 }
 
+
+  namespace swig {
+    template <>  struct traits<VisiLibity::Polygon > {
+      typedef pointer_category category;
+      static const char* type_name() { return"VisiLibity::Polygon"; }
+    };
+  }
+
+
+      namespace swig {
+	template <>  struct traits<std::vector<VisiLibity::Polygon, std::allocator< VisiLibity::Polygon > > > {
+	  typedef pointer_category category;
+	  static const char* type_name() {
+	    return "std::vector<" "VisiLibity::Polygon" "," "std::allocator< VisiLibity::Polygon >" " >";
+	  }
+	};
+      }
+    
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__dup(std::vector< VisiLibity::Polygon > *self){
+      return new std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >(*self);
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__inspect(std::vector< VisiLibity::Polygon > *self){
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator i = self->begin();
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator e = self->end();
+      VALUE str = rb_str_new2( swig::type_name< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > >() );
+      str = rb_str_cat2( str, " [" );
+      bool comma = false;
+      VALUE tmp;
+      for ( ; i != e; ++i, comma = true )
+	{
+	  if (comma) str = rb_str_cat2( str, "," );
+	  tmp = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( *i );
+	  tmp = rb_inspect( tmp );
+	  str = rb_str_buf_append( str, tmp );
+	}
+      str = rb_str_cat2( str, "]" );
+      return str;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__to_a(std::vector< VisiLibity::Polygon > *self){
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator i = self->begin();
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator e = self->end();
+      VALUE ary = rb_ary_new2( std::distance( i, e ) );
+      VALUE tmp;
+      for ( ; i != e; ++i )
+	{
+	  tmp = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( *i );
+	  rb_ary_push( ary, tmp );
+	}
+      return ary;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__to_s(std::vector< VisiLibity::Polygon > *self){
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator i = self->begin();
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator e = self->end();
+      VALUE str = rb_str_new2( "" );
+      VALUE tmp;
+      for ( ; i != e; ++i )
+	{
+	  tmp = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( *i );
+	  tmp = rb_obj_as_string( tmp );
+	  str = rb_str_buf_append( str, tmp );
+	}
+      return str;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__slice(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::difference_type i,std::vector< VisiLibity::Polygon >::difference_type j){
+	if ( j <= 0 ) return Qnil;
+	std::size_t len = self->size();
+	if ( i < 0 ) i = len - i;
+	j += i;
+	if ( static_cast<std::size_t>(j) >= len ) j = len-1;
+
+	VALUE r = Qnil;
+	try {
+	  r = swig::from< const std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >* >( swig::getslice(self, i, j) );
+	}
+	catch( std::out_of_range )
+	  {
+	  }
+	return r;
+      }
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__each(std::vector< VisiLibity::Polygon > *self){
+	if ( !rb_block_given_p() )
+	  rb_raise( rb_eArgError, "no block given");
+
+	VALUE r;
+	std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator i = self->begin();
+	std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator e = self->end();
+	for ( ; i != e; ++i )
+	  {
+	    r = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >(*i);
+	    rb_yield(r);
+	  }
+	
+	return self;
+      }
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__select(std::vector< VisiLibity::Polygon > *self){
+      if ( !rb_block_given_p() )
+	rb_raise( rb_eArgError, "no block given" );
+
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >* r = new std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >;
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator i = self->begin();
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::const_iterator e = self->end();
+      for ( ; i != e; ++i )
+	{
+	  VALUE v = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >(*i);
+	  if ( RTEST( rb_yield(v) ) )
+	    self->insert( r->end(), *i);
+	}
+	
+      return r;
+    }
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__reject_bang(std::vector< VisiLibity::Polygon > *self){
+      if ( !rb_block_given_p() )
+	rb_raise( rb_eArgError, "no block given" );
+
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator i = self->begin();
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator e = self->end();
+      for ( ; i != e; )
+	{
+	  VALUE r = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >(*i);
+	  if ( RTEST( rb_yield(r) ) ) {
+	    self->erase(i++);
+            e = self->end();
+	  } else {
+	    ++i;
+          }
+	}
+	
+      return self;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__delete_at(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::difference_type i){
+      VALUE r = Qnil;
+      try {
+	std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator at = swig::getpos(self, i);
+	r = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( *(at) );
+	self->erase(at); 
+      }
+      catch (std::out_of_range)
+	{
+	}
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg____delete2__(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::value_type const &i){
+      VALUE r = Qnil;
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__pop(std::vector< VisiLibity::Polygon > *self){
+      if (self->empty()) return Qnil;
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type x = self->back();
+      self->pop_back();
+      return swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( x );
+    }
+SWIGINTERN std::vector< VisiLibity::Polygon >::value_type const std_vector_Sl_VisiLibity_Polygon_Sg__push(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::value_type const &e){
+      self->push_back( e );
+      return e;
+    }
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__reject(std::vector< VisiLibity::Polygon > *self){
+      if ( !rb_block_given_p() )
+	rb_raise( rb_eArgError, "no block given" );
+
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >* r = new std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >;
+      std::remove_copy_if( self->begin(), self->end(),              
+			   std::back_inserter(*r),
+			   swig::yield< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >() );
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__at(std::vector< VisiLibity::Polygon > const *self,std::vector< VisiLibity::Polygon >::difference_type i){
+      VALUE r = Qnil;
+      try {
+	r = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( *(swig::cgetpos(self, i)) );
+      }
+      catch( std::out_of_range )
+	{
+	}
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg____getitem____SWIG_0(std::vector< VisiLibity::Polygon > const *self,std::vector< VisiLibity::Polygon >::difference_type i,std::vector< VisiLibity::Polygon >::difference_type j){
+      if ( j <= 0 ) return Qnil;
+      std::size_t len = self->size();
+      if ( i < 0 ) i = len - i;
+      j += i; if ( static_cast<std::size_t>(j) >= len ) j = len-1;
+
+      VALUE r = Qnil;
+      try {
+	r = swig::from< const std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >* >( swig::getslice(self, i, j) );
+      }
+      catch( std::out_of_range )
+	{
+	}
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg____getitem____SWIG_1(std::vector< VisiLibity::Polygon > const *self,std::vector< VisiLibity::Polygon >::difference_type i){
+      VALUE r = Qnil;
+      try {
+	r = swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( *(swig::cgetpos(self, i)) );
+      }
+      catch( std::out_of_range )
+	{
+	}
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg____getitem____SWIG_2(std::vector< VisiLibity::Polygon > const *self,VALUE i){
+      if ( rb_obj_is_kind_of( i, rb_cRange ) == Qfalse )
+	{
+	  rb_raise( rb_eTypeError, "not a valid index or range" );
+	}
+
+      VALUE r = Qnil;
+      static ID id_end   = rb_intern("end");
+      static ID id_start = rb_intern("begin");
+      static ID id_noend = rb_intern("exclude_end?");
+
+      VALUE start = rb_funcall( i, id_start, 0 );
+      VALUE end   = rb_funcall( i, id_end, 0 );
+      bool  noend = ( rb_funcall( i, id_noend, 0 ) == Qtrue );
+
+      int len = self->size();
+
+      int s = NUM2INT( start );
+      if ( s < 0 ) s = len + s;
+      else if ( s >= len ) return Qnil;
+
+      int e = NUM2INT( end );
+      if ( e < 0 ) e = len + e;
+
+      if ( e < s ) return Qnil; //std::swap( s, e );
+
+      if ( noend ) e -= 1;
+      if ( e >= len ) e = len - 1;
+
+      return swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >* >( swig::getslice(self, s, e+1) );
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg____setitem____SWIG_0(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::difference_type i,std::vector< VisiLibity::Polygon >::value_type const &x){
+	std::size_t len = self->size();
+	if ( i < 0 ) i = len - i;
+	else if ( static_cast<std::size_t>(i) >= len )
+	  self->resize( i+1, x );
+	else
+	  *(swig::getpos(self,i)) = x;
+
+	return swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( x );
+      }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg____setitem____SWIG_1(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::difference_type i,std::vector< VisiLibity::Polygon >::difference_type j,std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &v){
+
+      if ( j <= 0 ) return Qnil;
+      std::size_t len = self->size();
+      if ( i < 0 ) i = len - i;
+      j += i; 
+      if ( static_cast<std::size_t>(j) >= len ) {
+	self->resize( j+1, *(v.begin()) );
+	j = len-1;
+      }
+
+      VALUE r = Qnil;
+      swig::setslice(self, i, j, v);
+      r = swig::from< const std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >* >( &v );
+      return r;
+    }
+SWIGINTERN VALUE std_vector_Sl_VisiLibity_Polygon_Sg__shift(std::vector< VisiLibity::Polygon > *self){
+      if (self->empty()) return Qnil;
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type x = self->front();
+      self->erase( self->begin() );
+      return swig::from< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type >( x );
+    }
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__insert__SWIG_0(std::vector< VisiLibity::Polygon > *self,std::vector< VisiLibity::Polygon >::difference_type pos,int argc,VALUE *argv,...){
+      std::size_t len = self->size();
+      std::size_t   i = swig::check_index( pos, len, true );
+      std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator start;
+
+      VALUE elem = argv[0];
+      int idx = 0;
+      try {
+	std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type val = swig::as<std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type>( elem, true );
+	if ( i >= len ) {
+	  self->resize(i-1, val);
+	  return self;
+	}
+	start = self->begin();
+	std::advance( start, i );
+	self->insert( start++, val );
+
+	for ( ++idx; idx < argc; ++idx )
+	  {
+	    elem = argv[idx];
+	    val = swig::as<std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type>( elem );
+	    self->insert( start++, val );
+	  }
+
+      } 
+      catch( std::invalid_argument )
+	{
+	  rb_raise( rb_eArgError,
+		    Ruby_Format_TypeError( "", 
+					   swig::type_name<std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type>(),
+					   __FUNCTION__, idx+2, elem ));
+	}
+
+
+      return self;
+    }
+SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *std_vector_Sl_VisiLibity_Polygon_Sg__unshift(std::vector< VisiLibity::Polygon > *self,int argc,VALUE *argv,...){
+      for ( int idx = argc-1; idx >= 0; --idx )
+	{
+	  std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::iterator start = self->begin();
+	  VALUE elem = argv[idx];
+	  try {
+	    std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type val = swig::as<std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type>( elem, true );
+	    self->insert( start, val );
+	  }
+	  catch( std::invalid_argument )
+	    {
+	      rb_raise( rb_eArgError,
+			Ruby_Format_TypeError( "", 
+					       swig::type_name<std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >::value_type>(),
+					       __FUNCTION__, idx+2, elem ));
+	    }
+	}
+
+      return self;
+    }
 
 SWIGINTERNINLINE VALUE
 SWIG_From_int  (int value)
@@ -7729,6 +8050,2159 @@ fail:
 
 SWIGINTERN void
 free_std_vector_Sl_VisiLibity_Point_Sg_(std::vector< VisiLibity::Point > *arg1) {
+    delete arg1;
+}
+
+swig_class SwigClassPolygonVector;
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.dup
+
+  call-seq:
+    dup -> PolygonVector
+
+Create a duplicate of the class and unfreeze it if needed.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_dup(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","dup", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__dup(arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.inspect
+
+  call-seq:
+    inspect -> VALUE
+
+Inspect class and its contents.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_inspect(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","inspect", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__inspect(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.to_a
+
+  call-seq:
+    to_a -> VALUE
+
+Convert PolygonVector to an Array.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_to_a(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","to_a", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__to_a(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.to_s
+
+  call-seq:
+    to_s -> VALUE
+
+Convert class to a String representation.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_to_s(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","to_s", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__to_s(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.slice
+
+  call-seq:
+    slice(i, j) -> VALUE
+
+Return a slice (portion of) the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_slice(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  ptrdiff_t val3 ;
+  int ecode3 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","slice", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","slice", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  ecode3 = SWIG_AsVal_ptrdiff_t(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","slice", 3, argv[1] ));
+  } 
+  arg3 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val3);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__slice(arg1,arg2,arg3);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.each
+
+  call-seq:
+    each -> PolygonVector
+
+Iterate thru each element in the PolygonVector.  A block must be provided.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_each(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","each", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__each(arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.select
+
+  call-seq:
+    select -> PolygonVector
+
+Iterate thru each element in the PolygonVector and select those that match a condition.  A block must be provided.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_select(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","select", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__select(arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.reject!
+
+  call-seq:
+    reject! -> PolygonVector
+
+Iterate thru each element in the PolygonVector and reject those that fail a condition.  A block must be provided.  PolygonVector is modified in place.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_rejectN___(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","reject_bang", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__reject_bang(arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.delete_at
+
+  call-seq:
+    delete_at(i) -> VALUE
+
+Delete an element at a certain index.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_delete_at(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","delete_at", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","delete_at", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__delete_at(arg1,arg2);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector___delete2__(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","__delete2__", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","__delete2__", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","__delete2__", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp2);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg____delete2__(arg1,(VisiLibity::Polygon const &)*arg2);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.pop
+
+  call-seq:
+    pop -> VALUE
+
+Remove and return element at the end of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_pop(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","pop", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__pop(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.push
+
+  call-seq:
+    push(e) -> value_type
+
+Add an element at the end of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_push(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  std::vector< VisiLibity::Polygon >::value_type result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","push", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","push", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","push", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp2);
+  result = std_vector_Sl_VisiLibity_Polygon_Sg__push(arg1,(VisiLibity::Polygon const &)*arg2);
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon >::value_type(static_cast< const std::vector< VisiLibity::Polygon >::value_type& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.reject
+
+  call-seq:
+    reject -> PolygonVector
+
+Iterate thru each element in the PolygonVector and reject those that fail a condition returning a new PolygonVector.  A block must be provided.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_reject(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","reject", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__reject(arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.at
+
+  call-seq:
+    at(i) -> VALUE
+
+Return element at a certain index.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_at(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","at", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","at", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__at((std::vector< VisiLibity::Polygon > const *)arg1,arg2);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.[]
+
+  call-seq:
+    [](i, j) -> VALUE
+    [](i) -> VALUE
+    [](i) -> VALUE
+
+Element accessor/slicing.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector___getitem____SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  ptrdiff_t val3 ;
+  int ecode3 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","__getitem__", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","__getitem__", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  ecode3 = SWIG_AsVal_ptrdiff_t(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","__getitem__", 3, argv[1] ));
+  } 
+  arg3 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val3);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg____getitem____SWIG_0((std::vector< VisiLibity::Polygon > const *)arg1,arg2,arg3);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector___getitem____SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","__getitem__", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","__getitem__", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg____getitem____SWIG_1((std::vector< VisiLibity::Polygon > const *)arg1,arg2);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector___getitem____SWIG_2(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  VALUE arg2 = (VALUE) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","__getitem__", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  arg2 = argv[0];
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg____getitem____SWIG_2((std::vector< VisiLibity::Polygon > const *)arg1,arg2);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_PolygonVector___getitem__(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_PolygonVector___getitem____SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      _v = (argv[1] != 0);
+      if (_v) {
+        return _wrap_PolygonVector___getitem____SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_ptrdiff_t(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_PolygonVector___getitem____SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "__getitem__", 
+    "    VALUE __getitem__(std::vector< VisiLibity::Polygon >::difference_type i, std::vector< VisiLibity::Polygon >::difference_type j)\n"
+    "    VALUE __getitem__(std::vector< VisiLibity::Polygon >::difference_type i)\n"
+    "    VALUE __getitem__(VALUE i)\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.[]=
+
+  call-seq:
+    []=(i, x) -> VALUE
+    []=(i, j, v) -> VALUE
+
+Element setter/slicing.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector___setitem____SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","__setitem__", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","__setitem__", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","__setitem__", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","__setitem__", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp3);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg____setitem____SWIG_0(arg1,arg2,(VisiLibity::Polygon const &)*arg3);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector___setitem____SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg3 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  ptrdiff_t val3 ;
+  int ecode3 = 0 ;
+  int res4 = SWIG_OLDOBJ ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","__setitem__", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","__setitem__", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  ecode3 = SWIG_AsVal_ptrdiff_t(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","__setitem__", 3, argv[1] ));
+  } 
+  arg3 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val3);
+  {
+    std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *ptr = (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)0;
+    res4 = swig::asptr(argv[2], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","__setitem__", 4, argv[2] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","__setitem__", 4, argv[2])); 
+    }
+    arg4 = ptr;
+  }
+  try {
+    result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg____setitem____SWIG_1(arg1,arg2,arg3,(std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &)*arg4);
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_exception_fail(SWIG_ValueError, (&_e)->what());
+  }
+  
+  vresult = result;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_PolygonVector___setitem__(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 3) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_PolygonVector___setitem____SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_ptrdiff_t(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = swig::asptr(argv[3], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_PolygonVector___setitem____SWIG_1(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "__setitem__", 
+    "    VALUE __setitem__(std::vector< VisiLibity::Polygon >::difference_type i, std::vector< VisiLibity::Polygon >::value_type const &x)\n"
+    "    VALUE __setitem__(std::vector< VisiLibity::Polygon >::difference_type i, std::vector< VisiLibity::Polygon >::difference_type j, std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &v)\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.shift
+
+  call-seq:
+    shift -> VALUE
+
+Remove and return element at the beginning of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_shift(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  VALUE result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","shift", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (VALUE)std_vector_Sl_VisiLibity_Polygon_Sg__shift(arg1);
+  vresult = result;
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.insert
+
+  call-seq:
+    insert(pos, argc, ?) -> PolygonVector
+    insert(pos, x) -> iterator
+    insert(pos, n, x)
+
+Insert one or more new elements in the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_insert__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::difference_type arg2 ;
+  int arg3 ;
+  VALUE *arg4 = (VALUE *) 0 ;
+  void *arg5 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if (argc < 2) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","insert", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::difference_type","insert", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::difference_type >(val2);
+  {
+    arg3 = argc - 1;
+    arg4 = argv + 1;
+  }
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__insert__SWIG_0(arg1,arg2,arg3,arg4,arg5);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.unshift
+
+  call-seq:
+    unshift(argc, ?) -> PolygonVector
+
+Add one or more elements at the beginning of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_unshift(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  int arg2 ;
+  VALUE *arg3 = (VALUE *) 0 ;
+  void *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if (argc < 1) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","unshift", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  {
+    arg2 = argc;
+    arg3 = argv;
+  }
+  result = (std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)std_vector_Sl_VisiLibity_Polygon_Sg__unshift(arg1,arg2,arg3,arg4);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_PolygonVector__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (std::vector< VisiLibity::Polygon > *)new std::vector< VisiLibity::Polygon >();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_PolygonVector__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  std::vector< VisiLibity::Polygon > *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *ptr = (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)0;
+    res1 = swig::asptr(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const &","std::vector<(VisiLibity::Polygon)>", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon > const &","std::vector<(VisiLibity::Polygon)>", 1, argv[0])); 
+    }
+    arg1 = ptr;
+  }
+  result = (std::vector< VisiLibity::Polygon > *)new std::vector< VisiLibity::Polygon >((std::vector< VisiLibity::Polygon > const &)*arg1);
+  DATA_PTR(self) = result;
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return self;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.empty?
+
+  call-seq:
+    empty? -> bool
+
+Check if the PolygonVector is empty or not.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_emptyq___(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","empty", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (bool)((std::vector< VisiLibity::Polygon > const *)arg1)->empty();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.size
+
+  call-seq:
+    size -> size_type
+
+Size or Length of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_size(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::size_type result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","size", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->size();
+  vresult = SWIG_From_size_t(static_cast< size_t >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.clear
+
+  call-seq:
+    clear
+
+Clear PolygonVector contents.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_clear(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","clear", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  (arg1)->clear();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector_swap(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","swap", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > &","swap", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon > &","swap", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp2);
+  (arg1)->swap(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector_get_allocator(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  SwigValueWrapper< std::allocator< VisiLibity::Polygon > > result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","get_allocator", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->get_allocator();
+  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon >::allocator_type(static_cast< const std::vector< VisiLibity::Polygon >::allocator_type& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.begin
+
+  call-seq:
+    begin -> const_iterator
+
+Return an iterator to the beginning of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_begin(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::const_iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","begin", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->begin();
+  vresult = SWIG_NewPointerObj(swig::make_const_iterator(static_cast< const std::vector< VisiLibity::Polygon >::const_iterator & >(result),
+      self),
+    swig::ConstIterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.end
+
+  call-seq:
+    end -> const_iterator
+
+Return an iterator to past the end of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_end(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::const_iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","end", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->end();
+  vresult = SWIG_NewPointerObj(swig::make_const_iterator(static_cast< const std::vector< VisiLibity::Polygon >::const_iterator & >(result),
+      self),
+    swig::ConstIterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.rbegin
+
+  call-seq:
+    rbegin -> const_reverse_iterator
+
+Return a reverse iterator to the beginning (the end) of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_rbegin(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::const_reverse_iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","rbegin", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->rbegin();
+  vresult = SWIG_NewPointerObj(swig::make_const_iterator(static_cast< const std::vector< VisiLibity::Polygon >::const_reverse_iterator & >(result),
+      self),
+    swig::ConstIterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.rend
+
+  call-seq:
+    rend -> const_reverse_iterator
+
+Return a reverse iterator to past the end (past the beginning) of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_rend(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::const_reverse_iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","rend", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->rend();
+  vresult = SWIG_NewPointerObj(swig::make_const_iterator(static_cast< const std::vector< VisiLibity::Polygon >::const_reverse_iterator & >(result),
+      self),
+    swig::ConstIterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_PolygonVector__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon >::size_type arg1 ;
+  size_t val1 ;
+  int ecode1 = 0 ;
+  std::vector< VisiLibity::Polygon > *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_size_t(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","std::vector<(VisiLibity::Polygon)>", 1, argv[0] ));
+  } 
+  arg1 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val1);
+  result = (std::vector< VisiLibity::Polygon > *)new std::vector< VisiLibity::Polygon >(arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.resize
+
+  call-seq:
+    resize(new_size)
+    resize(new_size, x)
+
+Resize the size of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_resize__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::size_type arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","resize", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","resize", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val2);
+  (arg1)->resize(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.erase
+
+  call-seq:
+    erase(pos) -> iterator
+    erase(first, last) -> iterator
+
+Delete a portion of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_erase__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::iterator arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *iter2 = 0 ;
+  int res2 ;
+  std::vector< VisiLibity::Polygon >::iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","erase", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&iter2), swig::Iterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","erase", 2, argv[0] ));
+  } else {
+    swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *iter_t = dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","erase", 2, argv[0] ));
+    }
+  }
+  result = (arg1)->erase(arg2);
+  vresult = SWIG_NewPointerObj(swig::make_nonconst_iterator(static_cast< const std::vector< VisiLibity::Polygon >::iterator & >(result),
+      self),
+    swig::Iterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector_erase__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::iterator arg2 ;
+  std::vector< VisiLibity::Polygon >::iterator arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *iter2 = 0 ;
+  int res2 ;
+  swig::Iterator *iter3 = 0 ;
+  int res3 ;
+  std::vector< VisiLibity::Polygon >::iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","erase", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&iter2), swig::Iterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","erase", 2, argv[0] ));
+  } else {
+    swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *iter_t = dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","erase", 2, argv[0] ));
+    }
+  }
+  res3 = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter3), swig::Iterator::descriptor(), 0);
+  if (!SWIG_IsOK(res3) || !iter3) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","erase", 3, argv[1] ));
+  } else {
+    swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *iter_t = dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter3);
+    if (iter_t) {
+      arg3 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","erase", 3, argv[1] ));
+    }
+  }
+  result = (arg1)->erase(arg2,arg3);
+  vresult = SWIG_NewPointerObj(swig::make_nonconst_iterator(static_cast< const std::vector< VisiLibity::Polygon >::iterator & >(result),
+      self),
+    swig::Iterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_PolygonVector_erase(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::ConstIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), 
+        swig::Iterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter) != 0));
+      if (_v) {
+        return _wrap_PolygonVector_erase__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::ConstIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), 
+        swig::Iterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter) != 0));
+      if (_v) {
+        swig::ConstIterator *iter = 0;
+        int res = SWIG_ConvertPtr(argv[2], SWIG_as_voidptrptr(&iter), 
+          swig::Iterator::descriptor(), 0);
+        _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter) != 0));
+        if (_v) {
+          return _wrap_PolygonVector_erase__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "PolygonVector.erase", 
+    "    std::vector< VisiLibity::Polygon >::iterator PolygonVector.erase(std::vector< VisiLibity::Polygon >::iterator pos)\n"
+    "    std::vector< VisiLibity::Polygon >::iterator PolygonVector.erase(std::vector< VisiLibity::Polygon >::iterator first, std::vector< VisiLibity::Polygon >::iterator last)\n");
+  
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_PolygonVector_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_PolygonVector_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_PolygonVector__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon >::size_type arg1 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg2 = 0 ;
+  size_t val1 ;
+  int ecode1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  std::vector< VisiLibity::Polygon > *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_size_t(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","std::vector<(VisiLibity::Polygon)>", 1, argv[0] ));
+  } 
+  arg1 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","std::vector<(VisiLibity::Polygon)>", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","std::vector<(VisiLibity::Polygon)>", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp2);
+  result = (std::vector< VisiLibity::Polygon > *)new std::vector< VisiLibity::Polygon >(arg1,(std::vector< VisiLibity::Polygon >::value_type const &)*arg2);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_PolygonVector(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 2) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 0) {
+    return _wrap_new_PolygonVector__SWIG_0(nargs, args, self);
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      int res = SWIG_AsVal_size_t(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      return _wrap_new_PolygonVector__SWIG_2(nargs, args, self);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_PolygonVector__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      int res = SWIG_AsVal_size_t(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_PolygonVector__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "PolygonVector.new", 
+    "    PolygonVector.new()\n"
+    "    PolygonVector.new(std::vector< VisiLibity::Polygon > const &)\n"
+    "    PolygonVector.new(std::vector< VisiLibity::Polygon >::size_type size)\n"
+    "    PolygonVector.new(std::vector< VisiLibity::Polygon >::size_type size, std::vector< VisiLibity::Polygon >::value_type const &value)\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.front
+
+  call-seq:
+    front -> value_type
+
+Return the first element in PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_front(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::value_type *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","front", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon >::value_type *) &((std::vector< VisiLibity::Polygon > const *)arg1)->front();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.back
+
+  call-seq:
+    back -> value_type
+
+Return the last element in PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_back(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::value_type *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","back", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = (std::vector< VisiLibity::Polygon >::value_type *) &((std::vector< VisiLibity::Polygon > const *)arg1)->back();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.assign
+
+  call-seq:
+    assign(n, x)
+
+Assign a new PolygonVector or portion of it.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_assign(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::size_type arg2 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","assign", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","assign", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val2);
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","assign", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","assign", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp3);
+  (arg1)->assign(arg2,(std::vector< VisiLibity::Polygon >::value_type const &)*arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.resize
+
+  call-seq:
+    resize(new_size)
+    resize(new_size, x)
+
+Resize the size of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_resize__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::size_type arg2 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","resize", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","resize", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val2);
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","resize", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","resize", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp3);
+  (arg1)->resize(arg2,(std::vector< VisiLibity::Polygon >::value_type const &)*arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_PolygonVector_resize(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_PolygonVector_resize__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_PolygonVector_resize__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "PolygonVector.resize", 
+    "    void PolygonVector.resize(std::vector< VisiLibity::Polygon >::size_type new_size)\n"
+    "    void PolygonVector.resize(std::vector< VisiLibity::Polygon >::size_type new_size, std::vector< VisiLibity::Polygon >::value_type const &x)\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.insert
+
+  call-seq:
+    insert(pos, argc, ?) -> PolygonVector
+    insert(pos, x) -> iterator
+    insert(pos, n, x)
+
+Insert one or more new elements in the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_insert__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::iterator arg2 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *iter2 = 0 ;
+  int res2 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  std::vector< VisiLibity::Polygon >::iterator result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","insert", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&iter2), swig::Iterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","insert", 2, argv[0] ));
+  } else {
+    swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *iter_t = dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","insert", 2, argv[0] ));
+    }
+  }
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","insert", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","insert", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp3);
+  result = (arg1)->insert(arg2,(std::vector< VisiLibity::Polygon >::value_type const &)*arg3);
+  vresult = SWIG_NewPointerObj(swig::make_nonconst_iterator(static_cast< const std::vector< VisiLibity::Polygon >::iterator & >(result),
+      self),
+    swig::Iterator::descriptor(),SWIG_POINTER_OWN);
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_PolygonVector_insert__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::iterator arg2 ;
+  std::vector< VisiLibity::Polygon >::size_type arg3 ;
+  std::vector< VisiLibity::Polygon >::value_type *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::Iterator *iter2 = 0 ;
+  int res2 ;
+  size_t val3 ;
+  int ecode3 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","insert", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], SWIG_as_voidptrptr(&iter2), swig::Iterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","insert", 2, argv[0] ));
+  } else {
+    swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *iter_t = dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::iterator","insert", 2, argv[0] ));
+    }
+  }
+  ecode3 = SWIG_AsVal_size_t(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","insert", 3, argv[1] ));
+  } 
+  arg3 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val3);
+  res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::value_type const &","insert", 4, argv[2] )); 
+  }
+  if (!argp4) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon >::value_type const &","insert", 4, argv[2])); 
+  }
+  arg4 = reinterpret_cast< std::vector< VisiLibity::Polygon >::value_type * >(argp4);
+  (arg1)->insert(arg2,arg3,(std::vector< VisiLibity::Polygon >::value_type const &)*arg4);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_PolygonVector_insert(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 3) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::ConstIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), 
+        swig::Iterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter) != 0));
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_PolygonVector_insert__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc >= 3) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          if (argc <= 3) {
+            return _wrap_PolygonVector_insert__SWIG_0(nargs, args, self);
+          }
+          return _wrap_PolygonVector_insert__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::ConstIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), 
+        swig::Iterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::Iterator_T<std::vector< VisiLibity::Polygon >::iterator > *>(iter) != 0));
+      if (_v) {
+        {
+          int res = SWIG_AsVal_size_t(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          void *vptr = 0;
+          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_PolygonVector_insert__SWIG_2(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "insert", 
+    "    void insert(std::vector< VisiLibity::Polygon >::difference_type pos, int argc, VALUE *argv, ...)\n"
+    "    void insert(std::vector< VisiLibity::Polygon >::iterator pos, std::vector< VisiLibity::Polygon >::value_type const &x)\n"
+    "    void insert(std::vector< VisiLibity::Polygon >::iterator pos, std::vector< VisiLibity::Polygon >::size_type n, std::vector< VisiLibity::Polygon >::value_type const &x)\n");
+  
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.reserve
+
+  call-seq:
+    reserve(n)
+
+Reserve memory in the PolygonVector for a number of elements.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_reserve(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  std::vector< VisiLibity::Polygon >::size_type arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > *","reserve", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon >::size_type","reserve", 2, argv[0] ));
+  } 
+  arg2 = static_cast< std::vector< VisiLibity::Polygon >::size_type >(val2);
+  (arg1)->reserve(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: VisiLibity::PolygonVector.capacity
+
+  call-seq:
+    capacity -> size_type
+
+Reserved capacity of the PolygonVector.
+*/
+SWIGINTERN VALUE
+_wrap_PolygonVector_capacity(int argc, VALUE *argv, VALUE self) {
+  std::vector< VisiLibity::Polygon > *arg1 = (std::vector< VisiLibity::Polygon > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::vector< VisiLibity::Polygon >::size_type result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon > const *","capacity", 1, self )); 
+  }
+  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon > * >(argp1);
+  result = ((std::vector< VisiLibity::Polygon > const *)arg1)->capacity();
+  vresult = SWIG_From_size_t(static_cast< size_t >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_std_vector_Sl_VisiLibity_Polygon_Sg_(std::vector< VisiLibity::Polygon > *arg1) {
     delete arg1;
 }
 
@@ -11421,7 +13895,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_LineSegment_is_in_standard_form(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_is_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -15967,7 +18441,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polygon_is_simple__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Polygon_is_simpleq_____SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -15999,7 +18473,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polygon_is_simple__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Polygon_is_simpleq_____SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -16022,7 +18496,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Polygon_is_simple(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Polygon_is_simpleq___(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -16039,7 +18513,7 @@ SWIGINTERN VALUE _wrap_Polygon_is_simple(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Polygon_is_simple__SWIG_1(nargs, args, self);
+      return _wrap_Polygon_is_simpleq_____SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -16053,22 +18527,22 @@ SWIGINTERN VALUE _wrap_Polygon_is_simple(int nargs, VALUE *args, VALUE self) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Polygon_is_simple__SWIG_0(nargs, args, self);
+        return _wrap_Polygon_is_simpleq_____SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Polygon.is_simple", 
-    "    bool Polygon.is_simple(double epsilon)\n"
-    "    bool Polygon.is_simple()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Polygon.is_simple?", 
+    "    bool Polygon.is_simple?(double epsilon)\n"
+    "    bool Polygon.is_simple?()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Polygon_is_in_standard_form(int argc, VALUE *argv, VALUE self) {
+_wrap_Polygon_is_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -17417,25 +19891,29 @@ fail:
 SWIGINTERN VALUE
 _wrap_new_Environment__SWIG_2(int argc, VALUE *argv, VALUE self) {
   std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
   VisiLibity::Environment *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","VisiLibity::Environment", 1, argv[0] )); 
+  {
+    std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *ptr = (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *)0;
+    res1 = swig::asptr(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","VisiLibity::Environment", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","VisiLibity::Environment", 1, argv[0])); 
+    }
+    arg1 = ptr;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &","VisiLibity::Environment", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > * >(argp1);
   result = (VisiLibity::Environment *)new VisiLibity::Environment((std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > const &)*arg1);
   DATA_PTR(self) = result;
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return self;
 fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return Qnil;
 }
 
@@ -17508,19 +19986,18 @@ SWIGINTERN VALUE _wrap_new_Environment(int nargs, VALUE *args, VALUE self) {
   if (argc == 1) {
     int _v;
     void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_Environment__SWIG_2(nargs, args, self);
-    }
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__string, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Environment__SWIG_3(nargs, args, self);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    int res = swig::asptr(argv[0], (std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Environment__SWIG_2(nargs, args, self);
     }
   }
   
@@ -17672,7 +20149,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Environment_is_in_standard_form(int argc, VALUE *argv, VALUE self) {
+_wrap_Environment_is_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -18379,7 +20856,7 @@ _wrap_Environment_compute_partition_cells__SWIG_0(int argc, VALUE *argv, VALUE s
   int res2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > > result;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -18407,7 +20884,7 @@ _wrap_Environment_compute_partition_cells__SWIG_0(int argc, VALUE *argv, VALUE s
   } 
   arg3 = static_cast< double >(val3);
   result = (arg1)->compute_partition_cells(arg2,arg3);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >(static_cast< const std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
+  vresult = swig::from(static_cast< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > >(result));
   return vresult;
 fail:
   return Qnil;
@@ -18422,7 +20899,7 @@ _wrap_Environment_compute_partition_cells__SWIG_1(int argc, VALUE *argv, VALUE s
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  SwigValueWrapper< std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > > result;
+  std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -18445,7 +20922,7 @@ _wrap_Environment_compute_partition_cells__SWIG_1(int argc, VALUE *argv, VALUE s
     }
   }
   result = (arg1)->compute_partition_cells(arg2);
-  vresult = SWIG_NewPointerObj((new std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >(static_cast< const std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > >& >(result))), SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, SWIG_POINTER_OWN |  0 );
+  vresult = swig::from(static_cast< std::vector<VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > >(result));
   return vresult;
 fail:
   return Qnil;
@@ -21820,7 +24297,9 @@ static swig_type_info _swigt__p_std__vectorT_VisiLibity__Line_Segment_std__alloc
 static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t = {"_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *|std::vector< VisiLibity::Point > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type = {"_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type", "std::vector< VisiLibity::Point >::allocator_type *|std::allocator< VisiLibity::Point > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type = {"_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type", "std::vector< VisiLibity::Point >::value_type *|VisiLibity::Point *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t = {"_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t = {"_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t", "std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon > > *|std::vector< VisiLibity::Polygon > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type = {"_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type", "std::vector< VisiLibity::Polygon >::allocator_type *|std::allocator< VisiLibity::Polygon > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type = {"_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type", "std::vector< VisiLibity::Polygon >::value_type *|VisiLibity::Polygon *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__ConstIterator = {"_p_swig__ConstIterator", "swig::ConstIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__GC_VALUE = {"_p_swig__GC_VALUE", "swig::GC_VALUE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__Iterator = {"_p_swig__Iterator", "swig::Iterator *", 0, 0, (void*)0, 0};
@@ -21852,6 +24331,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type,
   &_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type,
   &_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,
+  &_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type,
+  &_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,
   &_swigt__p_swig__ConstIterator,
   &_swigt__p_swig__GC_VALUE,
   &_swigt__p_swig__Iterator,
@@ -21865,7 +24346,7 @@ static swig_cast_info _swigc__p_VisiLibity__Guards[] = {  {&_swigt__p_VisiLibity
 static swig_cast_info _swigc__p_VisiLibity__Line_Segment[] = {  {&_swigt__p_VisiLibity__Line_Segment, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VisiLibity__Point[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type, 0, 0, 0},  {&_swigt__p_VisiLibity__Point, 0, 0, 0},  {&_swigt__p_VisiLibity__Polar_Point, _p_VisiLibity__Polar_PointTo_p_VisiLibity__Point, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VisiLibity__Polar_Point[] = {  {&_swigt__p_VisiLibity__Polar_Point, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_VisiLibity__Polygon[] = {  {&_swigt__p_VisiLibity__Polygon, 0, 0, 0},  {&_swigt__p_VisiLibity__Visibility_Polygon, _p_VisiLibity__Visibility_PolygonTo_p_VisiLibity__Polygon, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_VisiLibity__Polygon[] = {  {&_swigt__p_VisiLibity__Polygon, 0, 0, 0},  {&_swigt__p_VisiLibity__Visibility_Polygon, _p_VisiLibity__Visibility_PolygonTo_p_VisiLibity__Polygon, 0, 0},  {&_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VisiLibity__Polyline[] = {  {&_swigt__p_VisiLibity__Polyline, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VisiLibity__Ray[] = {  {&_swigt__p_VisiLibity__Ray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_VisiLibity__Visibility_Graph[] = {  {&_swigt__p_VisiLibity__Visibility_Graph, 0, 0, 0},{0, 0, 0, 0}};
@@ -21883,6 +24364,8 @@ static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_V
 static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type, 0, 0, 0},  {&_swigt__p_VisiLibity__Point, 0, 0, 0},  {&_swigt__p_VisiLibity__Polar_Point, _p_VisiLibity__Polar_PointTo_p_VisiLibity__Point, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type[] = {  {&_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type[] = {  {&_swigt__p_VisiLibity__Polygon, 0, 0, 0},  {&_swigt__p_VisiLibity__Visibility_Polygon, 0, 0, 0},  {&_swigt__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__ConstIterator[] = {  {&_swigt__p_swig__ConstIterator, 0, 0, 0},  {&_swigt__p_swig__Iterator, _p_swig__IteratorTo_p_swig__ConstIterator, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__GC_VALUE[] = {  {&_swigt__p_swig__GC_VALUE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__Iterator[] = {  {&_swigt__p_swig__Iterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -21914,6 +24397,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type,
   _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type,
   _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t,
+  _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type,
+  _swigc__p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type,
   _swigc__p_swig__ConstIterator,
   _swigc__p_swig__GC_VALUE,
   _swigc__p_swig__Iterator,
@@ -22267,6 +24752,52 @@ SWIGEXPORT void Init_VisiLibity(void) {
   SwigClassPointVector.mark = 0;
   SwigClassPointVector.destroy = (void (*)(void *)) free_std_vector_Sl_VisiLibity_Point_Sg_;
   SwigClassPointVector.trackObjects = 0;
+  
+  SwigClassPolygonVector.klass = rb_define_class_under(mVisiLibity, "PolygonVector", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t, (void *) &SwigClassPolygonVector);
+  rb_include_module(SwigClassPolygonVector.klass, rb_eval_string("Enumerable"));
+  rb_define_alloc_func(SwigClassPolygonVector.klass, _wrap_PolygonVector_allocate);
+  rb_define_method(SwigClassPolygonVector.klass, "initialize", VALUEFUNC(_wrap_new_PolygonVector), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "dup", VALUEFUNC(_wrap_PolygonVector_dup), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "inspect", VALUEFUNC(_wrap_PolygonVector_inspect), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "to_a", VALUEFUNC(_wrap_PolygonVector_to_a), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "to_s", VALUEFUNC(_wrap_PolygonVector_to_s), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "slice", VALUEFUNC(_wrap_PolygonVector_slice), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "each", VALUEFUNC(_wrap_PolygonVector_each), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "select", VALUEFUNC(_wrap_PolygonVector_select), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "reject!", VALUEFUNC(_wrap_PolygonVector_rejectN___), -1);
+  rb_define_alias(SwigClassPolygonVector.klass, "delete_if", "reject!");
+  rb_define_method(SwigClassPolygonVector.klass, "delete_at", VALUEFUNC(_wrap_PolygonVector_delete_at), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "__delete2__", VALUEFUNC(_wrap_PolygonVector___delete2__), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "pop", VALUEFUNC(_wrap_PolygonVector_pop), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "push", VALUEFUNC(_wrap_PolygonVector_push), -1);
+  rb_define_alias(SwigClassPolygonVector.klass, "<<", "push");
+  rb_define_method(SwigClassPolygonVector.klass, "reject", VALUEFUNC(_wrap_PolygonVector_reject), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "at", VALUEFUNC(_wrap_PolygonVector_at), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "[]", VALUEFUNC(_wrap_PolygonVector___getitem__), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "[]=", VALUEFUNC(_wrap_PolygonVector___setitem__), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "shift", VALUEFUNC(_wrap_PolygonVector_shift), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "unshift", VALUEFUNC(_wrap_PolygonVector_unshift), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "empty?", VALUEFUNC(_wrap_PolygonVector_emptyq___), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "size", VALUEFUNC(_wrap_PolygonVector_size), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "clear", VALUEFUNC(_wrap_PolygonVector_clear), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "swap", VALUEFUNC(_wrap_PolygonVector_swap), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "get_allocator", VALUEFUNC(_wrap_PolygonVector_get_allocator), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "begin", VALUEFUNC(_wrap_PolygonVector_begin), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "end", VALUEFUNC(_wrap_PolygonVector_end), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "rbegin", VALUEFUNC(_wrap_PolygonVector_rbegin), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "rend", VALUEFUNC(_wrap_PolygonVector_rend), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "erase", VALUEFUNC(_wrap_PolygonVector_erase), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "front", VALUEFUNC(_wrap_PolygonVector_front), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "back", VALUEFUNC(_wrap_PolygonVector_back), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "assign", VALUEFUNC(_wrap_PolygonVector_assign), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "resize", VALUEFUNC(_wrap_PolygonVector_resize), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "insert", VALUEFUNC(_wrap_PolygonVector_insert), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "reserve", VALUEFUNC(_wrap_PolygonVector_reserve), -1);
+  rb_define_method(SwigClassPolygonVector.klass, "capacity", VALUEFUNC(_wrap_PolygonVector_capacity), -1);
+  SwigClassPolygonVector.mark = 0;
+  SwigClassPolygonVector.destroy = (void (*)(void *)) free_std_vector_Sl_VisiLibity_Polygon_Sg_;
+  SwigClassPolygonVector.trackObjects = 0;
   rb_define_singleton_method(mVisiLibity, "FIOS_PRECISION", VALUEFUNC(_wrap_FIOS_PRECISION_get), 0);
   rb_define_module_function(mVisiLibity, "uniform_random_sample", VALUEFUNC(_wrap_uniform_random_sample), -1);
   
@@ -22318,7 +24849,7 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassLineSegment.klass, "size", VALUEFUNC(_wrap_LineSegment_size), -1);
   rb_define_method(SwigClassLineSegment.klass, "midpoint", VALUEFUNC(_wrap_LineSegment_midpoint), -1);
   rb_define_method(SwigClassLineSegment.klass, "length", VALUEFUNC(_wrap_LineSegment_length), -1);
-  rb_define_method(SwigClassLineSegment.klass, "is_in_standard_form", VALUEFUNC(_wrap_LineSegment_is_in_standard_form), -1);
+  rb_define_method(SwigClassLineSegment.klass, "is_in_standard_form?", VALUEFUNC(_wrap_LineSegment_is_in_standard_formq___), -1);
   rb_define_method(SwigClassLineSegment.klass, "set_first", VALUEFUNC(_wrap_LineSegment_set_first), -1);
   rb_define_method(SwigClassLineSegment.klass, "set_second", VALUEFUNC(_wrap_LineSegment_set_second), -1);
   rb_define_method(SwigClassLineSegment.klass, "reverse", VALUEFUNC(_wrap_LineSegment_reverse), -1);
@@ -22407,8 +24938,8 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassPolygon.klass, "initialize", VALUEFUNC(_wrap_new_Polygon), -1);
   rb_define_method(SwigClassPolygon.klass, "n", VALUEFUNC(_wrap_Polygon_n), -1);
   rb_define_method(SwigClassPolygon.klass, "r", VALUEFUNC(_wrap_Polygon_r), -1);
-  rb_define_method(SwigClassPolygon.klass, "is_simple", VALUEFUNC(_wrap_Polygon_is_simple), -1);
-  rb_define_method(SwigClassPolygon.klass, "is_in_standard_form", VALUEFUNC(_wrap_Polygon_is_in_standard_form), -1);
+  rb_define_method(SwigClassPolygon.klass, "is_simple?", VALUEFUNC(_wrap_Polygon_is_simpleq___), -1);
+  rb_define_method(SwigClassPolygon.klass, "is_in_standard_form?", VALUEFUNC(_wrap_Polygon_is_in_standard_formq___), -1);
   rb_define_method(SwigClassPolygon.klass, "boundary_length", VALUEFUNC(_wrap_Polygon_boundary_length), -1);
   rb_define_method(SwigClassPolygon.klass, "area", VALUEFUNC(_wrap_Polygon_area), -1);
   rb_define_method(SwigClassPolygon.klass, "centroid", VALUEFUNC(_wrap_Polygon_centroid), -1);
@@ -22437,7 +24968,7 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassEnvironment.klass, "h", VALUEFUNC(_wrap_Environment_h), -1);
   rb_define_method(SwigClassEnvironment.klass, "n", VALUEFUNC(_wrap_Environment_n), -1);
   rb_define_method(SwigClassEnvironment.klass, "r", VALUEFUNC(_wrap_Environment_r), -1);
-  rb_define_method(SwigClassEnvironment.klass, "is_in_standard_form", VALUEFUNC(_wrap_Environment_is_in_standard_form), -1);
+  rb_define_method(SwigClassEnvironment.klass, "is_in_standard_form?", VALUEFUNC(_wrap_Environment_is_in_standard_formq___), -1);
   rb_define_method(SwigClassEnvironment.klass, "is_valid", VALUEFUNC(_wrap_Environment_is_valid), -1);
   rb_define_method(SwigClassEnvironment.klass, "boundary_length", VALUEFUNC(_wrap_Environment_boundary_length), -1);
   rb_define_method(SwigClassEnvironment.klass, "area", VALUEFUNC(_wrap_Environment_area), -1);
