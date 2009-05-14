@@ -30,5 +30,7 @@ namespace std {
   %template(PolygonVector) vector< VisiLibity::Polygon >;
 }
 
+%include "std_string.i"
+
 %include "visilibity.hpp"
 

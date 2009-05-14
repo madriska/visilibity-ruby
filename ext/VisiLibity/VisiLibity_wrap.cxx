@@ -1826,20 +1826,19 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_p_void swig_types[16]
 #define SWIGTYPE_p_size_type swig_types[17]
 #define SWIGTYPE_p_std__ostream swig_types[18]
-#define SWIGTYPE_p_std__string swig_types[19]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t swig_types[20]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t swig_types[21]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type swig_types[22]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type swig_types[23]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t swig_types[24]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type swig_types[25]
-#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type swig_types[26]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[27]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[28]
-#define SWIGTYPE_p_swig__Iterator swig_types[29]
-#define SWIGTYPE_p_value_type swig_types[30]
-static swig_type_info *swig_types[32];
-static swig_module_info swig_module = {swig_types, 31, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t swig_types[19]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t swig_types[20]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type swig_types[21]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__value_type swig_types[22]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t swig_types[23]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__allocator_type swig_types[24]
+#define SWIGTYPE_p_std__vectorT_VisiLibity__Polygon_std__allocatorT_VisiLibity__Polygon_t_t__value_type swig_types[25]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[26]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[27]
+#define SWIGTYPE_p_swig__Iterator swig_types[28]
+#define SWIGTYPE_p_value_type swig_types[29]
+static swig_type_info *swig_types[31];
+static swig_module_info swig_module = {swig_types, 30, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4589,6 +4588,9 @@ SWIGINTERN std::vector< VisiLibity::Polygon,std::allocator< VisiLibity::Polygon 
       return self;
     }
 
+#include <string>
+
+
 SWIGINTERNINLINE VALUE
 SWIG_From_int  (int value)
 {    
@@ -4648,6 +4650,88 @@ SWIG_AsVal_unsigned_SS_int (VALUE obj, unsigned int *val)
     }
   }  
   return res;
+}
+
+
+SWIGINTERN swig_type_info*
+SWIG_pchar_descriptor(void)
+{
+  static int init = 0;
+  static swig_type_info* info = 0;
+  if (!init) {
+    info = SWIG_TypeQuery("_p_char");
+    init = 1;
+  }
+  return info;
+}
+
+
+SWIGINTERN int
+SWIG_AsCharPtrAndSize(VALUE obj, char** cptr, size_t* psize, int *alloc)
+{
+  if (TYPE(obj) == T_STRING) {
+    #if defined(StringValuePtr)
+    char *cstr = StringValuePtr(obj); 
+    #else
+    char *cstr = STR2CSTR(obj);
+    #endif
+    size_t size = RSTRING_LEN(obj) + 1;
+    if (cptr)  {
+      if (alloc) {
+	if (*alloc == SWIG_NEWOBJ) {
+	  *cptr = reinterpret_cast< char* >(memcpy((new char[size]), cstr, sizeof(char)*(size)));
+	} else {
+	  *cptr = cstr;
+	  *alloc = SWIG_OLDOBJ;
+	}
+      }
+    }
+    if (psize) *psize = size;
+    return SWIG_OK;
+  } else {
+    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+    if (pchar_descriptor) {
+      void* vptr = 0;
+      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
+	if (cptr) *cptr = (char *)vptr;
+	if (psize) *psize = vptr ? (strlen((char*)vptr) + 1) : 0;
+	if (alloc) *alloc = SWIG_OLDOBJ;
+	return SWIG_OK;
+      }
+    }
+  }  
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsPtr_std_string (VALUE obj, std::string **val) 
+{
+  char* buf = 0 ; size_t size = 0; int alloc = SWIG_OLDOBJ;
+  if (SWIG_IsOK((SWIG_AsCharPtrAndSize(obj, &buf, &size, &alloc)))) {
+    if (buf) {
+      if (val) *val = new std::string(buf, size - 1);
+      if (alloc == SWIG_NEWOBJ) delete[] buf;
+      return SWIG_NEWOBJ;
+    } else {
+      if (val) *val = 0;
+      return SWIG_OLDOBJ;
+    }
+  } else {
+    static int init = 0;
+    static swig_type_info* descriptor = 0;
+    if (!init) {
+      descriptor = SWIG_TypeQuery("std::string" " *");
+      init = 1;
+    }
+    if (descriptor) {
+      std::string *vptr;
+      int res = SWIG_ConvertPtr(obj, (void**)&vptr, descriptor, 0);
+      if (SWIG_IsOK(res) && val) *val = vptr;
+      return res;
+    }
+  }
+  return SWIG_ERROR;
 }
 
 swig_class SwigClassGC_VALUE;
@@ -18181,25 +18265,29 @@ fail:
 SWIGINTERN VALUE
 _wrap_new_Polygon__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::string *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
   VisiLibity::Polygon *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","VisiLibity::Polygon", 1, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","VisiLibity::Polygon", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VisiLibity::Polygon", 1, argv[0])); 
+    }
+    arg1 = ptr;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VisiLibity::Polygon", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< std::string * >(argp1);
   result = (VisiLibity::Polygon *)new VisiLibity::Polygon((std::string const &)*arg1);
   DATA_PTR(self) = result;
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return self;
 fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return Qnil;
 }
 
@@ -18314,8 +18402,7 @@ SWIGINTERN VALUE _wrap_new_Polygon(int nargs, VALUE *args, VALUE self) {
   }
   if (argc == 1) {
     int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__string, 0);
+    int res = SWIG_AsPtr_std_string(argv[0], (std::string**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Polygon__SWIG_1(nargs, args, self);
@@ -18825,8 +18912,7 @@ _wrap_Polygon_write_to_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
   int val3 ;
   int ecode3 = 0 ;
   
@@ -18838,22 +18924,27 @@ _wrap_Polygon_write_to_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polygon *","write_to_file", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Polygon * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
+    }
+    arg2 = ptr;
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< std::string * >(argp2);
   ecode3 = SWIG_AsVal_int(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "int","write_to_file", 3, argv[1] ));
   } 
   arg3 = static_cast< int >(val3);
   (arg1)->write_to_file((std::string const &)*arg2,arg3);
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -18864,8 +18955,7 @@ _wrap_Polygon_write_to_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::string *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -18875,17 +18965,22 @@ _wrap_Polygon_write_to_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Polygon *","write_to_file", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Polygon * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
+    }
+    arg2 = ptr;
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< std::string * >(argp2);
   (arg1)->write_to_file((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -18907,8 +19002,7 @@ SWIGINTERN VALUE _wrap_Polygon_write_to_file(int nargs, VALUE *args, VALUE self)
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__string, 0);
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_Polygon_write_to_file__SWIG_1(nargs, args, self);
@@ -18921,8 +19015,7 @@ SWIGINTERN VALUE _wrap_Polygon_write_to_file(int nargs, VALUE *args, VALUE self)
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__string, 0);
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
         {
@@ -19938,25 +20031,29 @@ _wrap_Environment_allocate(VALUE self) {
 SWIGINTERN VALUE
 _wrap_new_Environment__SWIG_3(int argc, VALUE *argv, VALUE self) {
   std::string *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
   VisiLibity::Environment *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","VisiLibity::Environment", 1, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","VisiLibity::Environment", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VisiLibity::Environment", 1, argv[0])); 
+    }
+    arg1 = ptr;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VisiLibity::Environment", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< std::string * >(argp1);
   result = (VisiLibity::Environment *)new VisiLibity::Environment((std::string const &)*arg1);
   DATA_PTR(self) = result;
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return self;
 fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return Qnil;
 }
 
@@ -19985,8 +20082,7 @@ SWIGINTERN VALUE _wrap_new_Environment(int nargs, VALUE *args, VALUE self) {
   }
   if (argc == 1) {
     int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__string, 0);
+    int res = SWIG_AsPtr_std_string(argv[0], (std::string**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Environment__SWIG_3(nargs, args, self);
@@ -20991,8 +21087,7 @@ _wrap_Environment_write_to_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
   int val3 ;
   int ecode3 = 0 ;
   
@@ -21004,22 +21099,27 @@ _wrap_Environment_write_to_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Environment *","write_to_file", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Environment * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
+    }
+    arg2 = ptr;
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< std::string * >(argp2);
   ecode3 = SWIG_AsVal_int(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "int","write_to_file", 3, argv[1] ));
   } 
   arg3 = static_cast< int >(val3);
   (arg1)->write_to_file((std::string const &)*arg2,arg3);
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -21030,8 +21130,7 @@ _wrap_Environment_write_to_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::string *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -21041,17 +21140,22 @@ _wrap_Environment_write_to_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Environment *","write_to_file", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Environment * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
+    }
+    arg2 = ptr;
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< std::string * >(argp2);
   (arg1)->write_to_file((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -21073,8 +21177,7 @@ SWIGINTERN VALUE _wrap_Environment_write_to_file(int nargs, VALUE *args, VALUE s
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__string, 0);
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_Environment_write_to_file__SWIG_1(nargs, args, self);
@@ -21087,8 +21190,7 @@ SWIGINTERN VALUE _wrap_Environment_write_to_file(int nargs, VALUE *args, VALUE s
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__string, 0);
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
         {
@@ -21541,25 +21643,29 @@ fail:
 SWIGINTERN VALUE
 _wrap_new_Guards__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::string *arg1 = 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
   VisiLibity::Guards *result = 0 ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
-  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","VisiLibity::Guards", 1, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","VisiLibity::Guards", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VisiLibity::Guards", 1, argv[0])); 
+    }
+    arg1 = ptr;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VisiLibity::Guards", 1, argv[0])); 
-  }
-  arg1 = reinterpret_cast< std::string * >(argp1);
   result = (VisiLibity::Guards *)new VisiLibity::Guards((std::string const &)*arg1);
   DATA_PTR(self) = result;
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return self;
 fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return Qnil;
 }
 
@@ -21626,8 +21732,7 @@ SWIGINTERN VALUE _wrap_new_Guards(int nargs, VALUE *args, VALUE self) {
   }
   if (argc == 1) {
     int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_std__string, 0);
+    int res = SWIG_AsPtr_std_string(argv[0], (std::string**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       return _wrap_new_Guards__SWIG_1(nargs, args, self);
@@ -22135,8 +22240,7 @@ _wrap_Guards_write_to_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
   int val3 ;
   int ecode3 = 0 ;
   
@@ -22148,22 +22252,27 @@ _wrap_Guards_write_to_file__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Guards *","write_to_file", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Guards * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
+    }
+    arg2 = ptr;
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< std::string * >(argp2);
   ecode3 = SWIG_AsVal_int(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "int","write_to_file", 3, argv[1] ));
   } 
   arg3 = static_cast< int >(val3);
   (arg1)->write_to_file((std::string const &)*arg2,arg3);
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -22174,8 +22283,7 @@ _wrap_Guards_write_to_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
   std::string *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
@@ -22185,17 +22293,22 @@ _wrap_Guards_write_to_file__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "VisiLibity::Guards *","write_to_file", 1, self )); 
   }
   arg1 = reinterpret_cast< VisiLibity::Guards * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_std__string,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","write_to_file", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
+    }
+    arg2 = ptr;
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","write_to_file", 2, argv[0])); 
-  }
-  arg2 = reinterpret_cast< std::string * >(argp2);
   (arg1)->write_to_file((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -22217,8 +22330,7 @@ SWIGINTERN VALUE _wrap_Guards_write_to_file(int nargs, VALUE *args, VALUE self) 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Guards, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__string, 0);
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
         return _wrap_Guards_write_to_file__SWIG_1(nargs, args, self);
@@ -22231,8 +22343,7 @@ SWIGINTERN VALUE _wrap_Guards_write_to_file(int nargs, VALUE *args, VALUE self) 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Guards, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_std__string, 0);
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
       _v = SWIG_CheckState(res);
       if (_v) {
         {
@@ -24292,7 +24403,6 @@ static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "differ
 static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **|VALUE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t = {"_p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t", "std::vector< VisiLibity::Line_Segment,std::allocator< VisiLibity::Line_Segment > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t = {"_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t", "std::vector< VisiLibity::Point,std::allocator< VisiLibity::Point > > *|std::vector< VisiLibity::Point > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type = {"_p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type", "std::vector< VisiLibity::Point >::allocator_type *|std::allocator< VisiLibity::Point > *", 0, 0, (void*)0, 0};
@@ -24325,7 +24435,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_p_void,
   &_swigt__p_size_type,
   &_swigt__p_std__ostream,
-  &_swigt__p_std__string,
   &_swigt__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t,
   &_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,
   &_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type,
@@ -24358,7 +24467,6 @@ static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_ty
 static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type[] = {  {&_swigt__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type, 0, 0, 0},{0, 0, 0, 0}};
@@ -24391,7 +24499,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_p_void,
   _swigc__p_size_type,
   _swigc__p_std__ostream,
-  _swigc__p_std__string,
   _swigc__p_std__vectorT_VisiLibity__Line_Segment_std__allocatorT_VisiLibity__Line_Segment_t_t,
   _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t,
   _swigc__p_std__vectorT_VisiLibity__Point_std__allocatorT_VisiLibity__Point_t_t__allocator_type,
