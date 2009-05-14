@@ -11799,7 +11799,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Point_is_endpoint_of__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Point_endpoint_ofq_____SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = (VisiLibity::Point *) 0 ;
   VisiLibity::Line_Segment *arg2 = 0 ;
   double arg3 ;
@@ -11842,7 +11842,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Point_is_endpoint_of__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Point_endpoint_ofq_____SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Point *arg1 = (VisiLibity::Point *) 0 ;
   VisiLibity::Line_Segment *arg2 = 0 ;
   void *argp1 = 0 ;
@@ -11876,7 +11876,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Point_is_endpoint_of(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Point_endpoint_ofq___(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[4];
   int ii;
@@ -11897,7 +11897,7 @@ SWIGINTERN VALUE _wrap_Point_is_endpoint_of(int nargs, VALUE *args, VALUE self) 
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_VisiLibity__Line_Segment, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_Point_is_endpoint_of__SWIG_1(nargs, args, self);
+        return _wrap_Point_endpoint_ofq_____SWIG_1(nargs, args, self);
       }
     }
   }
@@ -11916,16 +11916,16 @@ SWIGINTERN VALUE _wrap_Point_is_endpoint_of(int nargs, VALUE *args, VALUE self) 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_Point_is_endpoint_of__SWIG_0(nargs, args, self);
+          return _wrap_Point_endpoint_ofq_____SWIG_0(nargs, args, self);
         }
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 4, "Point.is_endpoint_of", 
-    "    bool Point.is_endpoint_of(VisiLibity::Line_Segment const &line_segment_temp, double epsilon)\n"
-    "    bool Point.is_endpoint_of(VisiLibity::Line_Segment const &line_segment_temp)\n");
+  Ruby_Format_OverloadedError( argc, 4, "Point.endpoint_of?", 
+    "    bool Point.endpoint_of?(VisiLibity::Line_Segment const &line_segment_temp, double epsilon)\n"
+    "    bool Point.endpoint_of?(VisiLibity::Line_Segment const &line_segment_temp)\n");
   
   return Qnil;
 }
@@ -13895,7 +13895,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_LineSegment_is_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
+_wrap_LineSegment_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Line_Segment *arg1 = (VisiLibity::Line_Segment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -18441,7 +18441,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polygon_is_simpleq_____SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Polygon_simpleq_____SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -18473,7 +18473,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Polygon_is_simpleq_____SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Polygon_simpleq_____SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -18496,7 +18496,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Polygon_is_simpleq___(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Polygon_simpleq___(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -18513,7 +18513,7 @@ SWIGINTERN VALUE _wrap_Polygon_is_simpleq___(int nargs, VALUE *args, VALUE self)
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Polygon, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Polygon_is_simpleq_____SWIG_1(nargs, args, self);
+      return _wrap_Polygon_simpleq_____SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -18527,22 +18527,22 @@ SWIGINTERN VALUE _wrap_Polygon_is_simpleq___(int nargs, VALUE *args, VALUE self)
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Polygon_is_simpleq_____SWIG_0(nargs, args, self);
+        return _wrap_Polygon_simpleq_____SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Polygon.is_simple?", 
-    "    bool Polygon.is_simple?(double epsilon)\n"
-    "    bool Polygon.is_simple?()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Polygon.simple?", 
+    "    bool Polygon.simple?(double epsilon)\n"
+    "    bool Polygon.simple?()\n");
   
   return Qnil;
 }
 
 
 SWIGINTERN VALUE
-_wrap_Polygon_is_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
+_wrap_Polygon_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Polygon *arg1 = (VisiLibity::Polygon *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20149,7 +20149,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Environment_is_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
+_wrap_Environment_in_standard_formq___(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20173,7 +20173,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Environment_is_valid__SWIG_0(int argc, VALUE *argv, VALUE self) {
+_wrap_Environment_validq_____SWIG_0(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
   double arg2 ;
   void *argp1 = 0 ;
@@ -20205,7 +20205,7 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_Environment_is_valid__SWIG_1(int argc, VALUE *argv, VALUE self) {
+_wrap_Environment_validq_____SWIG_1(int argc, VALUE *argv, VALUE self) {
   VisiLibity::Environment *arg1 = (VisiLibity::Environment *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -20228,7 +20228,7 @@ fail:
 }
 
 
-SWIGINTERN VALUE _wrap_Environment_is_valid(int nargs, VALUE *args, VALUE self) {
+SWIGINTERN VALUE _wrap_Environment_validq___(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[3];
   int ii;
@@ -20245,7 +20245,7 @@ SWIGINTERN VALUE _wrap_Environment_is_valid(int nargs, VALUE *args, VALUE self) 
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_VisiLibity__Environment, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_Environment_is_valid__SWIG_1(nargs, args, self);
+      return _wrap_Environment_validq_____SWIG_1(nargs, args, self);
     }
   }
   if (argc == 2) {
@@ -20259,15 +20259,15 @@ SWIGINTERN VALUE _wrap_Environment_is_valid(int nargs, VALUE *args, VALUE self) 
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_Environment_is_valid__SWIG_0(nargs, args, self);
+        return _wrap_Environment_validq_____SWIG_0(nargs, args, self);
       }
     }
   }
   
 fail:
-  Ruby_Format_OverloadedError( argc, 3, "Environment.is_valid", 
-    "    bool Environment.is_valid(double epsilon)\n"
-    "    bool Environment.is_valid()\n");
+  Ruby_Format_OverloadedError( argc, 3, "Environment.valid?", 
+    "    bool Environment.valid?(double epsilon)\n"
+    "    bool Environment.valid?()\n");
   
   return Qnil;
 }
@@ -24829,7 +24829,7 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassPoint.klass, "on_boundary_of", VALUEFUNC(_wrap_Point_on_boundary_of), -1);
   rb_define_method(SwigClassPoint.klass, "in_relative_interior_of", VALUEFUNC(_wrap_Point_in_relative_interior_of), -1);
   rb_define_method(SwigClassPoint.klass, "in", VALUEFUNC(_wrap_Point_in), -1);
-  rb_define_method(SwigClassPoint.klass, "is_endpoint_of", VALUEFUNC(_wrap_Point_is_endpoint_of), -1);
+  rb_define_method(SwigClassPoint.klass, "endpoint_of?", VALUEFUNC(_wrap_Point_endpoint_ofq___), -1);
   rb_define_method(SwigClassPoint.klass, "set_x", VALUEFUNC(_wrap_Point_set_x), -1);
   rb_define_method(SwigClassPoint.klass, "set_y", VALUEFUNC(_wrap_Point_set_y), -1);
   rb_define_method(SwigClassPoint.klass, "snap_to_vertices_of", VALUEFUNC(_wrap_Point_snap_to_vertices_of), -1);
@@ -24849,7 +24849,7 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassLineSegment.klass, "size", VALUEFUNC(_wrap_LineSegment_size), -1);
   rb_define_method(SwigClassLineSegment.klass, "midpoint", VALUEFUNC(_wrap_LineSegment_midpoint), -1);
   rb_define_method(SwigClassLineSegment.klass, "length", VALUEFUNC(_wrap_LineSegment_length), -1);
-  rb_define_method(SwigClassLineSegment.klass, "is_in_standard_form?", VALUEFUNC(_wrap_LineSegment_is_in_standard_formq___), -1);
+  rb_define_method(SwigClassLineSegment.klass, "in_standard_form?", VALUEFUNC(_wrap_LineSegment_in_standard_formq___), -1);
   rb_define_method(SwigClassLineSegment.klass, "set_first", VALUEFUNC(_wrap_LineSegment_set_first), -1);
   rb_define_method(SwigClassLineSegment.klass, "set_second", VALUEFUNC(_wrap_LineSegment_set_second), -1);
   rb_define_method(SwigClassLineSegment.klass, "reverse", VALUEFUNC(_wrap_LineSegment_reverse), -1);
@@ -24938,8 +24938,8 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassPolygon.klass, "initialize", VALUEFUNC(_wrap_new_Polygon), -1);
   rb_define_method(SwigClassPolygon.klass, "n", VALUEFUNC(_wrap_Polygon_n), -1);
   rb_define_method(SwigClassPolygon.klass, "r", VALUEFUNC(_wrap_Polygon_r), -1);
-  rb_define_method(SwigClassPolygon.klass, "is_simple?", VALUEFUNC(_wrap_Polygon_is_simpleq___), -1);
-  rb_define_method(SwigClassPolygon.klass, "is_in_standard_form?", VALUEFUNC(_wrap_Polygon_is_in_standard_formq___), -1);
+  rb_define_method(SwigClassPolygon.klass, "simple?", VALUEFUNC(_wrap_Polygon_simpleq___), -1);
+  rb_define_method(SwigClassPolygon.klass, "in_standard_form?", VALUEFUNC(_wrap_Polygon_in_standard_formq___), -1);
   rb_define_method(SwigClassPolygon.klass, "boundary_length", VALUEFUNC(_wrap_Polygon_boundary_length), -1);
   rb_define_method(SwigClassPolygon.klass, "area", VALUEFUNC(_wrap_Polygon_area), -1);
   rb_define_method(SwigClassPolygon.klass, "centroid", VALUEFUNC(_wrap_Polygon_centroid), -1);
@@ -24968,8 +24968,8 @@ SWIGEXPORT void Init_VisiLibity(void) {
   rb_define_method(SwigClassEnvironment.klass, "h", VALUEFUNC(_wrap_Environment_h), -1);
   rb_define_method(SwigClassEnvironment.klass, "n", VALUEFUNC(_wrap_Environment_n), -1);
   rb_define_method(SwigClassEnvironment.klass, "r", VALUEFUNC(_wrap_Environment_r), -1);
-  rb_define_method(SwigClassEnvironment.klass, "is_in_standard_form?", VALUEFUNC(_wrap_Environment_is_in_standard_formq___), -1);
-  rb_define_method(SwigClassEnvironment.klass, "is_valid", VALUEFUNC(_wrap_Environment_is_valid), -1);
+  rb_define_method(SwigClassEnvironment.klass, "in_standard_form?", VALUEFUNC(_wrap_Environment_in_standard_formq___), -1);
+  rb_define_method(SwigClassEnvironment.klass, "valid?", VALUEFUNC(_wrap_Environment_validq___), -1);
   rb_define_method(SwigClassEnvironment.klass, "boundary_length", VALUEFUNC(_wrap_Environment_boundary_length), -1);
   rb_define_method(SwigClassEnvironment.klass, "area", VALUEFUNC(_wrap_Environment_area), -1);
   rb_define_method(SwigClassEnvironment.klass, "diameter", VALUEFUNC(_wrap_Environment_diameter), -1);

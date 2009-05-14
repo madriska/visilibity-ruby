@@ -10,8 +10,12 @@
 %rename(index) operator[];
 %ignore operator!=;
 %ignore operator=;
-%rename("is_simple?") is_simple;
-%rename("is_in_standard_form?") is_in_standard_form;
+
+%rename("simple?") is_simple;
+%rename("in_standard_form?") is_in_standard_form;
+%rename("endpoint_of?") is_endpoint_of;
+%rename("valid?") is_valid;
+
 
 %{
 #include "visilibity.hpp"
