@@ -1,11 +1,4 @@
-# This file is named visilibity_ruby.rb to work around problems with naming:
-# I can't yet figure out how to make swig generate a module named VisiLibity
-# into an SO called visilibity_native. 
-# FIXME: would be nice to be able to rename this visilibity.rb.
-
-# pull in VisiLibity.(so|bundle|...)
-require 'VisiLibity'
-
+require 'VisiLibity_native' # .(so|bundle)
 require 'enumerator'
 
 module VisiLibity

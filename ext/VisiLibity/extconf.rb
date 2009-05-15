@@ -5,7 +5,7 @@ $libs = append_library($libs, "stdc++")
 
 swig_dir = with_config('swig-dir', File.dirname(__FILE__))
 
-create_makefile('VisiLibity')
+create_makefile('VisiLibity_native')
 
 # eww eww eww
 original_makefile = File.read('Makefile')

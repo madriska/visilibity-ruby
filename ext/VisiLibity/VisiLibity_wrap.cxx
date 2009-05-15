@@ -1864,6 +1864,9 @@ static VALUE mVisiLibity;
 #include <stdexcept>
 
 
+#define Init_VisiLibity Init_VisiLibity_native
+
+
 #include "visilibity.hpp"
 
 

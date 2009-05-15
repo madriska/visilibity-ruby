@@ -19,12 +19,18 @@
 %rename(index) operator[];
 %ignore operator!=;
 %ignore operator=;
-
 %rename("simple?") is_simple;
 %rename("in_standard_form?") is_in_standard_form;
 %rename("endpoint_of?") is_endpoint_of;
 %rename("valid?") is_valid;
 
+
+/* This is a bit shady, but it allows us to name the extension 
+ * VisiLibity_native, so that we can name the Ruby entry point visilibity.rb 
+ * without naming conflicts. */
+%{
+#define Init_VisiLibity Init_VisiLibity_native
+%}
 
 %{
 #include "visilibity.hpp"
