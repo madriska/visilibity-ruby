@@ -39,7 +39,9 @@ module VisiLibity
   end
 
   class Point
-    include VisiLibity::Inspectors(:x, :y)
+    def inspect
+      "(#{x},#{y})"
+    end
   end
 
   class LineSegment
