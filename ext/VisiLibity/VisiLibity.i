@@ -27,7 +27,7 @@
 
 /* This is a bit shady, but it allows us to name the extension 
  * VisiLibity_native, so that we can name the Ruby entry point visilibity.rb 
- * without naming conflicts. */
+ * and the Ruby/Swig module VisiLibity, without naming conflicts. */
 %{
 #define Init_VisiLibity Init_VisiLibity_native
 %}
